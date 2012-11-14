@@ -2,3 +2,6 @@ DerivedData
 *.app
 *.build
 *.xcuserdatad
+
+# ignoring openni stuff
+bin/data/openni
