@@ -128,40 +128,35 @@ void tspsApp::onOpenNIHand( ofxOpenNIHandEvent & e ){
 //--------------------------------------------------------------
 void tspsApp::onSwipeUp( ofxSwipeEvent & e ){
     map<string,string> params;
-    params["velocityX"] = ofToString(e.velocity.x);
-    params["velocityY"] = ofToString(e.velocity.y);
+    params["strength"] = ofToString(e.velocity.y);
     params["angle"]     = ofToString(e.angle);
-    peopleTracker.triggerCustomEvent( "openNIHandStopped", params );
+    peopleTracker.triggerCustomEvent( "openNISwipeUp", params );
     
 }
 
 //--------------------------------------------------------------
 void tspsApp::onSwipeDown( ofxSwipeEvent & e ){
     map<string,string> params;
-    params["velocityX"] = ofToString(e.velocity.x);
-    params["velocityY"] = ofToString(e.velocity.y);
+    params["strength"] = ofToString(e.velocity.y);
     params["angle"]     = ofToString(e.angle);
-    peopleTracker.triggerCustomEvent( "openNIHandStopped", params );
-    
+    peopleTracker.triggerCustomEvent( "openNISwipeDown", params );
 }
 
 //--------------------------------------------------------------
 void tspsApp::onSwipeLeft( ofxSwipeEvent & e ){
     map<string,string> params;
-    params["velocityX"] = ofToString(e.velocity.x);
-    params["velocityY"] = ofToString(e.velocity.y);
+    params["strength"] = ofToString(e.velocity.x);
     params["angle"]     = ofToString(e.angle);
-    peopleTracker.triggerCustomEvent( "openNIHandStopped", params );
+    peopleTracker.triggerCustomEvent( "openNISwipeLeft", params );
     
 }
 
 //--------------------------------------------------------------
 void tspsApp::onSwipeRight( ofxSwipeEvent & e ){
     map<string,string> params;
-    params["velocityX"] = ofToString(e.velocity.x);
-    params["velocityY"] = ofToString(e.velocity.y);
+    params["strength"] = ofToString(e.velocity.x);
     params["angle"]     = ofToString(e.angle);
-    peopleTracker.triggerCustomEvent( "openNIHandStopped", params );    
+    peopleTracker.triggerCustomEvent( "openNISwipeRight", params );    
 }
 
 //--------------------------------------------------------------

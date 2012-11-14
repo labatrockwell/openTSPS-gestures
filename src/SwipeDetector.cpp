@@ -10,9 +10,8 @@
 
 SwipeDetector::SwipeDetector(){
     detector = new XnVSwipeDetector( false );
-    g_pSessionManager = new XnVSessionManager;
-    m_pInnerFlowRouter = new XnVFlowRouter;
-    m_Broadcaster.AddListener(m_pInnerFlowRouter);
+    g_pSessionManager = NULL;
+    m_pInnerFlowRouter = NULL;
 }
 
 void SwipeDetector::setup( ofxOpenNI & _openNI ){
@@ -20,15 +19,19 @@ void SwipeDetector::setup( ofxOpenNI & _openNI ){
     detector->RegisterSwipeUp(this, &callbackOnSwipeUp);
     detector->RegisterSwipeDown(this, &callbackOnSwipeDown);
     detector->RegisterSwipeLeft(this, &callbackOnSwipeLeft);
-    detector->RegisterSwipeRight(this, &callbackOnSwipeRight);
+    detector->RegisterSwipeRight(this, &callbackOnSwipeRight);    
+    g_pSessionManager = new XnVSessionManager;
+    m_pInnerFlowRouter = new XnVFlowRouter;
+    m_Broadcaster.AddListener(m_pInnerFlowRouter);
     g_pSessionManager->Initialize(&openNI->getContext(), "Wave", "RaiseHand");
-    g_pSessionManager->AddListener(m_pInnerFlowRouter);
-    
+    g_pSessionManager->AddListener(m_pInnerFlowRouter);    
     m_pInnerFlowRouter->SetActive(detector);
 }
 
 void SwipeDetector::update(){
-	g_pSessionManager->Update(&openNI->getContext());    
+    if ( g_pSessionManager != NULL ){
+        g_pSessionManager->Update(&openNI->getContext());
+    }
 }
 
 void XN_CALLBACK_TYPE SwipeDetector::callbackOnSwipeUp(XnFloat fVelocity, XnFloat fAngle, void* pUserCxt){
