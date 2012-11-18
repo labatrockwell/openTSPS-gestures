@@ -12,10 +12,10 @@ void tspsApp::setup(){
     // setup OpenNI source
     source.openSource(640,480);
         
-    // add gestures + hands, which we will send as custom data
-    source.addGestureGenerator();
+    // add gestures + hands, which we will send as custom data=
+    //source.addGestureGenerator();
+    //source.addAllGestures();
     source.addHandsGenerator();
-    source.addAllGestures();
     
     // setup swipe detector
     swipeDetector.setup( source );

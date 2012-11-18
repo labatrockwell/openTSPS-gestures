@@ -23,9 +23,10 @@ void SwipeDetector::setup( ofxOpenNI & _openNI ){
     g_pSessionManager = new XnVSessionManager;
     m_pInnerFlowRouter = new XnVFlowRouter;
     m_Broadcaster.AddListener(m_pInnerFlowRouter);
-    g_pSessionManager->Initialize(&openNI->getContext(), "Wave", "RaiseHand");
+    g_pSessionManager->Initialize(&openNI->getContext(), "RaiseHand", "RaiseHand");
     g_pSessionManager->AddListener(m_pInnerFlowRouter);    
     m_pInnerFlowRouter->SetActive(detector);
+    openNI->setMaxNumHands(10);
 }
 
 void SwipeDetector::update(){
