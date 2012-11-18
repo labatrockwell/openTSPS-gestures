@@ -4,4 +4,4 @@ DerivedData
 *.xcuserdatad
 
 # ignoring openni stuff
-bin/data/openni
+bin/data/openni/lib
