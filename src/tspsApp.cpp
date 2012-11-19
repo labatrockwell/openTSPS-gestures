@@ -109,7 +109,7 @@ void tspsApp::onOpenNIHand( ofxOpenNIHandEvent & e ){
         params["positionY"]         = ofToString((float) e.position.y / ofGetHeight());
         
         // trigger custom event!
-        peopleTracker.triggerCustomEvent( "openNIHand", params );        
+        //peopleTracker.triggerCustomEvent( "openNIHand", params );        
     } else if ( e.handStatus == HAND_TRACKING_STOPPED ){
         map<string,string> params;
         params["timestampMillis"]   = ofToString(e.timestampMillis);
@@ -120,7 +120,7 @@ void tspsApp::onOpenNIHand( ofxOpenNIHandEvent & e ){
         params["positionY"]         = ofToString((float) e.position.y / ofGetHeight());
         
         // trigger custom event!
-        peopleTracker.triggerCustomEvent( "openNIHandStopped", params );
+        //peopleTracker.triggerCustomEvent( "openNIHandStopped", params );
     }
 }
 

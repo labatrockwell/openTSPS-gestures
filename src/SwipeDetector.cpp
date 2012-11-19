@@ -30,7 +30,7 @@ void SwipeDetector::setup( ofxOpenNI & _openNI ){
 }
 
 void SwipeDetector::update(){
-    if ( g_pSessionManager != NULL ){
+    if ( g_pSessionManager != NULL && openNI->getNumDevices() > 0 ){
         g_pSessionManager->Update(&openNI->getContext());
     }
 }
