@@ -25,8 +25,89 @@ void GestureFactory::setup( ofxOpenNI * ctx ){
 }
 
 //--------------------------------------------------------------
+void GestureFactory::update( int id, int x, int y ){    
+    // loop through current hands
+    // do we have this one?
+        if ( hands.count( id ) == 0 ){
+            hands.insert(make_pair(id, Hand( x, y )) );
+        }
+        
+        hands[ id ].update( x, y );
+        
+        // should be some sort of gesture object to check against
+        
+        // stationary
+        if ( hands[ id ].averageVelocity.length() < stationaryThreshold ){
+            if ( lastEvent.type == STATIONARY ){
+                lastEvent.duration = ofGetElapsedTimeMillis() - lastEvent.timeStarted;
+            } else {
+                lastEvent.duration      = 0;
+                lastEvent.timeStarted   = ofGetElapsedTimeMillis();
+            }
+            if ( lastEvent.duration > 1000 ){
+                ofNotifyEvent(onHeldEvent, lastEvent );
+            }
+            lastEvent.type = STATIONARY;
+            
+            // left / right
+        } 	else if ( abs(hands[ id ].averageVelocity.x) > abs(hands[ id ].averageVelocity.y) ){
+            if ( abs(hands[ id ].averageVelocity.x) > horizontalThreshold ){
+                lastEvent.angle = hands[ id ].averageVelocity.angle(ofVec3f());
+                lastEvent.velocity.set( hands[ id ].averageVelocity.x, 0 );
+                
+                switch (ofSign(hands[ id ].averageVelocity.x)) {
+                    case 1:
+                        ofNotifyEvent(onSwipeLeftEvent, lastEvent );
+                        lastEvent.type = SWIPE_LEFT;
+                        break;
+                    case -1:
+                        ofNotifyEvent(onSwipeRightEvent, lastEvent );
+                        lastEvent.type = SWIPE_RIGHT;
+                        break;
+                }
+            } else {
+                lastEvent.duration  = 0;
+                lastEvent.type      = CUSTOM;
+            }
+            // up / down
+        } else if ( abs(hands[ id ].averageVelocity.y) > abs(hands[ id ].averageVelocity.x) ){
+            if ( abs(hands[ id ].averageVelocity.y) > verticalThreshold ){
+                lastEvent.angle = hands[ id ].averageVelocity.angle(ofVec3f());
+                lastEvent.velocity.set( 0, hands[ id ].averageVelocity.y );
+                
+                switch (ofSign(hands[ id ].averageVelocity.y)) {
+                    case 1:
+                        ofNotifyEvent(onSwipeUpEvent, lastEvent );
+                        lastEvent.type = SWIPE_UP;
+                        break;
+                    case -1:
+                        ofNotifyEvent(onSwipeDownEvent, lastEvent );
+                        lastEvent.type = SWIPE_DOWN;
+                        break;
+                }
+            } else {
+                lastEvent.duration  = 0;
+                lastEvent.type      = CUSTOM;
+            }
+        } else {
+            lastEvent.duration  = 0;
+            lastEvent.type      = CUSTOM;
+        }
+}
+
+//--------------------------------------------------------------
 void GestureFactory::update(){
-    if ( context == NULL || !bSetup ) return;
+    if ( context == NULL || !bSetup ){
+        map<int, Hand>::iterator it = hands.begin();
+        for (it; it != hands.end(); ++it){
+            it->second.idle();
+            if ( it->second.notUpdatedIn > 10 ){
+                hands.erase(it);
+            }
+        }
+        
+        return;
+    }
     
     map<int, Hand> toErase = hands;
     map<int, Hand>::iterator it = hands.begin();
@@ -116,7 +197,6 @@ void GestureFactory::update(){
     
     map<int,Hand>::iterator eit = toErase.begin();
     for ( toErase; eit != toErase.end(); ++eit ){
-        cout<<"erase "<<eit->first<<endl;
         //it->second.idle();
         hands.erase(eit->first);
     }

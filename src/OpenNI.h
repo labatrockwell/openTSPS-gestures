@@ -20,7 +20,7 @@ namespace ofxTSPS {
             bCanTrackHaar = false;
             invertedPixels.allocate( 640,480, OF_IMAGE_GRAYSCALE);
         }
-                
+                        
         // core
         bool available(){
             return (getNumDevices() >= 1);

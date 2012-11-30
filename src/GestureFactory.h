@@ -22,6 +22,8 @@ public:
     ofPoint velocity, averageVelocity;
     ofPoint distanceTraveled;
     
+    int     notUpdatedIn;
+    
     Hand(){
         setup();
     }
@@ -30,12 +32,12 @@ public:
         setup();
     }
     
-    Hand( int _id, int x, int y ) : ofPoint(x,y){
+    Hand( int x, int y ) : ofPoint(x,y){
         setup();
     }
     
     void idle(){
-        update( *this );
+        notUpdatedIn++;
     }
     
     void update( ofPoint pos ){
@@ -43,6 +45,7 @@ public:
     }
     
     void update( float x, float y ){
+        notUpdatedIn = 0;
         lastPosition.set( *this );
         velocityHistory.insert(velocityHistory.begin(),velocity);
 
@@ -67,9 +70,10 @@ public:
     
 private:
     void setup(){
-        age = 0;
         timeStarted = ofGetElapsedTimeMillis();
-        numFramesToAverage = 10;
+        age                 = 0;
+        numFramesToAverage  = 10;
+        notUpdatedIn        = 0;
     }
     vector<ofVec2f> velocityHistory;
 };
@@ -80,6 +84,7 @@ public:
     
     GestureFactory();
     void setup( ofxOpenNI * context );
+    void update( int id, int x, int y );
     void update();
     void draw();
     

@@ -24,8 +24,8 @@
 *********************************************************/
 
 class tspsApp : public ofBaseApp {
-
-	public:
+    
+    public:
     
 		void setup();
 		void update();
@@ -55,6 +55,9 @@ class tspsApp : public ofBaseApp {
         void onPersonEntered( ofxTSPS::EventArgs & tspsEvent );
         void onPersonUpdated( ofxTSPS::EventArgs & tspsEvent );
         void onPersonWillLeave( ofxTSPS::EventArgs & tspsEvent );
+    
+        // auto threshold
+        float autoThreshold;
 
 	//status bar stuff
 		ofImage statusBar;

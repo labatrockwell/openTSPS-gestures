@@ -16,11 +16,14 @@ void tspsApp::setup(){
     source.addGestureGenerator();
     source.addAllGestures();
     source.addHandsGenerator();
-    source.setMaxNumHands(10);
+    
+    // customize openNI to make it deal better with hands
+    source.setMaxNumHands(3);
+    source.setMinTimeBetweenHands(1000);
     
     // setup swipe detector
     //SwipeDetectorONI.setup( source );
-    gestureGenerator.setup( &source );
+    //gestureGenerator.setup( &source );
     ofAddListener(gestureGenerator.onSwipeUpEvent, this, &tspsApp::onSwipeUp);
     ofAddListener(gestureGenerator.onSwipeDownEvent, this, &tspsApp::onSwipeDown);
     ofAddListener(gestureGenerator.onSwipeLeftEvent, this, &tspsApp::onSwipeLeft);
@@ -50,14 +53,38 @@ void tspsApp::setup(){
 	drawStatus[0] = 0;
 	drawStatus[1] = 0;
 	drawStatus[2] = 0;
+    
+    autoThreshold   = 255.0f;
 }
 
 //--------------------------------------------------------------
 void tspsApp::update(){
-    source.update();
-    peopleTracker.update();
-    gestureGenerator.update();
     //SwipeDetectorONI.update();
+    
+    // is this crazy?
+    cv::Point minLoc, maxLoc;
+    double minVal = 0, maxVal = 0;
+    
+    ofImage tempImage;
+    tempImage.setFromPixels( peopleTracker.getWarpedImage()->getPixelsRef() );
+    cv::Mat cameraMat = ofxCv::toCv( tempImage );
+    cv::minMaxLoc( cameraMat, &minVal, &maxVal, &minLoc, &maxLoc, cv::Mat());
+    
+    ofColor c = tempImage.getColor( maxLoc.x, maxLoc.y );
+    autoThreshold = autoThreshold * .9 + c.r * .1;
+    
+    peopleTracker.setThreshold( autoThreshold * .9 );
+    
+    peopleTracker.update();
+    
+    // update from blobs
+    
+    for ( int i=0; i<peopleTracker.totalPeople(); i++){
+        ofxTSPS::Person * p = peopleTracker.personAtIndex(i);
+        gestureGenerator.update( p->pid, p->highest.x, p->highest.y );
+    }
+    
+    gestureGenerator.update();
 }
 
 //--------------------------------------------------------------
@@ -97,7 +124,7 @@ void tspsApp::onOpenNIGesture( ofxOpenNIGestureEvent & e ){
     params["positionY"]         = ofToString((float) e.position.y / ofGetHeight());
     
     // trigger custom event!
-    peopleTracker.triggerCustomEvent( "openNI"+e.gestureName, params );
+    //peopleTracker.triggerCustomEvent( "openNI"+e.gestureName, params );
 }
 
 //--------------------------------------------------------------
@@ -139,7 +166,7 @@ void tspsApp::onSwipeUp( ofxSwipeEvent & e ){
     map<string,string> params;
     params["strength"] = ofToString(e.velocity.y);
     params["angle"]     = ofToString(e.angle);
-    peopleTracker.triggerCustomEvent( "openNISwipeUp", params );
+    peopleTracker.triggerCustomEvent( "swipeUp", params );
     cout<< "up" << endl;
 }
 
@@ -148,7 +175,7 @@ void tspsApp::onSwipeDown( ofxSwipeEvent & e ){
     map<string,string> params;
     params["strength"] = ofToString(e.velocity.y);
     params["angle"]     = ofToString(e.angle);
-    peopleTracker.triggerCustomEvent( "openNISwipeDown", params );
+    peopleTracker.triggerCustomEvent( "swipeDown", params );
     cout<< "down" << endl;
 }
 
@@ -157,7 +184,7 @@ void tspsApp::onSwipeLeft( ofxSwipeEvent & e ){
     map<string,string> params;
     params["strength"] = ofToString(e.velocity.x);
     params["angle"]     = ofToString(e.angle);
-    peopleTracker.triggerCustomEvent( "openNISwipeLeft", params );
+    peopleTracker.triggerCustomEvent( "swipeLeft", params );
     cout<< "left" << endl;
     
 }
@@ -167,13 +194,16 @@ void tspsApp::onSwipeRight( ofxSwipeEvent & e ){
     map<string,string> params;
     params["strength"] = ofToString(e.velocity.x);
     params["angle"]     = ofToString(e.angle);
-    peopleTracker.triggerCustomEvent( "openNISwipeRight", params );
+    peopleTracker.triggerCustomEvent( "swipeRight", params );
     cout<< "right" << endl;
 }
 
 
 //--------------------------------------------------------------
 void tspsApp::onHeld( ofxSwipeEvent & e ){
+    map<string,string> params;
+    params["duration"] = ofToString( e.duration );
+    peopleTracker.triggerCustomEvent( "held", params );
     cout<< "held" << endl;    
 }
 
@@ -186,7 +216,7 @@ void tspsApp::draw(){
     
     // render TSPS interface
 	peopleTracker.draw();
-
+    
 	//draw status bar stuff
 	statusBar.draw(0,700);
 	if (drawStatus[0] > 0){
