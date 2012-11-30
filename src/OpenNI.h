@@ -54,13 +54,13 @@ namespace ofxTSPS {
         
         bool openSource( int width, int height, string etc="" ){
             bool bSetup = isContextReady();
-            if(!bSetup) bSetup = setup();
-            if ( bSetup ){
+            if(!bSetup) bIsOpen = setup();
+            if ( bIsOpen ){
                 setDepthColoring(COLORING_BLUES);
                 addDepthGenerator();
                 start();                
             }
-            return bSetup;
+            return bIsOpen;
         }
         
         void closeSource(){

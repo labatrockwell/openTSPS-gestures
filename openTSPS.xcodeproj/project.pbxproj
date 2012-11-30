@@ -10,6 +10,7 @@
 		2E12CFF515F8168B00D5BC05 /* Processor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E12CFF315F8168B00D5BC05 /* Processor.cpp */; };
 		2E9F2ABE165309D80065DD08 /* CvPerson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F2ABC165309D80065DD08 /* CvPerson.cpp */; };
 		2E9F2ABF165309D80065DD08 /* CvProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F2ABD165309D80065DD08 /* CvProcessor.cpp */; };
+		2EA6F3241669122200C63B29 /* GestureFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EA6F3221669122200C63B29 /* GestureFactory.cpp */; };
 		2EDF65B41639EB4B00329C79 /* libnimCodecs.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDF65A61639EB4B00329C79 /* libnimCodecs.dylib */; };
 		2EDF65B51639EB4B00329C79 /* libnimMockNodes.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDF65A71639EB4B00329C79 /* libnimMockNodes.dylib */; };
 		2EDF65B61639EB4B00329C79 /* libnimRecorder.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDF65A81639EB4B00329C79 /* libnimRecorder.dylib */; };
@@ -42,7 +43,6 @@
 		2EDF65F91639F7A000329C79 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDF65EA1639F7A000329C79 /* CoreVideo.framework */; };
 		2EDF65FA1639F7A000329C79 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDF65EB1639F7A000329C79 /* QTKit.framework */; };
 		2EF4183D163B20D300E13227 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2EDF65DB1639F78A00329C79 /* GLUT.framework */; };
-		2EF41841163B348100E13227 /* SwipeDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EF4183F163B348100E13227 /* SwipeDetector.cpp */; };
 		A92EE0C715FD288900C0A11B /* TSPSEvents.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A92EE0C615FD288900C0A11B /* TSPSEvents.cpp */; };
 		A948586415C470BD00761D1C /* tspsApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A948586215C470BC00761D1C /* tspsApp.cpp */; };
 		A94859A615C470E800761D1C /* opencv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A948591A15C470E700761D1C /* opencv.a */; };
@@ -163,6 +163,9 @@
 		2E12CFF315F8168B00D5BC05 /* Processor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Processor.cpp; sourceTree = "<group>"; };
 		2E9F2ABC165309D80065DD08 /* CvPerson.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CvPerson.cpp; sourceTree = "<group>"; };
 		2E9F2ABD165309D80065DD08 /* CvProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CvProcessor.cpp; sourceTree = "<group>"; };
+		2EA6F3221669122200C63B29 /* GestureFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GestureFactory.cpp; sourceTree = "<group>"; };
+		2EA6F3231669122200C63B29 /* GestureFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureFactory.h; sourceTree = "<group>"; };
+		2EA6F3251669124C00C63B29 /* ofxSwipeEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxSwipeEvent.h; sourceTree = "<group>"; };
 		2EDF65A51639EB4B00329C79 /* change_exec_paths.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = change_exec_paths.sh; sourceTree = "<group>"; };
 		2EDF65A61639EB4B00329C79 /* libnimCodecs.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libnimCodecs.dylib; sourceTree = "<group>"; };
 		2EDF65A71639EB4B00329C79 /* libnimMockNodes.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libnimMockNodes.dylib; sourceTree = "<group>"; };
@@ -197,8 +200,6 @@
 		2EDF65EB1639F7A000329C79 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = ../../../../../../../../System/Library/Frameworks/QTKit.framework; sourceTree = "<group>"; };
 		2EF41836163AE44400E13227 /* ofParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofParameter.h; path = ../../../addons/ofxGui/src/ofParameter.h; sourceTree = "<group>"; };
 		2EF4183E163B257300E13227 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
-		2EF4183F163B348100E13227 /* SwipeDetector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SwipeDetector.cpp; sourceTree = "<group>"; };
-		2EF41840163B348100E13227 /* SwipeDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeDetector.h; sourceTree = "<group>"; };
 		A92EE0C515FD287400C0A11B /* TSPSEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPSEvents.h; sourceTree = "<group>"; };
 		A92EE0C615FD288900C0A11B /* TSPSEvents.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TSPSEvents.cpp; sourceTree = "<group>"; };
 		A948586215C470BC00761D1C /* tspsApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tspsApp.cpp; sourceTree = "<group>"; };
@@ -2267,8 +2268,9 @@
 				A948586315C470BC00761D1C /* tspsApp.h */,
 				A948586215C470BC00761D1C /* tspsApp.cpp */,
 				A98609F215F9874800B70F26 /* OpenNI.h */,
-				2EF4183F163B348100E13227 /* SwipeDetector.cpp */,
-				2EF41840163B348100E13227 /* SwipeDetector.h */,
+				2EA6F3221669122200C63B29 /* GestureFactory.cpp */,
+				2EA6F3231669122200C63B29 /* GestureFactory.h */,
+				2EA6F3251669124C00C63B29 /* ofxSwipeEvent.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -2445,9 +2447,9 @@
 				A9860C6F15F989D400B70F26 /* ofxOpenNI.cpp in Sources */,
 				A9860C7015F989D400B70F26 /* ofxOpenNITypes.cpp in Sources */,
 				A92EE0C715FD288900C0A11B /* TSPSEvents.cpp in Sources */,
-				2EF41841163B348100E13227 /* SwipeDetector.cpp in Sources */,
 				2E9F2ABE165309D80065DD08 /* CvPerson.cpp in Sources */,
 				2E9F2ABF165309D80065DD08 /* CvProcessor.cpp in Sources */,
+				2EA6F3241669122200C63B29 /* GestureFactory.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

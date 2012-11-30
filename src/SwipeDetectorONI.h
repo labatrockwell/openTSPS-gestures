@@ -9,31 +9,25 @@
 #pragma once
 
 #include "ofEvents.h"
+#include "ofxSwipeEvent.h"
+
 #include "ofxOpenNI.h"
 #include <XnOpenNI.h>
 #include <XnCppWrapper.h>
 #include <XnVHandPointContext.h>
 #include <XnVSessionManager.h>
 #include <XnVFlowRouter.h>
-#include <XnVSwipeDetector.h>
+#include <XnVSwipeDetectorONI.h>
 #include <XnVSelectableSlider1D.h>
 #include <XnVSteadyDetector.h>
 #include <XnVBroadcaster.h>
 #include <XnVPushDetector.h>
 
-class ofxSwipeEvent
+class SwipeDetectorONI
 {
 public:
     
-    ofPoint velocity;
-    float   angle;    
-};
-
-class SwipeDetector
-{
-public:
-    
-    SwipeDetector();
+    SwipeDetectorONI();
     
     void setup( ofxOpenNI & _openNI );
     static void XN_CALLBACK_TYPE callbackOnSwipeUp(XnFloat fVelocity, XnFloat fAngle, void* pUserCxt);
@@ -51,7 +45,7 @@ public:
 private:
     
     ofxOpenNI *         openNI;
-    XnVSwipeDetector *  detector;
+    XnVSwipeDetectorONI *  detector;
 	XnVFlowRouter*      m_pInnerFlowRouter;
 	XnVSteadyDetector*  m_pSteadyDetector;
 	XnVBroadcaster      m_Broadcaster;

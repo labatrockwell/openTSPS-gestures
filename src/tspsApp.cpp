@@ -13,19 +13,27 @@ void tspsApp::setup(){
     source.openSource(640,480);
         
     // add gestures + hands, which we will send as custom data=
-    //source.addGestureGenerator();
-    //source.addAllGestures();
+    source.addGestureGenerator();
+    source.addAllGestures();
     source.addHandsGenerator();
+    source.setMaxNumHands(10);
     
     // setup swipe detector
-    swipeDetector.setup( source );
-    ofAddListener(swipeDetector.onSwipeUpEvent, this, &tspsApp::onSwipeUp);
-    ofAddListener(swipeDetector.onSwipeDownEvent, this, &tspsApp::onSwipeDown);
-    ofAddListener(swipeDetector.onSwipeLeftEvent, this, &tspsApp::onSwipeLeft);
-    ofAddListener(swipeDetector.onSwipeRightEvent, this, &tspsApp::onSwipeRight);
+    //SwipeDetectorONI.setup( source );
+    gestureGenerator.setup( &source );
+    ofAddListener(gestureGenerator.onSwipeUpEvent, this, &tspsApp::onSwipeUp);
+    ofAddListener(gestureGenerator.onSwipeDownEvent, this, &tspsApp::onSwipeDown);
+    ofAddListener(gestureGenerator.onSwipeLeftEvent, this, &tspsApp::onSwipeLeft);
+    ofAddListener(gestureGenerator.onSwipeRightEvent, this, &tspsApp::onSwipeRight);
+    ofAddListener(gestureGenerator.onHeldEvent, this, &tspsApp::onHeld);
     
     ofAddListener(source.gestureEvent, this, &tspsApp::onOpenNIGesture);
     ofAddListener(source.handEvent, this, &tspsApp::onOpenNIHand);
+    
+    // add stuff to gui
+    peopleTracker.addSlider("Gesture Sensitivity Horz", &gestureGenerator.horizontalThreshold, 0, 100);
+    peopleTracker.addSlider("Gesture Sensitivity Vert", &gestureGenerator.verticalThreshold, 0, 100);
+    peopleTracker.addSlider("Number of frames to avg", &gestureGenerator.averageFrames, 0, 100);
     
     // setup layout stuff + add this as a TSPS listener
 	peopleTracker.loadFont("fonts/times.ttf", 10);
@@ -48,7 +56,8 @@ void tspsApp::setup(){
 void tspsApp::update(){
     source.update();
     peopleTracker.update();
-    swipeDetector.update();
+    gestureGenerator.update();
+    //SwipeDetectorONI.update();
 }
 
 //--------------------------------------------------------------
@@ -131,7 +140,7 @@ void tspsApp::onSwipeUp( ofxSwipeEvent & e ){
     params["strength"] = ofToString(e.velocity.y);
     params["angle"]     = ofToString(e.angle);
     peopleTracker.triggerCustomEvent( "openNISwipeUp", params );
-    
+    cout<< "up" << endl;
 }
 
 //--------------------------------------------------------------
@@ -140,6 +149,7 @@ void tspsApp::onSwipeDown( ofxSwipeEvent & e ){
     params["strength"] = ofToString(e.velocity.y);
     params["angle"]     = ofToString(e.angle);
     peopleTracker.triggerCustomEvent( "openNISwipeDown", params );
+    cout<< "down" << endl;
 }
 
 //--------------------------------------------------------------
@@ -148,6 +158,7 @@ void tspsApp::onSwipeLeft( ofxSwipeEvent & e ){
     params["strength"] = ofToString(e.velocity.x);
     params["angle"]     = ofToString(e.angle);
     peopleTracker.triggerCustomEvent( "openNISwipeLeft", params );
+    cout<< "left" << endl;
     
 }
 
@@ -156,7 +167,14 @@ void tspsApp::onSwipeRight( ofxSwipeEvent & e ){
     map<string,string> params;
     params["strength"] = ofToString(e.velocity.x);
     params["angle"]     = ofToString(e.angle);
-    peopleTracker.triggerCustomEvent( "openNISwipeRight", params );    
+    peopleTracker.triggerCustomEvent( "openNISwipeRight", params );
+    cout<< "right" << endl;
+}
+
+
+//--------------------------------------------------------------
+void tspsApp::onHeld( ofxSwipeEvent & e ){
+    cout<< "held" << endl;    
 }
 
 //--------------------------------------------------------------
@@ -183,7 +201,12 @@ void tspsApp::draw(){
 		drawStatus[2]--;
 		personLeftImage.draw(666,728);
 	}
-
+    
+    ofPushMatrix();
+    ofTranslate(350, 20);
+    gestureGenerator.draw();
+    ofPopMatrix();
+    
 	ofSetColor(0, 169, 157);
 	char numPeople[1024];
 	sprintf(numPeople, "%i", peopleTracker.totalPeople());

@@ -14,7 +14,8 @@
     #include "OpenNI.h"
 
     // include Swipe Gesture
-    #include "SwipeDetector.h"
+    //#include "SwipeDetectorONI.h"
+    #include "GestureFactory.h"
 
     #define TSPS_HOME_PAGE "http://opentsps.com"
 
@@ -34,7 +35,10 @@ class tspsApp : public ofBaseApp {
         
         // custom openNI source
         ofxTSPS::OpenNI source;
-        SwipeDetector   swipeDetector;
+    
+        // gesture detector
+        //SwipeDetectorONI   SwipeDetectorONI;
+        GestureFactory       gestureGenerator;
     
         // custom event
         void onOpenNIGesture( ofxOpenNIGestureEvent & e );
@@ -43,6 +47,7 @@ class tspsApp : public ofBaseApp {
         void onSwipeDown( ofxSwipeEvent & e );
         void onSwipeLeft( ofxSwipeEvent & e );
         void onSwipeRight( ofxSwipeEvent & e );
+        void onHeld( ofxSwipeEvent & e );
     
         // TSPS core: PeopleTracker + events
         
