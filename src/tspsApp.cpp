@@ -33,10 +33,14 @@ void tspsApp::setup(){
     ofAddListener(source.gestureEvent, this, &tspsApp::onOpenNIGesture);
     ofAddListener(source.handEvent, this, &tspsApp::onOpenNIHand);
     
+    autoThreshold   = 255.0f;
+    thresholdBuffer = .9f;
+    
     // add stuff to gui
     peopleTracker.addSlider("Gesture Sensitivity Horz", &gestureGenerator.horizontalThreshold, 0, 100);
     peopleTracker.addSlider("Gesture Sensitivity Vert", &gestureGenerator.verticalThreshold, 0, 100);
     peopleTracker.addSlider("Number of frames to avg", &gestureGenerator.averageFrames, 0, 100);
+    peopleTracker.addSlider("Threshold buffer", &thresholdBuffer, 0.0f, 1.0f);
     
     // setup layout stuff + add this as a TSPS listener
 	peopleTracker.loadFont("fonts/times.ttf", 10);
@@ -54,7 +58,6 @@ void tspsApp::setup(){
 	drawStatus[1] = 0;
 	drawStatus[2] = 0;
     
-    autoThreshold   = 255.0f;
 }
 
 //--------------------------------------------------------------
@@ -73,7 +76,7 @@ void tspsApp::update(){
     ofColor c = tempImage.getColor( maxLoc.x, maxLoc.y );
     autoThreshold = autoThreshold * .9 + c.r * .1;
     
-    peopleTracker.setThreshold( autoThreshold * .9 );
+    peopleTracker.setThreshold( autoThreshold * thresholdBuffer );
     
     peopleTracker.update();
     
@@ -81,7 +84,7 @@ void tspsApp::update(){
     
     for ( int i=0; i<peopleTracker.totalPeople(); i++){
         ofxTSPS::Person * p = peopleTracker.personAtIndex(i);
-        gestureGenerator.update( p->pid, p->highest.x, p->highest.y );
+        gestureGenerator.updateBlob( p->pid, p->highest.x, p->highest.y );
     }
     
     gestureGenerator.update();

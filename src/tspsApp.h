@@ -58,6 +58,7 @@ class tspsApp : public ofBaseApp {
     
         // auto threshold
         float autoThreshold;
+        float thresholdBuffer;
 
 	//status bar stuff
 		ofImage statusBar;

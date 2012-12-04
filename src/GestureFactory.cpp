@@ -16,6 +16,7 @@ GestureFactory::GestureFactory(){
     horizontalThreshold = 20;
     verticalThreshold   = 20;
     averageFrames       = 10;
+    mode                = SEND_CLOSEST;
 }
 
 //--------------------------------------------------------------
@@ -25,87 +26,161 @@ void GestureFactory::setup( ofxOpenNI * ctx ){
 }
 
 //--------------------------------------------------------------
-void GestureFactory::update( int id, int x, int y ){    
+void GestureFactory::updateBlob( int id, int x, int y, int z ){    
     // loop through current hands
     // do we have this one?
         if ( hands.count( id ) == 0 ){
-            hands.insert(make_pair(id, Hand( x, y )) );
+            hands.insert(make_pair(id, Hand( x, y, z )) );
         }
         
-        hands[ id ].update( x, y );
+        hands[ id ].update( x, y, z );
         
         // should be some sort of gesture object to check against
         
         // stationary
         if ( hands[ id ].averageVelocity.length() < stationaryThreshold ){
-            if ( lastEvent.type == STATIONARY ){
-                lastEvent.duration = ofGetElapsedTimeMillis() - lastEvent.timeStarted;
+            if ( lastEvents[id].type == STATIONARY ){
+                lastEvents[id].duration = ofGetElapsedTimeMillis() - lastEvents[id].timeStarted;
             } else {
-                lastEvent.duration      = 0;
-                lastEvent.timeStarted   = ofGetElapsedTimeMillis();
+                lastEvents[id].duration      = 0;
+                lastEvents[id].timeStarted   = ofGetElapsedTimeMillis();
             }
-            if ( lastEvent.duration > 1000 ){
-                ofNotifyEvent(onHeldEvent, lastEvent );
+            if ( lastEvents[id].duration > 1000 ){
+                toSend.insert(make_pair( id, lastEvents[id]) );
+                if ( mode == SEND_ALL) ofNotifyEvent(onHeldEvent, lastEvents[id] );
             }
-            lastEvent.type = STATIONARY;
+            lastEvents[id].type = STATIONARY;
             
             // left / right
-        } 	else if ( abs(hands[ id ].averageVelocity.x) > abs(hands[ id ].averageVelocity.y) ){
+        } else if ( abs(hands[ id ].averageVelocity.x) > abs(hands[ id ].averageVelocity.y) ){
             if ( abs(hands[ id ].averageVelocity.x) > horizontalThreshold ){
-                lastEvent.angle = hands[ id ].averageVelocity.angle(ofVec3f());
-                lastEvent.velocity.set( hands[ id ].averageVelocity.x, 0 );
+                lastEvents[id].angle = hands[ id ].averageVelocity.angle(ofVec3f());
+                lastEvents[id].velocity.set( hands[ id ].averageVelocity.x, 0 );
                 
                 switch (ofSign(hands[ id ].averageVelocity.x)) {
                     case 1:
-                        ofNotifyEvent(onSwipeLeftEvent, lastEvent );
-                        lastEvent.type = SWIPE_LEFT;
+                        lastEvents[id].type = SWIPE_LEFT;
+                        toSend.insert(make_pair( id, lastEvents[id]) );
+                        if ( mode == SEND_ALL) ofNotifyEvent(onSwipeLeftEvent, lastEvents[id] );
                         break;
                     case -1:
-                        ofNotifyEvent(onSwipeRightEvent, lastEvent );
-                        lastEvent.type = SWIPE_RIGHT;
+                        lastEvents[id].type = SWIPE_RIGHT;
+                        toSend.insert(make_pair( id, lastEvents[id]) );
+                        if ( mode == SEND_ALL) ofNotifyEvent(onSwipeRightEvent, lastEvents[id] );
                         break;
                 }
+                hands[id].clearHistory();
             } else {
-                lastEvent.duration  = 0;
-                lastEvent.type      = CUSTOM;
+                lastEvents[id].duration  = 0;
+                lastEvents[id].type      = CUSTOM;
             }
             // up / down
         } else if ( abs(hands[ id ].averageVelocity.y) > abs(hands[ id ].averageVelocity.x) ){
             if ( abs(hands[ id ].averageVelocity.y) > verticalThreshold ){
-                lastEvent.angle = hands[ id ].averageVelocity.angle(ofVec3f());
-                lastEvent.velocity.set( 0, hands[ id ].averageVelocity.y );
+                lastEvents[id].angle = hands[ id ].averageVelocity.angle(ofVec3f());
+                lastEvents[id].velocity.set( 0, hands[ id ].averageVelocity.y );
                 
                 switch (ofSign(hands[ id ].averageVelocity.y)) {
-                    case 1:
-                        ofNotifyEvent(onSwipeUpEvent, lastEvent );
-                        lastEvent.type = SWIPE_UP;
-                        break;
                     case -1:
-                        ofNotifyEvent(onSwipeDownEvent, lastEvent );
-                        lastEvent.type = SWIPE_DOWN;
+                        lastEvents[id].type = SWIPE_UP;
+                        toSend.insert(make_pair( id, lastEvents[id]) );
+                        if ( mode == SEND_ALL)
+                            ofNotifyEvent(onSwipeUpEvent, lastEvents[id] );
+                        break;
+                    case 1:
+                        lastEvents[id].type = SWIPE_DOWN;
+                        toSend.insert(make_pair( id, lastEvents[id]) );
+                        if ( mode == SEND_ALL)
+                            ofNotifyEvent(onSwipeDownEvent, lastEvents[id] );
                         break;
                 }
+                hands[id].clearHistory();
             } else {
-                lastEvent.duration  = 0;
-                lastEvent.type      = CUSTOM;
+                lastEvents[id].duration  = 0;
+                lastEvents[id].type      = CUSTOM;
             }
         } else {
-            lastEvent.duration  = 0;
-            lastEvent.type      = CUSTOM;
+            lastEvents[id].duration  = 0;
+            lastEvents[id].type      = CUSTOM;
         }
 }
 
 //--------------------------------------------------------------
 void GestureFactory::update(){
-    if ( context == NULL || !bSetup ){
-        map<int, Hand>::iterator it = hands.begin();
-        for (it; it != hands.end(); ++it){
-            it->second.idle();
-            if ( it->second.notUpdatedIn > 10 ){
-                hands.erase(it);
+    int closestId               = -1;
+    Hand          * closest     = NULL;
+    ofxSwipeEvent * eventToSend = NULL;
+    map<int, ofxSwipeEvent>::iterator sendIt = toSend.begin();
+    
+    switch ( mode ) {
+        case SEND_CLOSEST:
+            for (sendIt; sendIt != toSend.end(); ++sendIt){
+                if ( hands.count(sendIt->first) > 0 ){
+                    if ( closest == NULL || hands[sendIt->first].z < closest->z ){
+                        closest = &hands[sendIt->first];
+                        eventToSend = &sendIt->second;
+                    }
+                } else {
+                    cout<<"dead hand!"<<endl;
+                }
             }
+            
+            break;
+            
+        case SEND_FASTEST:
+            for (sendIt; sendIt != toSend.end(); ++sendIt){
+                if ( hands.count(sendIt->first) > 0 ){
+                    if ( closest == NULL || hands[sendIt->first].averageVelocity.length() < closest->averageVelocity.length() ){
+                        closest = &hands[sendIt->first];
+                        eventToSend = &sendIt->second;
+                    }
+                }
+            }            
+            
+        case SEND_ALL:
+        default:
+            break;
+    }
+    
+    if ( eventToSend != NULL ){
+        switch ( eventToSend->type ){
+            case STATIONARY:
+                ofNotifyEvent(onHeldEvent, *eventToSend );
+                break;
+            case SWIPE_LEFT:
+                ofNotifyEvent(onSwipeLeftEvent, *eventToSend );
+                break;
+            case SWIPE_RIGHT:
+                ofNotifyEvent(onSwipeRightEvent, *eventToSend );
+                break;
+            case SWIPE_UP:
+                ofNotifyEvent(onSwipeUpEvent, *eventToSend );
+                break;
+            case SWIPE_DOWN:
+                ofNotifyEvent(onSwipeDownEvent, *eventToSend );
+                break;
+            default:
+                break;
         }
-        
+    }
+    
+    // should have already been sent
+    toSend.clear();
+    
+    // update + erase old dead hands (gross)
+    map<int, Hand>::iterator it = hands.begin();
+    for (it; it != hands.end(); ++it){
+        it->second.idle();
+        if ( it->second.notUpdatedIn > 10 ){
+            hands.erase(it);
+        }
+    }
+    
+}
+
+//--------------------------------------------------------------
+void GestureFactory::updateOpenNI(){
+    if ( context == NULL || !bSetup ){
         return;
     }
     
@@ -133,66 +208,61 @@ void GestureFactory::update(){
         
         // stationary
         if ( hands[ ID ].averageVelocity.length() < stationaryThreshold ){
-            if ( lastEvent.type == STATIONARY ){
-                lastEvent.duration = ofGetElapsedTimeMillis() - lastEvent.timeStarted;
+            if ( lastEvents[ID].type == STATIONARY ){
+                lastEvents[ID].duration = ofGetElapsedTimeMillis() - lastEvents[ID].timeStarted;
             } else {
-                lastEvent.duration      = 0;
-                lastEvent.timeStarted   = ofGetElapsedTimeMillis();
+                lastEvents[ID].duration      = 0;
+                lastEvents[ID].timeStarted   = ofGetElapsedTimeMillis();
             }
-            if ( lastEvent.duration > 1000 ){
-                ofNotifyEvent(onHeldEvent, lastEvent );
+            if ( lastEvents[ID].duration > 1000 ){
+                ofNotifyEvent(onHeldEvent, lastEvents[ID] );
             }
-            lastEvent.type = STATIONARY;
+            lastEvents[ID].type = STATIONARY;
             
         // left / right
         } else if ( abs(hands[ ID ].averageVelocity.x) > abs(hands[ ID ].averageVelocity.y) ){
             if ( abs(hands[ ID ].averageVelocity.x) > horizontalThreshold ){
-                lastEvent.angle = hands[ ID ].averageVelocity.angle(ofVec3f());
-                lastEvent.velocity.set( hands[ ID ].averageVelocity.x, 0 );
+                lastEvents[ID].angle = hands[ ID ].averageVelocity.angle(ofVec3f());
+                lastEvents[ID].velocity.set( hands[ ID ].averageVelocity.x, 0 );
                 
                 switch (ofSign(hands[ ID ].averageVelocity.x)) {
                     case 1:
-                        ofNotifyEvent(onSwipeLeftEvent, lastEvent );
-                        lastEvent.type = SWIPE_LEFT;
+                        ofNotifyEvent(onSwipeLeftEvent, lastEvents[ID] );
+                        lastEvents[ID].type = SWIPE_LEFT;
                         break;                        
                     case -1:
-                        ofNotifyEvent(onSwipeRightEvent, lastEvent );
-                        lastEvent.type = SWIPE_RIGHT;
+                        ofNotifyEvent(onSwipeRightEvent, lastEvents[ID] );
+                        lastEvents[ID].type = SWIPE_RIGHT;
                         break;
                 }
             } else {
-                lastEvent.duration  = 0;
-                lastEvent.type      = CUSTOM;
+                lastEvents[ID].duration  = 0;
+                lastEvents[ID].type      = CUSTOM;
             }
         // up / down
         } else if ( abs(hands[ ID ].averageVelocity.y) > abs(hands[ ID ].averageVelocity.x) ){
             if ( abs(hands[ ID ].averageVelocity.y) > verticalThreshold ){
-                lastEvent.angle = hands[ ID ].averageVelocity.angle(ofVec3f());
-                lastEvent.velocity.set( 0, hands[ ID ].averageVelocity.y );
+                lastEvents[ID].angle = hands[ ID ].averageVelocity.angle(ofVec3f());
+                lastEvents[ID].velocity.set( 0, hands[ ID ].averageVelocity.y );
                                 
                 switch (ofSign(hands[ ID ].averageVelocity.y)) {
                     case 1:
-                        ofNotifyEvent(onSwipeUpEvent, lastEvent );
-                        lastEvent.type = SWIPE_UP;
+                        ofNotifyEvent(onSwipeUpEvent, lastEvents[ID] );
+                        lastEvents[ID].type = SWIPE_UP;
                         break;                        
                     case -1:
-                        ofNotifyEvent(onSwipeDownEvent, lastEvent );
-                        lastEvent.type = SWIPE_DOWN;
+                        ofNotifyEvent(onSwipeDownEvent, lastEvents[ID] );
+                        lastEvents[ID].type = SWIPE_DOWN;
                         break;
                 }
             } else {
-                lastEvent.duration  = 0;
-                lastEvent.type      = CUSTOM;
+                lastEvents[ID].duration  = 0;
+                lastEvents[ID].type      = CUSTOM;
             }
         } else {
-            lastEvent.duration  = 0;
-            lastEvent.type      = CUSTOM;
+            lastEvents[ID].duration  = 0;
+            lastEvents[ID].type      = CUSTOM;
         }
-    }
-    
-    if ( context->getNumTrackedHands() == 0 ){
-        lastEvent.duration  = 0;
-        lastEvent.type      = CUSTOM;
     }
     
     map<int,Hand>::iterator eit = toErase.begin();
@@ -214,10 +284,10 @@ void GestureFactory::draw(){
         ofSetColor(255,0,0);
         ofLine( it->second, it->second + it->second.averageVelocity );
         ofDrawBitmapString( ofToString( it->second.distanceTraveled ) + "\n" + ofToString( it->first ), it->second + ofPoint(20,20));
+        ofSetColor(255);
+//        ofDrawBitmapString("Event: "+ofToString(lastEvent.type) +" : "+ ofToString(lastEvent.duration), 20, 20 );
     }
     
-    ofSetColor(255);
-    ofDrawBitmapString("Event: "+ofToString(lastEvent.type) +" : "+ ofToString(lastEvent.duration), 20, 20 );
     
     ofPopStyle();
 }

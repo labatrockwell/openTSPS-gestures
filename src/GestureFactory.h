@@ -32,7 +32,7 @@ public:
         setup();
     }
     
-    Hand( int x, int y ) : ofPoint(x,y){
+    Hand( int x, int y, int z = 0 ) : ofPoint(x,y,z){
         setup();
     }
     
@@ -41,10 +41,10 @@ public:
     }
     
     void update( ofPoint pos ){
-        update( pos.x, pos.y );
+        update( pos.x, pos.y, pos.z );
     }
     
-    void update( float x, float y ){
+    void update( float x, float y, float z = 0 ){
         notUpdatedIn = 0;
         lastPosition.set( *this );
         velocityHistory.insert(velocityHistory.begin(),velocity);
@@ -55,17 +55,21 @@ public:
         
         averageVelocity.set(0,0);
         distanceTraveled.set(0,0);
-        if ( velocityHistory.size() == numFramesToAverage ){
-            for ( int i=0; i<numFramesToAverage; i++){
+        if ( velocityHistory.size() > 0 ){
+            for ( int i=0; i<velocityHistory.size(); i++){
                 averageVelocity     += velocityHistory[i];
                 distanceTraveled    += velocityHistory[i];
             }
-            averageVelocity /= (float) numFramesToAverage;
+            averageVelocity /= (float) velocityHistory.size();
         }
         
-        set(x,y);
+        set(x,y,z);
         velocity = *this - lastPosition;
         age = ofGetElapsedTimeMillis() - timeStarted;
+    }
+    
+    void clearHistory(){
+        velocityHistory.clear();
     }
     
 private:
@@ -78,13 +82,22 @@ private:
     vector<ofVec2f> velocityHistory;
 };
 
+enum GestureFactoryMode {
+    SEND_ALL,
+    SEND_FASTEST,
+    SEND_CLOSEST
+};
+
 class GestureFactory
 {
 public:
     
     GestureFactory();
+    // probably deprecated
     void setup( ofxOpenNI * context );
-    void update( int id, int x, int y );
+    void updateOpenNI();
+    
+    void updateBlob( int id, int x, int y, int z = 0 );
     void update();
     void draw();
     
@@ -95,6 +108,9 @@ public:
     
     // number of frames to average for gestures
     int     averageFrames;
+    
+    // mode
+    GestureFactoryMode mode;
     
     // events
     
@@ -109,7 +125,8 @@ public:
 private:
     bool            bSetup;
     ofxOpenNI *     context;
-    ofxSwipeEvent   lastEvent;
     
+    map<int, ofxSwipeEvent>   lastEvents;
+    map<int, ofxSwipeEvent>  toSend;
 };
 
