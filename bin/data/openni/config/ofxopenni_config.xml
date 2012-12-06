@@ -19,12 +19,5 @@
 				<Mirror on="true"/>
 			</Configuration>
 		</Node>
-		
-		<!-- ofxUserGenerator -->
-		<Node type="User" />
-        
-        <!-- ofxGestureGenerator -->
-		<Node type="Gesture" />
-		<Node type="Hands" />
 	</ProductionNodes>
 </OpenNI>
