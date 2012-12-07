@@ -7,85 +7,19 @@
 
 #pragma once
 
+#include "ofMain.h"
 #include "ofxSwipeEvent.h"
+#include "Hand.h"
 
-// this could be more general, just using ofxOpenNI for now
-#include "ofxOpenNI.h"
-
-class Hand : public ofPoint
-{
-public:
-    int     age;
-    int     timeStarted;
-    int     numFramesToAverage;
-    ofPoint lastPosition;
-    ofPoint velocity, averageVelocity;
-    ofPoint distanceTraveled;
-    
-    int     notUpdatedIn;
-    
-    Hand(){
-        setup();
-    }
-    
-    Hand( ofPoint p ) : ofPoint(p){
-        setup();
-    }
-    
-    Hand( int x, int y, int z = 0 ) : ofPoint(x,y,z){
-        setup();
-    }
-    
-    void idle(){
-        notUpdatedIn++;
-    }
-    
-    void update( ofPoint pos ){
-        update( pos.x, pos.y, pos.z );
-    }
-    
-    void update( float x, float y, float z = 0 ){
-        notUpdatedIn = 0;
-        lastPosition.set( *this );
-        velocityHistory.insert(velocityHistory.begin(),velocity);
-
-        if ( velocityHistory.size() > numFramesToAverage ){
-            velocityHistory.erase( velocityHistory.end() );
-        }
-        
-        averageVelocity.set(0,0);
-        distanceTraveled.set(0,0);
-        if ( velocityHistory.size() > 0 ){
-            for ( int i=0; i<velocityHistory.size(); i++){
-                averageVelocity     += velocityHistory[i];
-                distanceTraveled    += velocityHistory[i];
-            }
-            averageVelocity /= (float) velocityHistory.size();
-        }
-        
-        set(x,y,z);
-        velocity = *this - lastPosition;
-        age = ofGetElapsedTimeMillis() - timeStarted;
-    }
-    
-    void clearHistory(){
-        velocityHistory.clear();
-    }
-    
-private:
-    void setup(){
-        timeStarted = ofGetElapsedTimeMillis();
-        age                 = 0;
-        numFramesToAverage  = 10;
-        notUpdatedIn        = 0;
-    }
-    vector<ofVec2f> velocityHistory;
-};
-
-enum GestureFactoryMode {
-    SEND_ALL,
+enum GestureSendMode {
+    SEND_ALL = 0,
     SEND_FASTEST,
     SEND_CLOSEST
+};
+
+enum GestureDetectMode {
+    VELOCITY = 0,
+    DISTANCE
 };
 
 class GestureFactory
@@ -93,9 +27,6 @@ class GestureFactory
 public:
     
     GestureFactory();
-    // probably deprecated
-    void setup( ofxOpenNI * context );
-    void updateOpenNI();
     
     void updateBlob( int id, int x, int y, int z = 0 );
     void update();
@@ -105,12 +36,18 @@ public:
     float   stationaryThreshold;
     float   horizontalThreshold;
     float   verticalThreshold;
+    float   horizontalDistance;
+    float   verticalDistance;
+    
+    // how long to wait between gestures
+    int     gestureWait;
     
     // number of frames to average for gestures
     int     averageFrames;
     
     // mode
-    GestureFactoryMode mode;
+    GestureSendMode         sendMode;
+    GestureDetectMode       detectMode;
     
     // events
     
@@ -124,7 +61,6 @@ public:
     
 private:
     bool            bSetup;
-    ofxOpenNI *     context;
     
     map<int, ofxSwipeEvent>   lastEvents;
     map<int, ofxSwipeEvent>  toSend;

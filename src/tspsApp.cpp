@@ -39,8 +39,11 @@ void tspsApp::setup(){
     // add stuff to gui
     peopleTracker.addSlider("Gesture Sensitivity Horz", &gestureGenerator.horizontalThreshold, 0, 100);
     peopleTracker.addSlider("Gesture Sensitivity Vert", &gestureGenerator.verticalThreshold, 0, 100);
+    peopleTracker.addSlider("Gesture Distance Horz", &gestureGenerator.horizontalDistance, 0, 640);
+    peopleTracker.addSlider("Gesture Distance Vert", &gestureGenerator.verticalDistance, 0, 480);
     peopleTracker.addSlider("Number of frames to avg", &gestureGenerator.averageFrames, 0, 100);
     peopleTracker.addSlider("Threshold buffer", &thresholdBuffer, 0.0f, 1.0f);
+    peopleTracker.addSlider("Time to wait btw gestures", &gestureGenerator.gestureWait, 0, 10000);
     
     // setup layout stuff + add this as a TSPS listener
 	peopleTracker.loadFont("fonts/times.ttf", 10);
@@ -167,8 +170,10 @@ void tspsApp::onOpenNIHand( ofxOpenNIHandEvent & e ){
 //--------------------------------------------------------------
 void tspsApp::onSwipeUp( ofxSwipeEvent & e ){
     map<string,string> params;
-    params["strength"] = ofToString(e.velocity.y);
-    params["angle"]     = ofToString(e.angle);
+    params["strength"]      = ofToString(e.velocity.y);
+    params["angle"]         = ofToString(e.angle);
+    params["positionX"]      = ofToString(e.position.x);
+    params["positionY"]      = ofToString(e.position.y);
     peopleTracker.triggerCustomEvent( "swipeUp", params );
     cout<< "up" << endl;
 }
@@ -178,6 +183,8 @@ void tspsApp::onSwipeDown( ofxSwipeEvent & e ){
     map<string,string> params;
     params["strength"] = ofToString(e.velocity.y);
     params["angle"]     = ofToString(e.angle);
+    params["positionX"]      = ofToString(e.position.x);
+    params["positionY"]      = ofToString(e.position.y);
     peopleTracker.triggerCustomEvent( "swipeDown", params );
     cout<< "down" << endl;
 }
@@ -187,6 +194,8 @@ void tspsApp::onSwipeLeft( ofxSwipeEvent & e ){
     map<string,string> params;
     params["strength"] = ofToString(e.velocity.x);
     params["angle"]     = ofToString(e.angle);
+    params["positionX"]      = ofToString(e.position.x);
+    params["positionY"]      = ofToString(e.position.y);
     peopleTracker.triggerCustomEvent( "swipeLeft", params );
     cout<< "left" << endl;
     
@@ -197,6 +206,8 @@ void tspsApp::onSwipeRight( ofxSwipeEvent & e ){
     map<string,string> params;
     params["strength"] = ofToString(e.velocity.x);
     params["angle"]     = ofToString(e.angle);
+    params["positionX"]      = ofToString(e.position.x);
+    params["positionY"]      = ofToString(e.position.y);
     peopleTracker.triggerCustomEvent( "swipeRight", params );
     cout<< "right" << endl;
 }
@@ -206,6 +217,8 @@ void tspsApp::onSwipeRight( ofxSwipeEvent & e ){
 void tspsApp::onHeld( ofxSwipeEvent & e ){
     map<string,string> params;
     params["duration"] = ofToString( e.duration );
+    params["positionX"]      = ofToString(e.position.x);
+    params["positionY"]      = ofToString(e.position.y);
     peopleTracker.triggerCustomEvent( "held", params );
     cout<< "held" << endl;    
 }

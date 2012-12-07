@@ -111,6 +111,7 @@
 		A9485FEA15C4764D00761D1C /* ofxUDPManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9485FE515C4764D00761D1C /* ofxUDPManager.cpp */; };
 		A9860C6F15F989D400B70F26 /* ofxOpenNI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9860C6A15F989D400B70F26 /* ofxOpenNI.cpp */; };
 		A9860C7015F989D400B70F26 /* ofxOpenNITypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9860C6C15F989D400B70F26 /* ofxOpenNITypes.cpp */; };
+		A9974A4E16727268004571ED /* Hand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9974A4C16727268004571ED /* Hand.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
 /* End PBXBuildFile section */
@@ -684,6 +685,8 @@
 		A9860C6C15F989D400B70F26 /* ofxOpenNITypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOpenNITypes.cpp; sourceTree = "<group>"; };
 		A9860C6D15F989D400B70F26 /* ofxOpenNITypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOpenNITypes.h; sourceTree = "<group>"; };
 		A9860C6E15F989D400B70F26 /* ofxOpenNIUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOpenNIUtils.h; sourceTree = "<group>"; };
+		A9974A4C16727268004571ED /* Hand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hand.cpp; sourceTree = "<group>"; };
+		A9974A4D16727268004571ED /* Hand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hand.h; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E4B69B5B0A3A1756003C02F2 /* openTSPSDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openTSPSDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B69E1D0A3A1BDC003C02F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
@@ -2124,6 +2127,18 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		A9974A4B1672724F004571ED /* Gestures */ = {
+			isa = PBXGroup;
+			children = (
+				2EA6F3221669122200C63B29 /* GestureFactory.cpp */,
+				2EA6F3231669122200C63B29 /* GestureFactory.h */,
+				2EA6F3251669124C00C63B29 /* ofxSwipeEvent.h */,
+				A9974A4C16727268004571ED /* Hand.cpp */,
+				A9974A4D16727268004571ED /* Hand.h */,
+			);
+			name = Gestures;
+			sourceTree = "<group>";
+		};
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
@@ -2197,13 +2212,11 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				A9974A4B1672724F004571ED /* Gestures */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				A948586315C470BC00761D1C /* tspsApp.h */,
 				A948586215C470BC00761D1C /* tspsApp.cpp */,
 				A98609F215F9874800B70F26 /* OpenNI.h */,
-				2EA6F3221669122200C63B29 /* GestureFactory.cpp */,
-				2EA6F3231669122200C63B29 /* GestureFactory.h */,
-				2EA6F3251669124C00C63B29 /* ofxSwipeEvent.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -2383,6 +2396,7 @@
 				2E9F2ABE165309D80065DD08 /* CvPerson.cpp in Sources */,
 				2E9F2ABF165309D80065DD08 /* CvProcessor.cpp in Sources */,
 				2EA6F3241669122200C63B29 /* GestureFactory.cpp in Sources */,
+				A9974A4E16727268004571ED /* Hand.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
