@@ -54,11 +54,14 @@ void GestureFactory::updateBlob( int id, int x, int y, int z ){
     
     // stationary
     if ( checkAgainst->length() < stationaryThreshold ){
+        lastEvents[id].position     = hands[id];
+        lastEvents[id].velocity.set( 0, 0 );
+        
         if ( lastEvents[id].type == STATIONARY ){
             lastEvents[id].duration = ofGetElapsedTimeMillis() - lastEvents[id].timeStarted;
         } else {
             lastEvents[id].duration      = 0;
-            //lastEvents[id].timeStarted   = ofGetElapsedTimeMillis();
+            lastEvents[id].timeStarted   = ofGetElapsedTimeMillis();
         }
         if ( lastEvents[id].duration > 1000 ){
             toSend.insert(make_pair( id, lastEvents[id]) );
@@ -71,7 +74,8 @@ void GestureFactory::updateBlob( int id, int x, int y, int z ){
             if ( abs( checkAgainst->x ) > hThresh ){
                 lastEvents[id].angle = checkAgainst->angle(ofVec3f());
                 lastEvents[id].velocity.set( checkAgainst->x, 0 );
-                lastEvents[id].timeStarted = ofGetElapsedTimeMillis();
+                lastEvents[id].timeStarted  = ofGetElapsedTimeMillis();
+                lastEvents[id].position     = hands[id];
                 
                 switch ( ofSign( checkAgainst-> x) ) {
                     case 1:
@@ -95,7 +99,8 @@ void GestureFactory::updateBlob( int id, int x, int y, int z ){
             if ( abs( checkAgainst->y ) > vThresh ){
                 lastEvents[id].angle = checkAgainst->angle(ofVec3f());
                 lastEvents[id].velocity.set( 0, checkAgainst->y );
-                lastEvents[id].timeStarted = ofGetElapsedTimeMillis();
+                lastEvents[id].timeStarted  = ofGetElapsedTimeMillis();
+                lastEvents[id].position     = hands[id];
                 
                 switch (ofSign( checkAgainst->y )) {
                     case -1:
