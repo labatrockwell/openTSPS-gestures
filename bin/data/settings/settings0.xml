@@ -22,7 +22,7 @@
     <val_0>138.889007568</val_0>
 </RELEARN_BACKGROUND>
 <THRESHOLD>
-    <val_0>187.417572021</val_0>
+    <val_0>208.690414429</val_0>
 </THRESHOLD>
 <BLOB_TYPE>
     <val_0>2.000000000</val_0>
@@ -100,7 +100,7 @@
     <val_0>0.000000000</val_0>
 </SEND_WS>
 <WS_PORT>
-    <val_0>9789</val_0>
+    <val_0>9987</val_0>
 </WS_PORT>
 <USE_KINECT>
     <val_0>0</val_0>
@@ -124,7 +124,7 @@
     <val_0>0.000000000</val_0>
 </WS_USESSL>
 <WS_CHANNEL>
-    <val_0>/websocket</val_0>
+    <val_0 />
 </WS_CHANNEL>
 <USE_VIDEO_FILE>
     <val_0>0</val_0>
@@ -171,14 +171,20 @@
     <val_0>163.555572510</val_0>
 </CUSTOM2>
 <CUSTOM3>
-    <val_0>109.333335876</val_0>
+    <val_0>101.333335876</val_0>
 </CUSTOM3>
 <CUSTOM4>
-    <val_0>3.333333492</val_0>
+    <val_0>7.222222328</val_0>
 </CUSTOM4>
 <CUSTOM5>
-    <val_0>0.927777767</val_0>
+    <val_0>0.961111128</val_0>
 </CUSTOM5>
 <CUSTOM6>
-    <val_0>722.222229004</val_0>
+    <val_0>222.222229004</val_0>
 </CUSTOM6>
+<SEND_SB>
+    <val_0>0.000000000</val_0>
+</SEND_SB>
+<SB_HOST>
+    <val_0>localhost</val_0>
+</SB_HOST>

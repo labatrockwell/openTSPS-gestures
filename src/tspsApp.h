@@ -2,75 +2,34 @@
 #define _TEST_APP
 
 #include "ofMain.h"
-
-/*********************************************************
-    INCLUDES + DEFINES
-*********************************************************/
-
-    // TSPS core
-    #include "ofxTSPS.h"
-	
-    // include OpenNI source
-    #include "OpenNI.h"
-
-    // include Swipe Gesture
-    //#include "SwipeDetectorONI.h"
-    #include "GestureFactory.h"
-
-    #define TSPS_HOME_PAGE "http://opentsps.com"
-
-/*********************************************************
-    APP
-*********************************************************/
+#include "CustomDelegate.h"
 
 class tspsApp : public ofBaseApp {
     
     public:
     
+        /**
+         * @param {int}         numCameras  How many cameras to connect to
+         * @param {std::string} host        (optional) Host of websocket server to send to
+         * @param {std::string} port        (optional) Port of websocket server to send to
+         */
+        tspsApp( int numCameras=1, string host="", int port=0 );
+        
 		void setup();
 		void update();
 		void draw();
-		
-		void keyPressed  (int key);
+    
+        void mouseReleased(int x, int y, int button);
+    
+        string  wsHost;
+        int     wsPort;
+    
+        int currentDelegate; // which one you are drawing
+        vector<CustomDelegate *> delegates;
         
-        // custom openNI source
-        ofxTSPS::OpenNI source;
-    
-        // gesture detector
-        //SwipeDetectorONI   SwipeDetectorONI;
-        GestureFactory       gestureGenerator;
-    
-        // custom event
-        void onOpenNIGesture( ofxOpenNIGestureEvent & e );
-        void onOpenNIHand( ofxOpenNIHandEvent & e );
-        void onSwipeUp( ofxSwipeEvent & e );
-        void onSwipeDown( ofxSwipeEvent & e );
-        void onSwipeLeft( ofxSwipeEvent & e );
-        void onSwipeRight( ofxSwipeEvent & e );
-        void onHeld( ofxSwipeEvent & e );
-    
-        // TSPS core: PeopleTracker + events
-        
-        ofxTSPS::PeopleTracker peopleTracker;
-        void onPersonEntered( ofxTSPS::EventArgs & tspsEvent );
-        void onPersonUpdated( ofxTSPS::EventArgs & tspsEvent );
-        void onPersonWillLeave( ofxTSPS::EventArgs & tspsEvent );
-    
-        // auto threshold
-        float autoThreshold;
-        float thresholdBuffer;
-
-	//status bar stuff
-		ofImage statusBar;
-		int		drawStatus[3];
-		ofImage personEnteredImage;
-		ofImage personUpdatedImage;
-		ofImage personLeftImage;
-		ofTrueTypeFont timesBoldItalic;
-	
-	//other gui images
-		ofImage background;
-    
+        // buttons for switching between cameras + adding more cameras
+        map<string, guiTypeButton *> buttons;
+        void onButtonPressed( string & button );
 };
 
 #endif
