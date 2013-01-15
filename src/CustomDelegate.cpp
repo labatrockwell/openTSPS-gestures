@@ -10,7 +10,6 @@
 
 static int numGenerators = 0;
 
-
 //--------------------------------------------------------------
 CustomDelegate::CustomDelegate( int _id ) :
 ofxTSPS::Delegate(_id)
@@ -25,7 +24,7 @@ void CustomDelegate::setup(){
     peopleTracker.setSource(source);
     
     // setup OpenNI source
-    source.openSource(640,480);
+    source.openSource(320,240);
     
     // ofxOpenNI is :( about > 1 gesture generator...
     if ( numGenerators == 0 ){
@@ -62,7 +61,6 @@ void CustomDelegate::setup(){
     peopleTracker.addSlider("Number of frames to avg", &gestureGenerator.averageFrames, 0, 100);
     peopleTracker.addSlider("Threshold buffer", &thresholdBuffer, 0.0f, 1.0f);
     peopleTracker.addSlider("Time to wait btw gestures", &gestureGenerator.gestureWait, 0, 10000);
-    
 }
 
 //--------------------------------------------------------------
@@ -164,8 +162,9 @@ void CustomDelegate::onSwipeUp( ofxSwipeEvent & e ){
     map<string,string> params;
     params["strength"]      = ofToString(e.velocity.y);
     params["angle"]         = ofToString(e.angle);
-    params["positionX"]      = ofToString(e.position.x);
-    params["positionY"]      = ofToString(e.position.y);
+    params["positionX"]     = ofToString(e.position.x);
+    params["positionY"]     = ofToString(e.position.y);
+    params["camera"]        = ofToString(id);
     peopleTracker.triggerCustomEvent( "swipeUp", params );
     cout<< id << " up" << endl;
 }
@@ -177,6 +176,7 @@ void CustomDelegate::onSwipeDown( ofxSwipeEvent & e ){
     params["angle"]     = ofToString(e.angle);
     params["positionX"]      = ofToString(e.position.x);
     params["positionY"]      = ofToString(e.position.y);
+    params["camera"]        = ofToString(id);
     peopleTracker.triggerCustomEvent( "swipeDown", params );
     cout<< id << " down" << endl;
 }
@@ -188,6 +188,7 @@ void CustomDelegate::onSwipeLeft( ofxSwipeEvent & e ){
     params["angle"]     = ofToString(e.angle);
     params["positionX"]      = ofToString(e.position.x);
     params["positionY"]      = ofToString(e.position.y);
+    params["camera"]        = ofToString(id);
     peopleTracker.triggerCustomEvent( "swipeLeft", params );
     cout<< id << " left" << endl;
     
@@ -200,6 +201,7 @@ void CustomDelegate::onSwipeRight( ofxSwipeEvent & e ){
     params["angle"]     = ofToString(e.angle);
     params["positionX"]      = ofToString(e.position.x);
     params["positionY"]      = ofToString(e.position.y);
+    params["camera"]        = ofToString(id);
     peopleTracker.triggerCustomEvent( "swipeRight", params );
     cout<< id << " right" << endl;
 }
@@ -211,6 +213,7 @@ void CustomDelegate::onHeld( ofxSwipeEvent & e ){
     params["duration"] = ofToString( e.duration );
     params["positionX"]      = ofToString(e.position.x);
     params["positionY"]      = ofToString(e.position.y);
+    params["camera"]        = ofToString(id);
     peopleTracker.triggerCustomEvent( "held", params );
     cout<< id << " held" << endl;
 }
