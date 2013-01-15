@@ -13,15 +13,18 @@ class tspsApp : public ofBaseApp {
          * @param {std::string} host        (optional) Host of websocket server to send to
          * @param {std::string} port        (optional) Port of websocket server to send to
          */
-        tspsApp( int numCameras=1, string host="", int port=0 );
+        tspsApp( int numCameras=1, string host="", int port=0, string channel="" );
         
 		void setup();
 		void update();
-		void draw();
+        void draw();
+        void exit();
+    
+        ofMutex delegateMutex;
     
         void mouseReleased(int x, int y, int button);
     
-        string  wsHost;
+        string  wsHost, wsChannel;
         int     wsPort;
     
         int currentDelegate; // which one you are drawing

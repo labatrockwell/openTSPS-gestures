@@ -2,9 +2,10 @@
 
 
 //--------------------------------------------------------------
-tspsApp::tspsApp( int numCameras, string host, int port ){
-    wsHost = host;
-    wsPort = port;
+tspsApp::tspsApp( int numCameras, string host, int port, string channel ){
+    wsHost      = host;
+    wsPort      = port;
+    wsChannel   = channel;
     
     for (int i=0; i<numCameras; i++){
         delegates.push_back(new CustomDelegate(i));
@@ -19,7 +20,7 @@ void tspsApp::setup(){
 	for (int i=0; i<delegates.size(); i++){
         delegates[i]->setup();
         if ( wsHost != "" && wsPort != 0 ){
-            delegates[i]->getPeopleTracker()->setupWebSocketClient(wsHost, wsPort);
+            delegates[i]->getPeopleTracker()->setupWebSocketClient(wsHost, wsPort, false, wsChannel);
         }
     }
     
@@ -61,9 +62,7 @@ void tspsApp::update(){
 
 //--------------------------------------------------------------
 void tspsApp::draw(){
-	for (int i=0; i<delegates.size(); i++){
-        delegates[currentDelegate]->draw();
-    }
+    delegates[currentDelegate]->draw();
     
     // draw custom buttons
     map<std::string, guiTypeButton*>::iterator it;
@@ -71,6 +70,18 @@ void tspsApp::draw(){
         it->second->render();
     }
 }
+
+//--------------------------------------------------------------
+void tspsApp::exit(){
+    delegateMutex.lock();
+	for (int i=0; i<delegates.size(); i++){
+        delegates[i]->disableEvents();
+        delete delegates[i];
+    }
+    delegateMutex.unlock();
+    delegates.clear();
+}
+
 //--------------------------------------------------------------
 void tspsApp::mouseReleased(int x, int y, int button){
     // check hit of buttons
