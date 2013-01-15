@@ -15,12 +15,13 @@ namespace ofxTSPS {
     class OpenNI : public Source, public ofxOpenNI {
     public:
         
-        OpenNI() : Source(){
+        OpenNI() : Source(), ofxOpenNI()
+        {
             // type defaults to CAMERA_CUSTOM
             bCanTrackHaar = false;
-            invertedPixels.allocate( 640,480, OF_IMAGE_GRAYSCALE);
+            invertedPixels.allocate( 320,240, OF_IMAGE_GRAYSCALE);
         }
-                        
+        
         // core
         bool available(){
             return (getNumDevices() >= 1);
@@ -54,8 +55,12 @@ namespace ofxTSPS {
         
         bool openSource( int width, int height, string etc="" ){
             bool bSetup = isContextReady();
-            if(!bSetup) bIsOpen = setup();
+            if(!bSetup) bIsOpen = setup(true, width, height);
             if ( bIsOpen ){
+                if ( invertedPixels.getWidth() != width || invertedPixels.getHeight() != height ){
+                    invertedPixels.clear();
+                    invertedPixels.allocate( width, height, OF_IMAGE_GRAYSCALE);
+                }
                 setDepthColoring(COLORING_BLUES);
                 addDepthGenerator();
                 start();                
