@@ -166,7 +166,7 @@ void CustomDelegate::onSwipeUp( ofxSwipeEvent & e ){
     params["positionY"]     = ofToString(e.position.y);
     params["camera"]        = ofToString(id);
     peopleTracker.triggerCustomEvent( "swipeUp", params );
-    cout<< id << " up" << endl;
+    //cout<< id << " up" << endl;
 }
 
 //--------------------------------------------------------------
@@ -178,7 +178,7 @@ void CustomDelegate::onSwipeDown( ofxSwipeEvent & e ){
     params["positionY"]      = ofToString(e.position.y);
     params["camera"]        = ofToString(id);
     peopleTracker.triggerCustomEvent( "swipeDown", params );
-    cout<< id << " down" << endl;
+    //cout<< id << " down" << endl;
 }
 
 //--------------------------------------------------------------
@@ -190,8 +190,7 @@ void CustomDelegate::onSwipeLeft( ofxSwipeEvent & e ){
     params["positionY"]      = ofToString(e.position.y);
     params["camera"]        = ofToString(id);
     peopleTracker.triggerCustomEvent( "swipeLeft", params );
-    cout<< id << " left" << endl;
-    
+    //cout<< id << " left" << endl;
 }
 
 //--------------------------------------------------------------
@@ -203,7 +202,7 @@ void CustomDelegate::onSwipeRight( ofxSwipeEvent & e ){
     params["positionY"]      = ofToString(e.position.y);
     params["camera"]        = ofToString(id);
     peopleTracker.triggerCustomEvent( "swipeRight", params );
-    cout<< id << " right" << endl;
+    //cout<< id << " right" << endl;
 }
 
 
@@ -215,5 +214,5 @@ void CustomDelegate::onHeld( ofxSwipeEvent & e ){
     params["positionY"]      = ofToString(e.position.y);
     params["camera"]        = ofToString(id);
     peopleTracker.triggerCustomEvent( "held", params );
-    cout<< id << " held" << endl;
+    //cout<< id << " held" << endl;
 }
