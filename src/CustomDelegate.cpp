@@ -61,6 +61,7 @@ void CustomDelegate::setup(){
     peopleTracker.addSlider("Number of frames to avg", &gestureGenerator.averageFrames, 0, 100);
     peopleTracker.addSlider("Threshold buffer", &thresholdBuffer, 0.0f, 1.0f);
     peopleTracker.addSlider("Time to wait btw gestures", &gestureGenerator.gestureWait, 0, 10000);
+    peopleTracker.addSlider("Tilt", &source.tiltAmount, -1.0f, 1.0f);
 }
 
 //--------------------------------------------------------------

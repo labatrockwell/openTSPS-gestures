@@ -20,7 +20,11 @@ namespace ofxTSPS {
             // type defaults to CAMERA_CUSTOM
             bCanTrackHaar = false;
             invertedPixels.allocate( 320,240, OF_IMAGE_GRAYSCALE);
+            tiltAmount = 0;
         }
+        
+        /** Tilt amount (-1 to 1)  */
+        float tiltAmount;
         
         // core
         bool available(){
@@ -34,8 +38,19 @@ namespace ofxTSPS {
                 ofPixelsRef pix = getDepthPixels();
                 int channels    = pix.getNumChannels();
                 int dims        = invertedPixels.getWidth() * invertedPixels.getHeight();
+                float shift       = 0;
+                
                 for ( int i=0; i<dims; i++){
+                    int y = floor((float) i / getWidth());
+                    
+                    if ( tiltAmount > 0 ){
+                        shift = (((float) y/getHeight() ) * tiltAmount);
+//                        cout << ((float) y/getHeight() ) << tiltAmount <<":" << shift << endl;
+                    } else if ( tiltAmount < 0) {
+                        shift = ((float) (getHeight()-y)/getHeight() ) * (-tiltAmount);
+                    }
                     invertedPixels[i] = pix[2+i * channels] == 0 ? 0 : abs(255-pix[2+i * channels]);
+                    invertedPixels[i] *= (1-shift);
                 }
             }
         }
