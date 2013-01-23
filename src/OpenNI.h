@@ -38,19 +38,23 @@ namespace ofxTSPS {
                 ofPixelsRef pix = getDepthPixels();
                 int channels    = pix.getNumChannels();
                 int dims        = invertedPixels.getWidth() * invertedPixels.getHeight();
-                float shift       = 0;
+                float shift       = 0.0f;
                 
                 for ( int i=0; i<dims; i++){
-                    int y = floor((float) i / getWidth());
+                    int y = i / getWidth();
                     
                     if ( tiltAmount > 0 ){
-                        shift = (((float) y/getHeight() ) * tiltAmount);
-//                        cout << ((float) y/getHeight() ) << tiltAmount <<":" << shift << endl;
+                        float div = (float) y/getHeight();
+                        shift = (div * tiltAmount);
                     } else if ( tiltAmount < 0) {
-                        shift = ((float) (getHeight()-y)/getHeight() ) * (-tiltAmount);
+                        float div = ((float) (getHeight()-y)/getHeight() );
+                        shift = div * (-tiltAmount);
                     }
-                    invertedPixels[i] = pix[2+i * channels] == 0 ? 0 : abs(255-pix[2+i * channels]);
-                    invertedPixels[i] *= (1-shift);
+                    // invert
+                    invertedPixels[i] = pix[2+i * channels] == 0 ? 0 : fabs(255.0f-pix[2+i * channels]);
+                    
+                    // shift
+                    invertedPixels[i] *= (float) (1.0f-shift);
                 }
             }
         }
