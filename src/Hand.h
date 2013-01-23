@@ -33,7 +33,10 @@ public:
     
     void clearHistory();
     
+    bool bDidStartGesture;
+    
 private:
+    
     void setup();
     vector<ofPoint> velocityHistory;
     vector<ofPoint> positionHistory;

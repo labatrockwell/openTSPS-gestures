@@ -20,6 +20,7 @@ GestureFactory::GestureFactory(){
     gestureWait         = 2000;
     verticalDistance    = 100;  // this should eventually be normalized
     horizontalDistance  = 100;  // this should eventually be normalized
+    startGesture        = SWIPE_RIGHT;
 }
 
 //--------------------------------------------------------------
@@ -134,6 +135,16 @@ void GestureFactory::updateBlob( int id, int x, int y, int z ){
 }
 
 //--------------------------------------------------------------
+void GestureFactory::setStartGesture( ofxGestureType startType ){
+    startGesture = startType;
+}
+
+//--------------------------------------------------------------
+ofxGestureType GestureFactory::getStartGesture(){
+    return startGesture;
+}
+
+//--------------------------------------------------------------
 void GestureFactory::update(){
     int closestId               = -1;
     Hand          * closest     = NULL;
@@ -168,6 +179,14 @@ void GestureFactory::update(){
         case SEND_ALL:
         default:
             break;
+    }
+    
+    if ( eventToSend != NULL && !closest->bDidStartGesture){
+        if ( eventToSend->type == startGesture ){
+            cout << "start gesture executed "<<endl;
+            closest->bDidStartGesture = true;
+        }
+        eventToSend = NULL;
     }
     
     if ( eventToSend != NULL ){

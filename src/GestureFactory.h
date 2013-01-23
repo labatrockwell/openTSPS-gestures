@@ -45,6 +45,10 @@ public:
     // number of frames to average for gestures
     int     averageFrames;
     
+    // what gesture to start with
+    void setStartGesture( ofxGestureType startType );
+    ofxGestureType getStartGesture();
+    
     // mode
     GestureSendMode         sendMode;
     GestureDetectMode       detectMode;
@@ -60,6 +64,7 @@ public:
     map<int,Hand> hands;
     
 private:
+    ofxGestureType  startGesture;
     bool            bSetup;
     
     map<int, ofxSwipeEvent>   lastEvents;
