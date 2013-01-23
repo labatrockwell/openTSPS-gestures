@@ -21,6 +21,7 @@ namespace ofxTSPS {
             bCanTrackHaar = false;
             invertedPixels.allocate( 320,240, OF_IMAGE_GRAYSCALE);
             tiltAmount = 0;
+            setDepthColoring( COLORING_GREY );
         }
         
         /** Tilt amount (-1 to 1)  */
@@ -34,27 +35,31 @@ namespace ofxTSPS {
         void update(){
             ofxOpenNI::update();
             if ( isDepthOn() ){
-                //this is pretty annoying, but ofxOpenNI colors are backwards
-                ofPixelsRef pix = getDepthPixels();
-                int channels    = pix.getNumChannels();
-                int dims        = invertedPixels.getWidth() * invertedPixels.getHeight();
-                float shift       = 0.0f;
+                const XnDepthPixel* depth = getDepthMetaData().Data();
                 
-                for ( int i=0; i<dims; i++){
-                    int y = i / getWidth();
-                    
-                    if ( tiltAmount > 0 ){
-                        float div = (float) y/getHeight();
-                        shift = (div * tiltAmount);
-                    } else if ( tiltAmount < 0) {
-                        float div = ((float) (getHeight()-y)/getHeight() );
-                        shift = div * (-tiltAmount);
+                // build inverted pixels + do shift
+                int dims        = invertedPixels.getWidth() * invertedPixels.getHeight();
+                float shift     = 0.0f;
+                int index       = 0;
+                
+                for (XnUInt16 y = getDepthMetaData().YOffset(); y < getDepthMetaData().YRes() + getDepthMetaData().YOffset(); y++){
+                    for (XnUInt16 x = 0; x < getDepthMetaData().XRes(); x++, depth++){
+                        
+                        if ( tiltAmount > 0 ){
+                            float div = (float) y/getHeight();
+                            shift = (div * tiltAmount);
+                        } else if ( tiltAmount < 0) {
+                            float div = ((float) (getHeight()-y)/getHeight() );
+                            shift = div * (-tiltAmount);
+                        }
+                        // invert
+                        XnUInt8 a = (XnUInt8)(((*depth) / (getMaxDepth() / -255.00)));
+                        
+                        // shift
+                        a *= (1.0-shift);
+                        invertedPixels[index] = a;
+                        index++;
                     }
-                    // invert
-                    invertedPixels[i] = pix[2+i * channels] == 0 ? 0 : fabs(255.0f-pix[2+i * channels]);
-                    
-                    // shift
-                    invertedPixels[i] *= (float) (1.0f-shift);
                 }
             }
         }
@@ -80,9 +85,9 @@ namespace ofxTSPS {
                     invertedPixels.clear();
                     invertedPixels.allocate( width, height, OF_IMAGE_GRAYSCALE);
                 }
-                setDepthColoring(COLORING_BLUES);
                 addDepthGenerator();
-                start();                
+                setUseDepthRawPixels(true);
+                start();
             }
             return bIsOpen;
         }
