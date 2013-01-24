@@ -22,6 +22,7 @@ namespace ofxTSPS {
             invertedPixels.allocate( 320,240, OF_IMAGE_GRAYSCALE);
             tiltAmount = 0;
             setDepthColoring( COLORING_GREY );
+            bCanTrackHaar = false;
         }
         
         /** Tilt amount (-1 to 1)  */
