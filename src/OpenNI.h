@@ -81,6 +81,7 @@ namespace ofxTSPS {
         bool openSource( int width, int height, string etc="" ){
             bool bSetup = isContextReady();
             if(!bSetup) bIsOpen = setup(true, width, height);
+            if ( bIsOpen ) bIsOpen = available();
             if ( bIsOpen ){
                 if ( invertedPixels.getWidth() != width || invertedPixels.getHeight() != height ){
                     invertedPixels.clear();
