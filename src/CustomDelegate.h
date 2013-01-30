@@ -44,7 +44,7 @@ public:
     void onHeld( ofxSwipeEvent & e );
     
     // auto threshold
-    float autoThreshold;
+    float autoThreshold, minimumThreshold;
     float thresholdBuffer;
 };
 

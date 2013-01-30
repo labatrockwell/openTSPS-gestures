@@ -52,8 +52,10 @@ void CustomDelegate::setup(){
     
     autoThreshold   = 255.0f;
     thresholdBuffer = .9f;
+    minimumThreshold = 100;
     
     // add stuff to gui
+    peopleTracker.addSlider("Minimum Threshold", &minimumThreshold, 0, 250);
     peopleTracker.addSlider("Gesture Sensitivity Horz", &gestureGenerator.horizontalThreshold, 0, 100);
     peopleTracker.addSlider("Gesture Sensitivity Vert", &gestureGenerator.verticalThreshold, 0, 100);
     peopleTracker.addSlider("Gesture Distance Horz", &gestureGenerator.horizontalDistance, 0, 640);
@@ -80,7 +82,7 @@ void CustomDelegate::update(){
     ofColor c = tempImage.getColor( maxLoc.x, maxLoc.y );
     autoThreshold = autoThreshold * .9 + c.r * .1;
     
-    peopleTracker.setThreshold( autoThreshold * thresholdBuffer );
+    peopleTracker.setThreshold( fmax(minimumThreshold, autoThreshold * thresholdBuffer) );
     
     // normal update
     peopleTracker.update();
