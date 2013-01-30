@@ -22,7 +22,7 @@
     <val_0>138.889007568</val_0>
 </RELEARN_BACKGROUND>
 <THRESHOLD>
-    <val_0>208.690414429</val_0>
+    <val_0>214.814819336</val_0>
 </THRESHOLD>
 <BLOB_TYPE>
     <val_0>2.000000000</val_0>
@@ -43,10 +43,10 @@
     <val_0>11.000000000</val_0>
 </SMOOTH_AMOUNT>
 <MIN_BLOB>
-    <val_0>1.121000051</val_0>
+    <val_0>0.565444469</val_0>
 </MIN_BLOB>
 <MAX_BLOB>
-    <val_0>12.310000420</val_0>
+    <val_0>37.284999847</val_0>
 </MAX_BLOB>
 <FIND_HOLES>
     <val_0>1.000000000</val_0>
@@ -70,7 +70,7 @@
     <val_0>45.555599213</val_0>
 </HAAR_PADDING>
 <SEND_OSC>
-    <val_0>1.000000000</val_0>
+    <val_0>0.000000000</val_0>
 </SEND_OSC>
 <OSC_HOST>
     <val_0>localhost</val_0>
@@ -97,10 +97,10 @@
     <val_0>0</val_0>
 </ADJUSTED_VIEW_COLOR>
 <SEND_WS>
-    <val_0>0.000000000</val_0>
+    <val_0>1.000000000</val_0>
 </SEND_WS>
 <WS_PORT>
-    <val_0>9987</val_0>
+    <val_0>9789</val_0>
 </WS_PORT>
 <USE_KINECT>
     <val_0>0</val_0>
@@ -124,7 +124,7 @@
     <val_0>0.000000000</val_0>
 </WS_USESSL>
 <WS_CHANNEL>
-    <val_0 />
+    <val_0>/websocket</val_0>
 </WS_CHANNEL>
 <USE_VIDEO_FILE>
     <val_0>0</val_0>
@@ -162,25 +162,25 @@
     <val_0>0.000000000</val_0>
 </INVERT>
 <CUSTOM0>
-    <val_0>20.000000000</val_0>
+    <val_0>214.814819336</val_0>
 </CUSTOM0>
 <CUSTOM1>
-    <val_0>20.000000000</val_0>
+    <val_0>37.037036896</val_0>
 </CUSTOM1>
 <CUSTOM2>
-    <val_0>163.555572510</val_0>
+    <val_0>36.666667938</val_0>
 </CUSTOM2>
 <CUSTOM3>
-    <val_0>101.333335876</val_0>
+    <val_0>168.296295166</val_0>
 </CUSTOM3>
 <CUSTOM4>
-    <val_0>7.222222328</val_0>
+    <val_0>124.444442749</val_0>
 </CUSTOM4>
 <CUSTOM5>
-    <val_0>0.961111128</val_0>
+    <val_0>27.777778625</val_0>
 </CUSTOM5>
 <CUSTOM6>
-    <val_0>222.222229004</val_0>
+    <val_0>0.881481469</val_0>
 </CUSTOM6>
 <SEND_SB>
     <val_0>0.000000000</val_0>
@@ -188,3 +188,18 @@
 <SB_HOST>
     <val_0>localhost</val_0>
 </SB_HOST>
+<CUSTOM7>
+    <val_0>0.022222281</val_0>
+</CUSTOM7>
+<SEND_SCENE_DATA>
+    <val_0>0.000000000</val_0>
+</SEND_SCENE_DATA>
+<SCENE_GRID_X>
+    <val_0>0.000000000</val_0>
+</SCENE_GRID_X>
+<SCENE_GRID_Y>
+    <val_0>0.000000000</val_0>
+</SCENE_GRID_Y>
+<CUSTOM8>
+    <val_0>0.000000000</val_0>
+</CUSTOM8>
