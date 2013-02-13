@@ -18,13 +18,14 @@ GestureFactory::GestureFactory(){
     sendMode            = SEND_CLOSEST;
     detectMode          = DISTANCE;
     gestureWait         = 2000;
+    lastGestureSent     = 0;
     verticalDistance    = 100;  // this should eventually be normalized
     horizontalDistance  = 100;  // this should eventually be normalized
     startGesture        = SWIPE_RIGHT;
 }
 
 //--------------------------------------------------------------
-void GestureFactory::updateBlob( int id, int x, int y, int z ){    
+void GestureFactory::updateBlob( int id, int x, int y, float z ){    
     // loop through current hands
     // do we have this one?
     if ( hands.count( id ) == 0 ){
@@ -38,6 +39,7 @@ void GestureFactory::updateBlob( int id, int x, int y, int z ){
     // should be some sort of gesture object to check against
     
     ofPoint * checkAgainst  = NULL;
+    ofPoint velocity        = hands[ id ].averageVelocity;
     float       hThresh     = horizontalThreshold;
     float       vThresh     = verticalThreshold;
     switch ( detectMode ) {
@@ -46,8 +48,8 @@ void GestureFactory::updateBlob( int id, int x, int y, int z ){
             break;
         case DISTANCE:
             checkAgainst = &hands[ id ].distanceTraveled;
-            hThresh = horizontalDistance;
-            vThresh = verticalDistance;
+            hThresh = horizontalDistance * ofMap(hands[id].z, .95, .5, 1, .25);
+            vThresh = verticalDistance * ofMap(hands[id].z, .95, .75, 1, .25);
             break;
     }
     
@@ -69,12 +71,12 @@ void GestureFactory::updateBlob( int id, int x, int y, int z ){
             if ( sendMode == SEND_ALL) ofNotifyEvent(onHeldEvent, lastEvents[id] );
         }
         lastEvents[id].type = STATIONARY;
-    } else if ( ofGetElapsedTimeMillis() - lastEvents[id].timeStarted > gestureWait ){
+    } else if ( ofGetElapsedTimeMillis() - lastGestureSent > gestureWait ){
         // left / right
         if ( abs( checkAgainst->x ) > abs( checkAgainst->y ) ){
             if ( abs( checkAgainst->x ) > hThresh ){
                 lastEvents[id].angle = checkAgainst->angle(ofVec3f());
-                lastEvents[id].velocity.set( checkAgainst->x, 0 );
+                lastEvents[id].velocity.set( velocity.x, 0 );
                 lastEvents[id].timeStarted  = ofGetElapsedTimeMillis();
                 lastEvents[id].position     = hands[id];
                 
@@ -82,12 +84,19 @@ void GestureFactory::updateBlob( int id, int x, int y, int z ){
                     case 1:
                         lastEvents[id].type = SWIPE_LEFT;
                         toSend.insert(make_pair( id, lastEvents[id]) );
-                        if ( sendMode == SEND_ALL) ofNotifyEvent(onSwipeLeftEvent, lastEvents[id] );
+                        if ( sendMode == SEND_ALL){
+                            lastGestureSent = ofGetElapsedTimeMillis();
+                            ofNotifyEvent(onSwipeLeftEvent, lastEvents[id] );
+                        }
                         break;
                     case -1:
                         lastEvents[id].type = SWIPE_RIGHT;
                         toSend.insert(make_pair( id, lastEvents[id]) );
-                        if ( sendMode == SEND_ALL) ofNotifyEvent(onSwipeRightEvent, lastEvents[id] );
+                        
+                        if ( sendMode == SEND_ALL){
+                            lastGestureSent = ofGetElapsedTimeMillis();
+                            ofNotifyEvent(onSwipeRightEvent, lastEvents[id] );
+                        }
                         break;
                 } 
                 hands[id].clearHistory();
@@ -99,7 +108,7 @@ void GestureFactory::updateBlob( int id, int x, int y, int z ){
         } else if ( abs( checkAgainst->y ) > abs( checkAgainst->x ) ){
             if ( abs( checkAgainst->y ) > vThresh ){
                 lastEvents[id].angle = checkAgainst->angle(ofVec3f());
-                lastEvents[id].velocity.set( 0, checkAgainst->y );
+                lastEvents[id].velocity.set( 0, velocity.y );
                 lastEvents[id].timeStarted  = ofGetElapsedTimeMillis();
                 lastEvents[id].position     = hands[id];
                 
@@ -107,14 +116,18 @@ void GestureFactory::updateBlob( int id, int x, int y, int z ){
                     case -1:
                         lastEvents[id].type = SWIPE_UP;
                         toSend.insert(make_pair( id, lastEvents[id]) );
-                        if ( sendMode == SEND_ALL)
+                        if ( sendMode == SEND_ALL){
+                            lastGestureSent = ofGetElapsedTimeMillis();
                             ofNotifyEvent(onSwipeUpEvent, lastEvents[id] );
+                        }
                         break;
                     case 1:
                         lastEvents[id].type = SWIPE_DOWN;
                         toSend.insert(make_pair( id, lastEvents[id]) );
-                        if ( sendMode == SEND_ALL)
+                        if ( sendMode == SEND_ALL){
+                            lastGestureSent = ofGetElapsedTimeMillis();
                             ofNotifyEvent(onSwipeDownEvent, lastEvents[id] );
+                        }
                         break;
                 }
                 hands[id].clearHistory();
@@ -155,7 +168,7 @@ void GestureFactory::update(){
         case SEND_CLOSEST:
             for (sendIt; sendIt != toSend.end(); ++sendIt){
                 if ( hands.count(sendIt->first) > 0 ){
-                    if ( closest == NULL || hands[sendIt->first].z < closest->z ){
+                    if ( (closest == NULL || hands[sendIt->first].z < closest->z) && &hands[sendIt->first].bDidStartGesture ){
                         closest = &hands[sendIt->first];
                         eventToSend = &sendIt->second;
                     }
@@ -196,6 +209,7 @@ void GestureFactory::update(){
                 break;
             case SWIPE_LEFT:
                 if ( closest->gestureHappened ){
+                    lastGestureSent = ofGetElapsedTimeMillis();
                     ofNotifyEvent(onSwipeLeftEvent, *eventToSend );
                 } else {
                     closest->gestureHappened = true;
@@ -203,6 +217,7 @@ void GestureFactory::update(){
                 break;
             case SWIPE_RIGHT:
                 if ( closest->gestureHappened ){
+                    lastGestureSent = ofGetElapsedTimeMillis();
                     ofNotifyEvent(onSwipeRightEvent, *eventToSend );
                 } else {
                     closest->gestureHappened = true;
@@ -210,6 +225,7 @@ void GestureFactory::update(){
                 break;
             case SWIPE_UP:
                 if ( closest->gestureHappened ){
+                    lastGestureSent = ofGetElapsedTimeMillis();
                     ofNotifyEvent(onSwipeUpEvent, *eventToSend );
                 } else {
                     closest->gestureHappened = true;
@@ -217,6 +233,7 @@ void GestureFactory::update(){
                 break;
             case SWIPE_DOWN:
                 if ( closest->gestureHappened ){
+                    lastGestureSent = ofGetElapsedTimeMillis();
                     ofNotifyEvent(onSwipeDownEvent, *eventToSend );
                 } else {
                     closest->gestureHappened = true;

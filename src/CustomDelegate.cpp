@@ -62,7 +62,7 @@ void CustomDelegate::setup(){
     peopleTracker.addSlider("Gesture Distance Vert", &gestureGenerator.verticalDistance, 0, 480);
     peopleTracker.addSlider("Number of frames to avg", &gestureGenerator.averageFrames, 0, 100);
     peopleTracker.addSlider("Threshold buffer", &thresholdBuffer, 0.0f, 1.0f);
-    peopleTracker.addSlider("Time to wait btw gestures", &gestureGenerator.gestureWait, 0, 10000);
+    peopleTracker.addSlider("Time to wait btw gestures", &gestureGenerator.gestureWait, 0, 2000);
     peopleTracker.addSlider("Tilt", &source.tiltAmount, -1.0f, 1.0f);
 }
 
@@ -90,7 +90,13 @@ void CustomDelegate::update(){
     // update gesture tracker from blobs
     for ( int i=0; i<peopleTracker.totalPeople(); i++){
         ofxTSPS::Person * p = peopleTracker.personAtIndex(i);
-        gestureGenerator.updateBlob( p->pid, p->highest.x, p->highest.y );
+        ofColor c = peopleTracker.getCameraImage()->getColor( p->centroid.x, p->centroid.y );
+        //cout << (p->highest.z - c.r) / 2.0f << ":" << p->highest.z << endl;
+        // figure this out...
+        // maybe make sure it exists first?
+        if ( fabs(p->highest.z - c.r) / 2.0f > 20.0f ){
+            gestureGenerator.updateBlob( p->pid, p->highest.x, p->highest.y, p->depth );
+        }
     }
     
     gestureGenerator.update();

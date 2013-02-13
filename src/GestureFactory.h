@@ -28,7 +28,7 @@ public:
     
     GestureFactory();
     
-    void updateBlob( int id, int x, int y, int z = 0 );
+    void updateBlob( int id, int x, int y, float z = 0 );
     void update();
     void draw();
     
@@ -69,5 +69,6 @@ private:
     
     map<int, ofxSwipeEvent>   lastEvents;
     map<int, ofxSwipeEvent>  toSend;
+    int             lastGestureSent;
 };
 
