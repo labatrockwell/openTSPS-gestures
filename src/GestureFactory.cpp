@@ -25,7 +25,9 @@ GestureFactory::GestureFactory(){
 }
 
 //--------------------------------------------------------------
-void GestureFactory::updateBlob( int id, int x, int y, float z ){    
+void GestureFactory::updateBlob( int id, ofPoint _centroid, int x, int y, float z ){
+    centroid = _centroid;
+    
     // loop through current hands
     // do we have this one?
     if ( hands.count( id ) == 0 ){
@@ -260,10 +262,13 @@ void GestureFactory::update(){
 
 //--------------------------------------------------------------
 void GestureFactory::draw(){
-    map<int, Hand>::iterator it = hands.begin();
-    for (it; it != hands.end(); ++it){
-        if ( it->second.age > 1000 ){
-            it->second.draw();
+    ofPushMatrix();{
+        ofTranslate(centroid);
+        map<int, Hand>::iterator it = hands.begin();
+        for (it; it != hands.end(); ++it){
+            if ( it->second.age > 1000 ){
+                it->second.draw();
+            }
         }
-    }
+    } ofPopMatrix();
 }

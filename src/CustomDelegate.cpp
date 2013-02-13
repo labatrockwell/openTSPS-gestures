@@ -53,6 +53,7 @@ void CustomDelegate::setup(){
     autoThreshold   = 255.0f;
     thresholdBuffer = .9f;
     minimumThreshold = 100;
+    minimumDepth    = .1f; // i.e. gesture depth must be > blob depth * .1
     
     // add stuff to gui
     peopleTracker.addSlider("Minimum Threshold", &minimumThreshold, 0, 250);
@@ -63,6 +64,7 @@ void CustomDelegate::setup(){
     peopleTracker.addSlider("Number of frames to avg", &gestureGenerator.averageFrames, 0, 100);
     peopleTracker.addSlider("Threshold buffer", &thresholdBuffer, 0.0f, 1.0f);
     peopleTracker.addSlider("Time to wait btw gestures", &gestureGenerator.gestureWait, 0, 2000);
+    peopleTracker.addSlider("Depth factor", &minimumDepth, 0.01, 1.0f);
     peopleTracker.addSlider("Tilt", &source.tiltAmount, -1.0f, 1.0f);
 }
 
@@ -88,14 +90,26 @@ void CustomDelegate::update(){
     peopleTracker.update();
     
     // update gesture tracker from blobs
+    
     for ( int i=0; i<peopleTracker.totalPeople(); i++){
         ofxTSPS::Person * p = peopleTracker.personAtIndex(i);
-        ofColor c = peopleTracker.getCameraImage()->getColor( p->centroid.x, p->centroid.y );
-        //cout << (p->highest.z - c.r) / 2.0f << ":" << p->highest.z << endl;
-        // figure this out...
-        // maybe make sure it exists first?
-        if ( fabs(p->highest.z - c.r) / 2.0f > 20.0f ){
-            gestureGenerator.updateBlob( p->pid, p->highest.x, p->highest.y, p->depth );
+//        ofColor c = peopleTracker.getCameraImage()->getColor( p->centroid.x, p->centroid.y );
+        
+        cv::Rect rect;
+        rect.x      = p->boundingRect.x;
+        rect.y      = p->boundingRect.y;
+        rect.width  = p->boundingRect.width;
+        rect.height = p->boundingRect.height;
+        cv::Mat roiMat(cameraMat, rect);
+        
+        float mean = cv::mean( roiMat ).val[0];
+        
+        // only add if it's minimum distance away from centroid
+        if ( fabs(p->highest.z - mean) >= mean * minimumDepth ){
+            // then, normalize
+            float normalX = p->highest.x - p->centroid.x;
+            float normalY = p->highest.y - p->centroid.y;
+            gestureGenerator.updateBlob( p->pid, p->centroid, normalX, normalY, p->depth );
         }
     }
     

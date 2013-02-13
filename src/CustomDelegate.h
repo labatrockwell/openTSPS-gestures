@@ -46,5 +46,8 @@ public:
     // auto threshold
     float autoThreshold, minimumThreshold;
     float thresholdBuffer;
+    
+    // depth from centroid
+    float minimumDepth;
 };
 
