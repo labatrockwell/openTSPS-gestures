@@ -29,8 +29,6 @@
 		2EDF65F91639F7A000329C79 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDF65EA1639F7A000329C79 /* CoreVideo.framework */; };
 		2EDF65FA1639F7A000329C79 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDF65EB1639F7A000329C79 /* QTKit.framework */; };
 		2EF4183D163B20D300E13227 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2EDF65DB1639F78A00329C79 /* GLUT.framework */; };
-		A928B8F816E13AE3003E0039 /* ofxNiteHandTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A928B8F416E13AE3003E0039 /* ofxNiteHandTracker.cpp */; };
-		A928B8F916E13AE3003E0039 /* OpenNIFeed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A928B8F616E13AE3003E0039 /* OpenNIFeed.cpp */; };
 		A928B99D16E14222003E0039 /* ofxKinect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A928B99116E14221003E0039 /* ofxKinect.cpp */; };
 		A928B9F216E14269003E0039 /* cameras.c in Sources */ = {isa = PBXBuildFile; fileRef = A928B9A516E14269003E0039 /* cameras.c */; };
 		A928B9F316E14269003E0039 /* core.c in Sources */ = {isa = PBXBuildFile; fileRef = A928B9A816E14269003E0039 /* core.c */; };
@@ -40,9 +38,6 @@
 		A928B9F716E14269003E0039 /* usb_libusb10.c in Sources */ = {isa = PBXBuildFile; fileRef = A928B9B716E14269003E0039 /* usb_libusb10.c */; };
 		A928B9F816E14269003E0039 /* usb-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A928B9BF16E14269003E0039 /* usb-1.0.a */; };
 		A92EE0C715FD288900C0A11B /* TSPSEvents.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A92EE0C615FD288900C0A11B /* TSPSEvents.cpp */; };
-		A934565B16E059270049C530 /* libOpenNI2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A934565416E059270049C530 /* libOpenNI2.dylib */; };
-		A934565D16E059270049C530 /* libOniFile.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A934565816E059270049C530 /* libOniFile.dylib */; };
-		A934565E16E059270049C530 /* libPS1080.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A934565916E059270049C530 /* libPS1080.dylib */; };
 		A948586415C470BD00761D1C /* tspsApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A948586215C470BC00761D1C /* tspsApp.cpp */; };
 		A94859A615C470E800761D1C /* opencv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A948591A15C470E700761D1C /* opencv.a */; };
 		A94859D215C470E900761D1C /* ofxCvColorImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A948594B15C470E800761D1C /* ofxCvColorImage.cpp */; };
@@ -115,17 +110,19 @@
 		A9485FE815C4764D00761D1C /* ofxTCPManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9485FE115C4764D00761D1C /* ofxTCPManager.cpp */; };
 		A9485FE915C4764D00761D1C /* ofxTCPServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9485FE315C4764D00761D1C /* ofxTCPServer.cpp */; };
 		A9485FEA15C4764D00761D1C /* ofxUDPManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9485FE515C4764D00761D1C /* ofxUDPManager.cpp */; };
+		A954CAF116E3E8940042CEA9 /* libusb-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A954CAB616E3E8940042CEA9 /* libusb-1.0.0.dylib */; };
+		A954CAF216E3E8940042CEA9 /* libusb-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A954CAB716E3E8940042CEA9 /* libusb-1.0.a */; };
+		A954CAF316E3E8940042CEA9 /* libNiTE2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A954CAC216E3E8940042CEA9 /* libNiTE2.dylib */; };
+		A954CAF416E3E8940042CEA9 /* libOpenNI2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A954CAE216E3E8940042CEA9 /* libOpenNI2.dylib */; };
+		A954CAF516E3E8940042CEA9 /* libOniFile.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A954CAE616E3E8940042CEA9 /* libOniFile.dylib */; };
+		A954CAF616E3E8940042CEA9 /* libPS1080.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A954CAE716E3E8940042CEA9 /* libPS1080.dylib */; };
+		A954CAF716E3E8940042CEA9 /* ofxNiteHandTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A954CAED16E3E8940042CEA9 /* ofxNiteHandTracker.cpp */; };
+		A954CAF816E3E8940042CEA9 /* OpenNIFeed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A954CAEF16E3E8940042CEA9 /* OpenNIFeed.cpp */; };
 		A97422F316A4742800BC6910 /* ofxSpacebrew.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A97422F116A4742800BC6910 /* ofxSpacebrew.cpp */; };
 		A97422F616A474C800BC6910 /* SpacebrewSender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A97422F516A474C800BC6910 /* SpacebrewSender.cpp */; };
 		A974231116A4B71900BC6910 /* TSPSDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A974230F16A4B71900BC6910 /* TSPSDelegate.cpp */; };
 		A974231416A4B7CD00BC6910 /* CustomDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A974231216A4B7CD00BC6910 /* CustomDelegate.cpp */; };
 		A9974A4E16727268004571ED /* Hand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9974A4C16727268004571ED /* Hand.cpp */; };
-		A9C57F1516E3E79800A64011 /* libusb-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C57EE016E3E79800A64011 /* libusb-1.0.0.dylib */; };
-		A9C57F1616E3E79800A64011 /* libusb-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C57EE116E3E79800A64011 /* libusb-1.0.a */; };
-		A9C57F1716E3E79800A64011 /* libNiTE2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C57EEC16E3E79800A64011 /* libNiTE2.dylib */; };
-		A9C57F1816E3E79800A64011 /* libOpenNI2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C57F0C16E3E79800A64011 /* libOpenNI2.dylib */; };
-		A9C57F1916E3E79800A64011 /* libOniFile.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C57F1016E3E79800A64011 /* libOniFile.dylib */; };
-		A9C57F1A16E3E79800A64011 /* libPS1080.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C57F1116E3E79800A64011 /* libPS1080.dylib */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
 /* End PBXBuildFile section */
@@ -148,16 +145,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A928B8FF16E13C64003E0039 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 6;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A928BA1916E158D3003E0039 /* CopyFiles */ = {
+		A954CAF916E3E8C70042CEA9 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
@@ -204,10 +192,6 @@
 		2EDF65EB1639F7A000329C79 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = ../../../../../../../../System/Library/Frameworks/QTKit.framework; sourceTree = "<group>"; };
 		2EF41836163AE44400E13227 /* ofParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofParameter.h; path = ../../../addons/ofxGui/src/ofParameter.h; sourceTree = "<group>"; };
 		2EF4183E163B257300E13227 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
-		A928B8F416E13AE3003E0039 /* ofxNiteHandTracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxNiteHandTracker.cpp; sourceTree = "<group>"; };
-		A928B8F516E13AE3003E0039 /* ofxNiteHandTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxNiteHandTracker.h; sourceTree = "<group>"; };
-		A928B8F616E13AE3003E0039 /* OpenNIFeed.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenNIFeed.cpp; sourceTree = "<group>"; };
-		A928B8F716E13AE3003E0039 /* OpenNIFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenNIFeed.h; sourceTree = "<group>"; };
 		A928B99016E14221003E0039 /* ofxBase3DVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxBase3DVideo.h; sourceTree = "<group>"; };
 		A928B99116E14221003E0039 /* ofxKinect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxKinect.cpp; sourceTree = "<group>"; };
 		A928B99216E14221003E0039 /* ofxKinect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxKinect.h; sourceTree = "<group>"; };
@@ -289,21 +273,6 @@
 		A934564116E053A60049C530 /* OpenNI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenNI.h; sourceTree = "<group>"; };
 		A934564216E053A60049C530 /* PS1080.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PS1080.h; sourceTree = "<group>"; };
 		A934564416E053A60049C530 /* OniPlatformWin32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniPlatformWin32.h; sourceTree = "<group>"; };
-		A934564716E059120049C530 /* libNiTE2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libNiTE2.dylib; path = ../../../libs/nite/Redist/libNiTE2.dylib; sourceTree = "<group>"; };
-		A934564816E059120049C530 /* NiTE.ini */ = {isa = PBXFileReference; lastKnownFileType = text; name = NiTE.ini; path = ../../../libs/nite/Redist/NiTE.ini; sourceTree = "<group>"; };
-		A934564B16E059130049C530 /* lbsdata.idx */ = {isa = PBXFileReference; lastKnownFileType = file; path = lbsdata.idx; sourceTree = "<group>"; };
-		A934564C16E059130049C530 /* lbsdata.lbd */ = {isa = PBXFileReference; lastKnownFileType = file; path = lbsdata.lbd; sourceTree = "<group>"; };
-		A934564D16E059130049C530 /* lbsparam1.lbd */ = {isa = PBXFileReference; lastKnownFileType = file; path = lbsparam1.lbd; sourceTree = "<group>"; };
-		A934564E16E059130049C530 /* lbsparam2.lbd */ = {isa = PBXFileReference; lastKnownFileType = file; path = lbsparam2.lbd; sourceTree = "<group>"; };
-		A934564F16E059130049C530 /* FeatureExtraction.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = FeatureExtraction.ini; sourceTree = "<group>"; };
-		A934565016E059130049C530 /* h.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = h.dat; sourceTree = "<group>"; };
-		A934565116E059130049C530 /* HandAlgorithms.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = HandAlgorithms.ini; sourceTree = "<group>"; };
-		A934565216E059130049C530 /* s.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = s.dat; sourceTree = "<group>"; };
-		A934565416E059270049C530 /* libOpenNI2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libOpenNI2.dylib; path = ../../../libs/openni/Redist/libOpenNI2.dylib; sourceTree = "<group>"; };
-		A934565516E059270049C530 /* OpenNI.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = OpenNI.ini; path = ../../../libs/openni/Redist/OpenNI.ini; sourceTree = "<group>"; };
-		A934565816E059270049C530 /* libOniFile.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libOniFile.dylib; sourceTree = "<group>"; };
-		A934565916E059270049C530 /* libPS1080.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libPS1080.dylib; sourceTree = "<group>"; };
-		A934565A16E059270049C530 /* PS1080.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = PS1080.ini; path = ../../../libs/openni/Redist/PS1080.ini; sourceTree = "<group>"; };
 		A948586215C470BC00761D1C /* tspsApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tspsApp.cpp; sourceTree = "<group>"; };
 		A948586315C470BC00761D1C /* tspsApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tspsApp.h; sourceTree = "<group>"; };
 		A948586815C470E700761D1C /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
@@ -664,6 +633,47 @@
 		A9485FE415C4764D00761D1C /* ofxTCPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTCPServer.h; sourceTree = "<group>"; };
 		A9485FE515C4764D00761D1C /* ofxUDPManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxUDPManager.cpp; sourceTree = "<group>"; };
 		A9485FE615C4764D00761D1C /* ofxUDPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxUDPManager.h; sourceTree = "<group>"; };
+		A954CAB616E3E8940042CEA9 /* libusb-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libusb-1.0.0.dylib"; sourceTree = "<group>"; };
+		A954CAB716E3E8940042CEA9 /* libusb-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libusb-1.0.a"; sourceTree = "<group>"; };
+		A954CABA16E3E8940042CEA9 /* NiTE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NiTE.h; sourceTree = "<group>"; };
+		A954CABB16E3E8940042CEA9 /* NiteCAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NiteCAPI.h; sourceTree = "<group>"; };
+		A954CABC16E3E8940042CEA9 /* NiteCEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NiteCEnums.h; sourceTree = "<group>"; };
+		A954CABD16E3E8940042CEA9 /* NiteCTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NiteCTypes.h; sourceTree = "<group>"; };
+		A954CABE16E3E8940042CEA9 /* NiteEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NiteEnums.h; sourceTree = "<group>"; };
+		A954CABF16E3E8940042CEA9 /* NiteVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NiteVersion.h; sourceTree = "<group>"; };
+		A954CAC216E3E8940042CEA9 /* libNiTE2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libNiTE2.dylib; sourceTree = "<group>"; };
+		A954CAC416E3E8940042CEA9 /* flann.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flann.txt; sourceTree = "<group>"; };
+		A954CAC516E3E8940042CEA9 /* NITE License V03.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "NITE License V03.rtf"; sourceTree = "<group>"; };
+		A954CAC616E3E8940042CEA9 /* NiTE.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NiTE.ini; sourceTree = "<group>"; };
+		A954CACA16E3E8940042CEA9 /* OniPlatformAndroid-Arm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OniPlatformAndroid-Arm.h"; sourceTree = "<group>"; };
+		A954CACC16E3E8940042CEA9 /* OniDriverAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniDriverAPI.h; sourceTree = "<group>"; };
+		A954CACD16E3E8940042CEA9 /* OniDriverTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniDriverTypes.h; sourceTree = "<group>"; };
+		A954CACF16E3E8940042CEA9 /* OniPlatformLinux-Arm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OniPlatformLinux-Arm.h"; sourceTree = "<group>"; };
+		A954CAD116E3E8940042CEA9 /* OniPlatformLinux-x86.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OniPlatformLinux-x86.h"; sourceTree = "<group>"; };
+		A954CAD316E3E8940042CEA9 /* OniPlatformMacOSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniPlatformMacOSX.h; sourceTree = "<group>"; };
+		A954CAD416E3E8940042CEA9 /* OniCAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniCAPI.h; sourceTree = "<group>"; };
+		A954CAD516E3E8940042CEA9 /* OniCEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniCEnums.h; sourceTree = "<group>"; };
+		A954CAD616E3E8940042CEA9 /* OniCProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniCProperties.h; sourceTree = "<group>"; };
+		A954CAD716E3E8940042CEA9 /* OniCTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniCTypes.h; sourceTree = "<group>"; };
+		A954CAD816E3E8940042CEA9 /* OniEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniEnums.h; sourceTree = "<group>"; };
+		A954CAD916E3E8940042CEA9 /* OniPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniPlatform.h; sourceTree = "<group>"; };
+		A954CADA16E3E8940042CEA9 /* OniProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniProperties.h; sourceTree = "<group>"; };
+		A954CADB16E3E8940042CEA9 /* OniVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniVersion.h; sourceTree = "<group>"; };
+		A954CADC16E3E8940042CEA9 /* OpenNI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenNI.h; sourceTree = "<group>"; };
+		A954CADD16E3E8940042CEA9 /* PS1080.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PS1080.h; sourceTree = "<group>"; };
+		A954CADF16E3E8940042CEA9 /* OniPlatformWin32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniPlatformWin32.h; sourceTree = "<group>"; };
+		A954CAE216E3E8940042CEA9 /* libOpenNI2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libOpenNI2.dylib; sourceTree = "<group>"; };
+		A954CAE316E3E8940042CEA9 /* OpenNI.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OpenNI.ini; sourceTree = "<group>"; };
+		A954CAE616E3E8940042CEA9 /* libOniFile.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libOniFile.dylib; sourceTree = "<group>"; };
+		A954CAE716E3E8940042CEA9 /* libPS1080.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libPS1080.dylib; sourceTree = "<group>"; };
+		A954CAE816E3E8940042CEA9 /* PS1080.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PS1080.ini; sourceTree = "<group>"; };
+		A954CAE916E3E8940042CEA9 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		A954CAEA16E3E8940042CEA9 /* NOTICE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NOTICE; sourceTree = "<group>"; };
+		A954CAEB16E3E8940042CEA9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		A954CAED16E3E8940042CEA9 /* ofxNiteHandTracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxNiteHandTracker.cpp; sourceTree = "<group>"; };
+		A954CAEE16E3E8940042CEA9 /* ofxNiteHandTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxNiteHandTracker.h; sourceTree = "<group>"; };
+		A954CAEF16E3E8940042CEA9 /* OpenNIFeed.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenNIFeed.cpp; sourceTree = "<group>"; };
+		A954CAF016E3E8940042CEA9 /* OpenNIFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenNIFeed.h; sourceTree = "<group>"; };
 		A95D3FED15D2078000EBDAA9 /* Source.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Source.h; sourceTree = "<group>"; };
 		A95D3FEE15D2079600EBDAA9 /* VideoGrabber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoGrabber.h; sourceTree = "<group>"; };
 		A95D3FF015D2148800EBDAA9 /* VideoFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoFile.h; sourceTree = "<group>"; };
@@ -677,42 +687,6 @@
 		A974231316A4B7CD00BC6910 /* CustomDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDelegate.h; sourceTree = "<group>"; };
 		A9974A4C16727268004571ED /* Hand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hand.cpp; sourceTree = "<group>"; };
 		A9974A4D16727268004571ED /* Hand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hand.h; sourceTree = "<group>"; };
-		A9C57EE016E3E79800A64011 /* libusb-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libusb-1.0.0.dylib"; sourceTree = "<group>"; };
-		A9C57EE116E3E79800A64011 /* libusb-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libusb-1.0.a"; sourceTree = "<group>"; };
-		A9C57EE416E3E79800A64011 /* NiTE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NiTE.h; sourceTree = "<group>"; };
-		A9C57EE516E3E79800A64011 /* NiteCAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NiteCAPI.h; sourceTree = "<group>"; };
-		A9C57EE616E3E79800A64011 /* NiteCEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NiteCEnums.h; sourceTree = "<group>"; };
-		A9C57EE716E3E79800A64011 /* NiteCTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NiteCTypes.h; sourceTree = "<group>"; };
-		A9C57EE816E3E79800A64011 /* NiteEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NiteEnums.h; sourceTree = "<group>"; };
-		A9C57EE916E3E79800A64011 /* NiteVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NiteVersion.h; sourceTree = "<group>"; };
-		A9C57EEC16E3E79800A64011 /* libNiTE2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libNiTE2.dylib; sourceTree = "<group>"; };
-		A9C57EEE16E3E79800A64011 /* flann.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flann.txt; sourceTree = "<group>"; };
-		A9C57EEF16E3E79800A64011 /* NITE License V03.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "NITE License V03.rtf"; sourceTree = "<group>"; };
-		A9C57EF016E3E79800A64011 /* NiTE.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NiTE.ini; sourceTree = "<group>"; };
-		A9C57EF416E3E79800A64011 /* OniPlatformAndroid-Arm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OniPlatformAndroid-Arm.h"; sourceTree = "<group>"; };
-		A9C57EF616E3E79800A64011 /* OniDriverAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniDriverAPI.h; sourceTree = "<group>"; };
-		A9C57EF716E3E79800A64011 /* OniDriverTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniDriverTypes.h; sourceTree = "<group>"; };
-		A9C57EF916E3E79800A64011 /* OniPlatformLinux-Arm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OniPlatformLinux-Arm.h"; sourceTree = "<group>"; };
-		A9C57EFB16E3E79800A64011 /* OniPlatformLinux-x86.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OniPlatformLinux-x86.h"; sourceTree = "<group>"; };
-		A9C57EFD16E3E79800A64011 /* OniPlatformMacOSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniPlatformMacOSX.h; sourceTree = "<group>"; };
-		A9C57EFE16E3E79800A64011 /* OniCAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniCAPI.h; sourceTree = "<group>"; };
-		A9C57EFF16E3E79800A64011 /* OniCEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniCEnums.h; sourceTree = "<group>"; };
-		A9C57F0016E3E79800A64011 /* OniCProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniCProperties.h; sourceTree = "<group>"; };
-		A9C57F0116E3E79800A64011 /* OniCTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniCTypes.h; sourceTree = "<group>"; };
-		A9C57F0216E3E79800A64011 /* OniEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniEnums.h; sourceTree = "<group>"; };
-		A9C57F0316E3E79800A64011 /* OniPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniPlatform.h; sourceTree = "<group>"; };
-		A9C57F0416E3E79800A64011 /* OniProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniProperties.h; sourceTree = "<group>"; };
-		A9C57F0516E3E79800A64011 /* OniVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniVersion.h; sourceTree = "<group>"; };
-		A9C57F0616E3E79800A64011 /* OpenNI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenNI.h; sourceTree = "<group>"; };
-		A9C57F0716E3E79800A64011 /* PS1080.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PS1080.h; sourceTree = "<group>"; };
-		A9C57F0916E3E79800A64011 /* OniPlatformWin32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OniPlatformWin32.h; sourceTree = "<group>"; };
-		A9C57F0C16E3E79800A64011 /* libOpenNI2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libOpenNI2.dylib; sourceTree = "<group>"; };
-		A9C57F0D16E3E79800A64011 /* OpenNI.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OpenNI.ini; sourceTree = "<group>"; };
-		A9C57F1016E3E79800A64011 /* libOniFile.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libOniFile.dylib; sourceTree = "<group>"; };
-		A9C57F1116E3E79800A64011 /* libPS1080.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libPS1080.dylib; sourceTree = "<group>"; };
-		A9C57F1216E3E79800A64011 /* PS1080.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PS1080.ini; sourceTree = "<group>"; };
-		A9C57F1316E3E79800A64011 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		A9C57F1416E3E79800A64011 /* NOTICE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NOTICE; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E4B69B5B0A3A1756003C02F2 /* openTSPSDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openTSPSDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B69E1D0A3A1BDC003C02F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
@@ -748,17 +722,14 @@
 				2EDF65F81639F7A000329C79 /* QuickTime.framework in Frameworks */,
 				2EDF65F91639F7A000329C79 /* CoreVideo.framework in Frameworks */,
 				2EDF65FA1639F7A000329C79 /* QTKit.framework in Frameworks */,
-				A934565B16E059270049C530 /* libOpenNI2.dylib in Frameworks */,
-				A934565D16E059270049C530 /* libOniFile.dylib in Frameworks */,
-				A934565E16E059270049C530 /* libPS1080.dylib in Frameworks */,
 				A928B9F416E14269003E0039 /* freenect.lib in Frameworks */,
 				A928B9F816E14269003E0039 /* usb-1.0.a in Frameworks */,
-				A9C57F1516E3E79800A64011 /* libusb-1.0.0.dylib in Frameworks */,
-				A9C57F1616E3E79800A64011 /* libusb-1.0.a in Frameworks */,
-				A9C57F1716E3E79800A64011 /* libNiTE2.dylib in Frameworks */,
-				A9C57F1816E3E79800A64011 /* libOpenNI2.dylib in Frameworks */,
-				A9C57F1916E3E79800A64011 /* libOniFile.dylib in Frameworks */,
-				A9C57F1A16E3E79800A64011 /* libPS1080.dylib in Frameworks */,
+				A954CAF116E3E8940042CEA9 /* libusb-1.0.0.dylib in Frameworks */,
+				A954CAF216E3E8940042CEA9 /* libusb-1.0.a in Frameworks */,
+				A954CAF316E3E8940042CEA9 /* libNiTE2.dylib in Frameworks */,
+				A954CAF416E3E8940042CEA9 /* libOpenNI2.dylib in Frameworks */,
+				A954CAF516E3E8940042CEA9 /* libOniFile.dylib in Frameworks */,
+				A954CAF616E3E8940042CEA9 /* libPS1080.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,27 +750,6 @@
 				2EF41836163AE44400E13227 /* ofParameter.h */,
 			);
 			name = src;
-			sourceTree = "<group>";
-		};
-		A928B8F216E13AE3003E0039 /* ofxQuickNITE */ = {
-			isa = PBXGroup;
-			children = (
-				A928B9F916E1577E003E0039 /* libs */,
-				A928B8F316E13AE3003E0039 /* src */,
-			);
-			name = ofxQuickNITE;
-			path = ../../../addons/ofxQuickNITE;
-			sourceTree = "<group>";
-		};
-		A928B8F316E13AE3003E0039 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				A928B8F416E13AE3003E0039 /* ofxNiteHandTracker.cpp */,
-				A928B8F516E13AE3003E0039 /* ofxNiteHandTracker.h */,
-				A928B8F616E13AE3003E0039 /* OpenNIFeed.cpp */,
-				A928B8F716E13AE3003E0039 /* OpenNIFeed.h */,
-			);
-			path = src;
 			sourceTree = "<group>";
 		};
 		A928B91F16E14221003E0039 /* ofxKinect */ = {
@@ -1104,16 +1054,6 @@
 			path = x86;
 			sourceTree = "<group>";
 		};
-		A928B9F916E1577E003E0039 /* libs */ = {
-			isa = PBXGroup;
-			children = (
-				A9C57EDD16E3E79800A64011 /* libusb */,
-				A9C57EE216E3E79800A64011 /* nite */,
-				A9C57EF116E3E79800A64011 /* openni */,
-			);
-			path = libs;
-			sourceTree = "<group>";
-		};
 		A934562316E0537A0049C530 /* openni+nite */ = {
 			isa = PBXGroup;
 			children = (
@@ -1224,78 +1164,6 @@
 				A934564416E053A60049C530 /* OniPlatformWin32.h */,
 			);
 			path = Win32;
-			sourceTree = "<group>";
-		};
-		A934564916E059130049C530 /* NiTE2 */ = {
-			isa = PBXGroup;
-			children = (
-				A934564A16E059130049C530 /* Data */,
-				A934564F16E059130049C530 /* FeatureExtraction.ini */,
-				A934565016E059130049C530 /* h.dat */,
-				A934565116E059130049C530 /* HandAlgorithms.ini */,
-				A934565216E059130049C530 /* s.dat */,
-			);
-			name = NiTE2;
-			path = ../../../libs/nite/Redist/NiTE2;
-			sourceTree = "<group>";
-		};
-		A934564A16E059130049C530 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				A934564B16E059130049C530 /* lbsdata.idx */,
-				A934564C16E059130049C530 /* lbsdata.lbd */,
-				A934564D16E059130049C530 /* lbsparam1.lbd */,
-				A934564E16E059130049C530 /* lbsparam2.lbd */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
-		A934565316E059160049C530 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				A934566116E059320049C530 /* nite */,
-				A934566016E0592B0049C530 /* openni */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		A934565616E059270049C530 /* OpenNI2 */ = {
-			isa = PBXGroup;
-			children = (
-				A934565716E059270049C530 /* Drivers */,
-			);
-			name = OpenNI2;
-			path = ../../../libs/openni/Redist/OpenNI2;
-			sourceTree = "<group>";
-		};
-		A934565716E059270049C530 /* Drivers */ = {
-			isa = PBXGroup;
-			children = (
-				A934565816E059270049C530 /* libOniFile.dylib */,
-				A934565916E059270049C530 /* libPS1080.dylib */,
-			);
-			path = Drivers;
-			sourceTree = "<group>";
-		};
-		A934566016E0592B0049C530 /* openni */ = {
-			isa = PBXGroup;
-			children = (
-				A934565416E059270049C530 /* libOpenNI2.dylib */,
-				A934565516E059270049C530 /* OpenNI.ini */,
-				A934565616E059270049C530 /* OpenNI2 */,
-				A934565A16E059270049C530 /* PS1080.ini */,
-			);
-			name = openni;
-			sourceTree = "<group>";
-		};
-		A934566116E059320049C530 /* nite */ = {
-			isa = PBXGroup;
-			children = (
-				A934564716E059120049C530 /* libNiTE2.dylib */,
-				A934564816E059120049C530 /* NiTE.ini */,
-				A934564916E059130049C530 /* NiTE2 */,
-			);
-			name = nite;
 			sourceTree = "<group>";
 		};
 		A948586515C470C100761D1C /* built in */ = {
@@ -2398,6 +2266,231 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		A954CAB116E3E8940042CEA9 /* ofxQuickNITE */ = {
+			isa = PBXGroup;
+			children = (
+				A954CAB216E3E8940042CEA9 /* libs */,
+				A954CAEB16E3E8940042CEA9 /* README.md */,
+				A954CAEC16E3E8940042CEA9 /* src */,
+			);
+			name = ofxQuickNITE;
+			path = addons/ofxQuickNITE;
+			sourceTree = "<group>";
+		};
+		A954CAB216E3E8940042CEA9 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				A954CAB316E3E8940042CEA9 /* libusb */,
+				A954CAB816E3E8940042CEA9 /* nite */,
+				A954CAC716E3E8940042CEA9 /* openni */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		A954CAB316E3E8940042CEA9 /* libusb */ = {
+			isa = PBXGroup;
+			children = (
+				A954CAB416E3E8940042CEA9 /* lib */,
+			);
+			path = libusb;
+			sourceTree = "<group>";
+		};
+		A954CAB416E3E8940042CEA9 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				A954CAB516E3E8940042CEA9 /* osx */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		A954CAB516E3E8940042CEA9 /* osx */ = {
+			isa = PBXGroup;
+			children = (
+				A954CAB616E3E8940042CEA9 /* libusb-1.0.0.dylib */,
+				A954CAB716E3E8940042CEA9 /* libusb-1.0.a */,
+			);
+			path = osx;
+			sourceTree = "<group>";
+		};
+		A954CAB816E3E8940042CEA9 /* nite */ = {
+			isa = PBXGroup;
+			children = (
+				A954CAB916E3E8940042CEA9 /* include */,
+				A954CAC016E3E8940042CEA9 /* lib */,
+				A954CAC316E3E8940042CEA9 /* License */,
+				A954CAC616E3E8940042CEA9 /* NiTE.ini */,
+			);
+			path = nite;
+			sourceTree = "<group>";
+		};
+		A954CAB916E3E8940042CEA9 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				A954CABA16E3E8940042CEA9 /* NiTE.h */,
+				A954CABB16E3E8940042CEA9 /* NiteCAPI.h */,
+				A954CABC16E3E8940042CEA9 /* NiteCEnums.h */,
+				A954CABD16E3E8940042CEA9 /* NiteCTypes.h */,
+				A954CABE16E3E8940042CEA9 /* NiteEnums.h */,
+				A954CABF16E3E8940042CEA9 /* NiteVersion.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		A954CAC016E3E8940042CEA9 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				A954CAC116E3E8940042CEA9 /* osx */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		A954CAC116E3E8940042CEA9 /* osx */ = {
+			isa = PBXGroup;
+			children = (
+				A954CAC216E3E8940042CEA9 /* libNiTE2.dylib */,
+			);
+			path = osx;
+			sourceTree = "<group>";
+		};
+		A954CAC316E3E8940042CEA9 /* License */ = {
+			isa = PBXGroup;
+			children = (
+				A954CAC416E3E8940042CEA9 /* flann.txt */,
+				A954CAC516E3E8940042CEA9 /* NITE License V03.rtf */,
+			);
+			path = License;
+			sourceTree = "<group>";
+		};
+		A954CAC716E3E8940042CEA9 /* openni */ = {
+			isa = PBXGroup;
+			children = (
+				A954CAC816E3E8940042CEA9 /* include */,
+				A954CAE016E3E8940042CEA9 /* lib */,
+				A954CAE916E3E8940042CEA9 /* LICENSE */,
+				A954CAEA16E3E8940042CEA9 /* NOTICE */,
+			);
+			path = openni;
+			sourceTree = "<group>";
+		};
+		A954CAC816E3E8940042CEA9 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				A954CAC916E3E8940042CEA9 /* Android-Arm */,
+				A954CACB16E3E8940042CEA9 /* Driver */,
+				A954CACE16E3E8940042CEA9 /* Linux-Arm */,
+				A954CAD016E3E8940042CEA9 /* Linux-x86 */,
+				A954CAD216E3E8940042CEA9 /* MacOSX */,
+				A954CAD416E3E8940042CEA9 /* OniCAPI.h */,
+				A954CAD516E3E8940042CEA9 /* OniCEnums.h */,
+				A954CAD616E3E8940042CEA9 /* OniCProperties.h */,
+				A954CAD716E3E8940042CEA9 /* OniCTypes.h */,
+				A954CAD816E3E8940042CEA9 /* OniEnums.h */,
+				A954CAD916E3E8940042CEA9 /* OniPlatform.h */,
+				A954CADA16E3E8940042CEA9 /* OniProperties.h */,
+				A954CADB16E3E8940042CEA9 /* OniVersion.h */,
+				A954CADC16E3E8940042CEA9 /* OpenNI.h */,
+				A954CADD16E3E8940042CEA9 /* PS1080.h */,
+				A954CADE16E3E8940042CEA9 /* Win32 */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		A954CAC916E3E8940042CEA9 /* Android-Arm */ = {
+			isa = PBXGroup;
+			children = (
+				A954CACA16E3E8940042CEA9 /* OniPlatformAndroid-Arm.h */,
+			);
+			path = "Android-Arm";
+			sourceTree = "<group>";
+		};
+		A954CACB16E3E8940042CEA9 /* Driver */ = {
+			isa = PBXGroup;
+			children = (
+				A954CACC16E3E8940042CEA9 /* OniDriverAPI.h */,
+				A954CACD16E3E8940042CEA9 /* OniDriverTypes.h */,
+			);
+			path = Driver;
+			sourceTree = "<group>";
+		};
+		A954CACE16E3E8940042CEA9 /* Linux-Arm */ = {
+			isa = PBXGroup;
+			children = (
+				A954CACF16E3E8940042CEA9 /* OniPlatformLinux-Arm.h */,
+			);
+			path = "Linux-Arm";
+			sourceTree = "<group>";
+		};
+		A954CAD016E3E8940042CEA9 /* Linux-x86 */ = {
+			isa = PBXGroup;
+			children = (
+				A954CAD116E3E8940042CEA9 /* OniPlatformLinux-x86.h */,
+			);
+			path = "Linux-x86";
+			sourceTree = "<group>";
+		};
+		A954CAD216E3E8940042CEA9 /* MacOSX */ = {
+			isa = PBXGroup;
+			children = (
+				A954CAD316E3E8940042CEA9 /* OniPlatformMacOSX.h */,
+			);
+			path = MacOSX;
+			sourceTree = "<group>";
+		};
+		A954CADE16E3E8940042CEA9 /* Win32 */ = {
+			isa = PBXGroup;
+			children = (
+				A954CADF16E3E8940042CEA9 /* OniPlatformWin32.h */,
+			);
+			path = Win32;
+			sourceTree = "<group>";
+		};
+		A954CAE016E3E8940042CEA9 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				A954CAE116E3E8940042CEA9 /* osx */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		A954CAE116E3E8940042CEA9 /* osx */ = {
+			isa = PBXGroup;
+			children = (
+				A954CAE216E3E8940042CEA9 /* libOpenNI2.dylib */,
+				A954CAE316E3E8940042CEA9 /* OpenNI.ini */,
+				A954CAE416E3E8940042CEA9 /* OpenNI2 */,
+				A954CAE816E3E8940042CEA9 /* PS1080.ini */,
+			);
+			path = osx;
+			sourceTree = "<group>";
+		};
+		A954CAE416E3E8940042CEA9 /* OpenNI2 */ = {
+			isa = PBXGroup;
+			children = (
+				A954CAE516E3E8940042CEA9 /* Drivers */,
+			);
+			path = OpenNI2;
+			sourceTree = "<group>";
+		};
+		A954CAE516E3E8940042CEA9 /* Drivers */ = {
+			isa = PBXGroup;
+			children = (
+				A954CAE616E3E8940042CEA9 /* libOniFile.dylib */,
+				A954CAE716E3E8940042CEA9 /* libPS1080.dylib */,
+			);
+			path = Drivers;
+			sourceTree = "<group>";
+		};
+		A954CAEC16E3E8940042CEA9 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				A954CAED16E3E8940042CEA9 /* ofxNiteHandTracker.cpp */,
+				A954CAEE16E3E8940042CEA9 /* ofxNiteHandTracker.h */,
+				A954CAEF16E3E8940042CEA9 /* OpenNIFeed.cpp */,
+				A954CAF016E3E8940042CEA9 /* OpenNIFeed.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		A95D3FEC15D2077F00EBDAA9 /* source */ = {
 			isa = PBXGroup;
 			children = (
@@ -2439,203 +2532,10 @@
 			name = Gestures;
 			sourceTree = "<group>";
 		};
-		A9C57EDD16E3E79800A64011 /* libusb */ = {
-			isa = PBXGroup;
-			children = (
-				A9C57EDE16E3E79800A64011 /* lib */,
-			);
-			path = libusb;
-			sourceTree = "<group>";
-		};
-		A9C57EDE16E3E79800A64011 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				A9C57EDF16E3E79800A64011 /* osx */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
-		A9C57EDF16E3E79800A64011 /* osx */ = {
-			isa = PBXGroup;
-			children = (
-				A9C57EE016E3E79800A64011 /* libusb-1.0.0.dylib */,
-				A9C57EE116E3E79800A64011 /* libusb-1.0.a */,
-			);
-			path = osx;
-			sourceTree = "<group>";
-		};
-		A9C57EE216E3E79800A64011 /* nite */ = {
-			isa = PBXGroup;
-			children = (
-				A9C57EE316E3E79800A64011 /* include */,
-				A9C57EEA16E3E79800A64011 /* lib */,
-				A9C57EED16E3E79800A64011 /* License */,
-				A9C57EF016E3E79800A64011 /* NiTE.ini */,
-			);
-			path = nite;
-			sourceTree = "<group>";
-		};
-		A9C57EE316E3E79800A64011 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				A9C57EE416E3E79800A64011 /* NiTE.h */,
-				A9C57EE516E3E79800A64011 /* NiteCAPI.h */,
-				A9C57EE616E3E79800A64011 /* NiteCEnums.h */,
-				A9C57EE716E3E79800A64011 /* NiteCTypes.h */,
-				A9C57EE816E3E79800A64011 /* NiteEnums.h */,
-				A9C57EE916E3E79800A64011 /* NiteVersion.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		A9C57EEA16E3E79800A64011 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				A9C57EEB16E3E79800A64011 /* osx */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
-		A9C57EEB16E3E79800A64011 /* osx */ = {
-			isa = PBXGroup;
-			children = (
-				A9C57EEC16E3E79800A64011 /* libNiTE2.dylib */,
-			);
-			path = osx;
-			sourceTree = "<group>";
-		};
-		A9C57EED16E3E79800A64011 /* License */ = {
-			isa = PBXGroup;
-			children = (
-				A9C57EEE16E3E79800A64011 /* flann.txt */,
-				A9C57EEF16E3E79800A64011 /* NITE License V03.rtf */,
-			);
-			path = License;
-			sourceTree = "<group>";
-		};
-		A9C57EF116E3E79800A64011 /* openni */ = {
-			isa = PBXGroup;
-			children = (
-				A9C57EF216E3E79800A64011 /* include */,
-				A9C57F0A16E3E79800A64011 /* lib */,
-				A9C57F1316E3E79800A64011 /* LICENSE */,
-				A9C57F1416E3E79800A64011 /* NOTICE */,
-			);
-			path = openni;
-			sourceTree = "<group>";
-		};
-		A9C57EF216E3E79800A64011 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				A9C57EF316E3E79800A64011 /* Android-Arm */,
-				A9C57EF516E3E79800A64011 /* Driver */,
-				A9C57EF816E3E79800A64011 /* Linux-Arm */,
-				A9C57EFA16E3E79800A64011 /* Linux-x86 */,
-				A9C57EFC16E3E79800A64011 /* MacOSX */,
-				A9C57EFE16E3E79800A64011 /* OniCAPI.h */,
-				A9C57EFF16E3E79800A64011 /* OniCEnums.h */,
-				A9C57F0016E3E79800A64011 /* OniCProperties.h */,
-				A9C57F0116E3E79800A64011 /* OniCTypes.h */,
-				A9C57F0216E3E79800A64011 /* OniEnums.h */,
-				A9C57F0316E3E79800A64011 /* OniPlatform.h */,
-				A9C57F0416E3E79800A64011 /* OniProperties.h */,
-				A9C57F0516E3E79800A64011 /* OniVersion.h */,
-				A9C57F0616E3E79800A64011 /* OpenNI.h */,
-				A9C57F0716E3E79800A64011 /* PS1080.h */,
-				A9C57F0816E3E79800A64011 /* Win32 */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		A9C57EF316E3E79800A64011 /* Android-Arm */ = {
-			isa = PBXGroup;
-			children = (
-				A9C57EF416E3E79800A64011 /* OniPlatformAndroid-Arm.h */,
-			);
-			path = "Android-Arm";
-			sourceTree = "<group>";
-		};
-		A9C57EF516E3E79800A64011 /* Driver */ = {
-			isa = PBXGroup;
-			children = (
-				A9C57EF616E3E79800A64011 /* OniDriverAPI.h */,
-				A9C57EF716E3E79800A64011 /* OniDriverTypes.h */,
-			);
-			path = Driver;
-			sourceTree = "<group>";
-		};
-		A9C57EF816E3E79800A64011 /* Linux-Arm */ = {
-			isa = PBXGroup;
-			children = (
-				A9C57EF916E3E79800A64011 /* OniPlatformLinux-Arm.h */,
-			);
-			path = "Linux-Arm";
-			sourceTree = "<group>";
-		};
-		A9C57EFA16E3E79800A64011 /* Linux-x86 */ = {
-			isa = PBXGroup;
-			children = (
-				A9C57EFB16E3E79800A64011 /* OniPlatformLinux-x86.h */,
-			);
-			path = "Linux-x86";
-			sourceTree = "<group>";
-		};
-		A9C57EFC16E3E79800A64011 /* MacOSX */ = {
-			isa = PBXGroup;
-			children = (
-				A9C57EFD16E3E79800A64011 /* OniPlatformMacOSX.h */,
-			);
-			path = MacOSX;
-			sourceTree = "<group>";
-		};
-		A9C57F0816E3E79800A64011 /* Win32 */ = {
-			isa = PBXGroup;
-			children = (
-				A9C57F0916E3E79800A64011 /* OniPlatformWin32.h */,
-			);
-			path = Win32;
-			sourceTree = "<group>";
-		};
-		A9C57F0A16E3E79800A64011 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				A9C57F0B16E3E79800A64011 /* osx */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
-		A9C57F0B16E3E79800A64011 /* osx */ = {
-			isa = PBXGroup;
-			children = (
-				A9C57F0C16E3E79800A64011 /* libOpenNI2.dylib */,
-				A9C57F0D16E3E79800A64011 /* OpenNI.ini */,
-				A9C57F0E16E3E79800A64011 /* OpenNI2 */,
-				A9C57F1216E3E79800A64011 /* PS1080.ini */,
-			);
-			path = osx;
-			sourceTree = "<group>";
-		};
-		A9C57F0E16E3E79800A64011 /* OpenNI2 */ = {
-			isa = PBXGroup;
-			children = (
-				A9C57F0F16E3E79800A64011 /* Drivers */,
-			);
-			path = OpenNI2;
-			sourceTree = "<group>";
-		};
-		A9C57F0F16E3E79800A64011 /* Drivers */ = {
-			isa = PBXGroup;
-			children = (
-				A9C57F1016E3E79800A64011 /* libOniFile.dylib */,
-				A9C57F1116E3E79800A64011 /* libPS1080.dylib */,
-			);
-			path = Drivers;
-			sourceTree = "<group>";
-		};
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
-				A928B8F216E13AE3003E0039 /* ofxQuickNITE */,
+				A954CAB116E3E8940042CEA9 /* ofxQuickNITE */,
 				A934562316E0537A0049C530 /* openni+nite */,
 				A948586515C470C100761D1C /* built in */,
 				A948586615C470C900761D1C /* third party */,
@@ -2693,7 +2593,6 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
-				A934565316E059160049C530 /* Resources */,
 				2EF4183E163B257300E13227 /* icon.icns */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
@@ -2739,8 +2638,7 @@
 				E4B69B590A3A1756003C02F2 /* Frameworks */,
 				E4B6FFFD0C3F9AB9008CF71C /* ShellScript */,
 				E4C2427710CC5ABF004149E2 /* CopyFiles */,
-				A928B8FF16E13C64003E0039 /* CopyFiles */,
-				A928BA1916E158D3003E0039 /* CopyFiles */,
+				A954CAF916E3E8C70042CEA9 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -2893,14 +2791,14 @@
 				A97422F616A474C800BC6910 /* SpacebrewSender.cpp in Sources */,
 				A974231116A4B71900BC6910 /* TSPSDelegate.cpp in Sources */,
 				A974231416A4B7CD00BC6910 /* CustomDelegate.cpp in Sources */,
-				A928B8F816E13AE3003E0039 /* ofxNiteHandTracker.cpp in Sources */,
-				A928B8F916E13AE3003E0039 /* OpenNIFeed.cpp in Sources */,
 				A928B99D16E14222003E0039 /* ofxKinect.cpp in Sources */,
 				A928B9F216E14269003E0039 /* cameras.c in Sources */,
 				A928B9F316E14269003E0039 /* core.c in Sources */,
 				A928B9F516E14269003E0039 /* registration.c in Sources */,
 				A928B9F616E14269003E0039 /* tilt.c in Sources */,
 				A928B9F716E14269003E0039 /* usb_libusb10.c in Sources */,
+				A954CAF716E3E8940042CEA9 /* ofxNiteHandTracker.cpp in Sources */,
+				A954CAF816E3E8940042CEA9 /* OpenNIFeed.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3031,6 +2929,10 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_15)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_16)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_17)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_23)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_24)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_25)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/bin/data/openni/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10 = "\"$(SRCROOT)/../../addons/ofxKinect/libs/libusb/osx/libs\"";
@@ -3040,12 +2942,16 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14 = "\"$(SRCROOT)/../../../addons/ofxQuickNITE/libs/nite/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_15 = "\"$(SRCROOT)/../../../addons/ofxQuickNITE/libs/openni/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_16 = "\"$(SRCROOT)/../../../addons/ofxQuickNITE/libs/openni/lib/osx/OpenNI2/Drivers\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_17 = "\"$(SRCROOT)/addons/ofxQuickNITE/libs/libusb/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_18 = "\"$(SRCROOT)/../../addons/ofxKinect/libs/libusb/osx/libs\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_19 = "\"$(SRCROOT)/../../addons/ofxLibwebsockets/libs/libwebsockets/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../../addons/ofxTuioWrapper/src/oscpack/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_20 = "\"$(SRCROOT)/../../addons/ofxLibwebsockets/libs/libwebsockets/lib/win32\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_21 = "\"$(SRCROOT)/../../addons/ofxLibwebsockets/libs/openssl/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_22 = "\"$(SRCROOT)/../../addons/ofxLibwebsockets/libs/openssl/lib/win32\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_23 = "\"$(SRCROOT)/addons/ofxQuickNITE/libs/nite/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_24 = "\"$(SRCROOT)/addons/ofxQuickNITE/libs/openni/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_25 = "\"$(SRCROOT)/addons/ofxQuickNITE/libs/openni/lib/osx/OpenNI2/Drivers\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/../../../libs/openni/Redist\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/../../../libs/openni/Redist/OpenNI2/Drivers\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/../../../libs/nite/Redist\"";
@@ -3105,6 +3011,10 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_15)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_16)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_17)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_23)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_24)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_25)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/bin/data/openni/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10 = "\"$(SRCROOT)/../../addons/ofxKinect/libs/libusb/osx/libs\"";
@@ -3114,12 +3024,16 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14 = "\"$(SRCROOT)/../../../addons/ofxQuickNITE/libs/nite/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_15 = "\"$(SRCROOT)/../../../addons/ofxQuickNITE/libs/openni/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_16 = "\"$(SRCROOT)/../../../addons/ofxQuickNITE/libs/openni/lib/osx/OpenNI2/Drivers\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_17 = "\"$(SRCROOT)/addons/ofxQuickNITE/libs/libusb/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_18 = "\"$(SRCROOT)/../../addons/ofxKinect/libs/libusb/osx/libs\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_19 = "\"$(SRCROOT)/../../addons/ofxLibwebsockets/libs/libwebsockets/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../../addons/ofxTuioWrapper/src/oscpack/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_20 = "\"$(SRCROOT)/../../addons/ofxLibwebsockets/libs/libwebsockets/lib/win32\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_21 = "\"$(SRCROOT)/../../addons/ofxLibwebsockets/libs/openssl/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_22 = "\"$(SRCROOT)/../../addons/ofxLibwebsockets/libs/openssl/lib/win32\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_23 = "\"$(SRCROOT)/addons/ofxQuickNITE/libs/nite/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_24 = "\"$(SRCROOT)/addons/ofxQuickNITE/libs/openni/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_25 = "\"$(SRCROOT)/addons/ofxQuickNITE/libs/openni/lib/osx/OpenNI2/Drivers\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/../../../libs/openni/Redist\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/../../../libs/openni/Redist/OpenNI2/Drivers\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/../../../libs/nite/Redist\"";
