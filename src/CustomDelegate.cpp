@@ -18,27 +18,21 @@ ofxTSPS::Delegate(_id)
 
 //--------------------------------------------------------------
 void CustomDelegate::setup(){
+    peopleTracker.setUseKinect(false);
+    
+    // setup OpenNI source
+    source.openSource(320,240);
+    
     ofxTSPS::Delegate::setup();
     
     // add your custom source
     peopleTracker.setSource(source);
     
-    // setup OpenNI source
-    source.openSource(320,240);
     
     // ofxOpenNI is :( about > 1 gesture generator...
     if ( numGenerators == 0 ){
         // add gestures + hands, which we will send as custom data=
         numGenerators++;
-        source.addGestureGenerator();
-        source.addAllGestures();
-        source.addHandsGenerator();
-        ofAddListener(source.gestureEvent, this, &CustomDelegate::onOpenNIGesture);
-        ofAddListener(source.handEvent, this, &CustomDelegate::onOpenNIHand);
-        
-        // customize openNI to make it deal better with hands
-        source.setMaxNumHands(3);
-        source.setMinTimeBetweenHands(1000);
     }
     
     // setup swipe detector
@@ -89,29 +83,38 @@ void CustomDelegate::update(){
     // normal update
     peopleTracker.update();
     
+    map<int, ofPoint> hands = source.getTracker().getHands();
+    map<int, ofPoint>::iterator it = hands.begin();
+    
+    for ( it; it != hands.end(); it++){
+        gestureGenerator.updateBlob( it->first, it->second.x, it->second.y, 0);//source.getTracker().getRawHand(it->first).z / 2000.0 );
+    }
+    
     // update gesture tracker from blobs
     
-    for ( int i=0; i<peopleTracker.totalPeople(); i++){
-        ofxTSPS::Person * p = peopleTracker.personAtIndex(i);
-//        ofColor c = peopleTracker.getCameraImage()->getColor( p->centroid.x, p->centroid.y );
-        
-        cv::Rect rect;
-        rect.x      = p->boundingRect.x;
-        rect.y      = p->boundingRect.y;
-        rect.width  = p->boundingRect.width;
-        rect.height = p->boundingRect.height;
-        cv::Mat roiMat(cameraMat, rect);
-        
-        float mean = cv::mean( roiMat ).val[0];
-        
-        // only add if it's minimum distance away from centroid
-        if ( fabs(p->highest.z - mean) >= mean * minimumDepth ){
-            // then, normalize
-            float normalX = p->highest.x - p->centroid.x;
-            float normalY = p->highest.y - p->centroid.y;
-            gestureGenerator.updateBlob( p->pid, p->centroid, normalX, normalY, p->depth );
-        }
-    }
+//    for ( int i=0; i<peopleTracker.totalPeople(); i++){
+//        ofxTSPS::Person * p = peopleTracker.personAtIndex(i);
+////        ofColor c = peopleTracker.getCameraImage()->getColor( p->centroid.x, p->centroid.y );
+//        
+//        cv::Rect rect;
+//        rect.x      = p->boundingRect.x;
+//        rect.y      = p->boundingRect.y;
+//        rect.width  = p->boundingRect.width;
+//        rect.height = p->boundingRect.height;
+//        cv::Mat roiMat(cameraMat, rect);
+//        
+//        float mean = cv::mean( roiMat ).val[0];
+//        
+//        // only add if it's minimum distance away from centroid
+//        if ( fabs(p->highest.z - mean) >= mean * minimumDepth ){
+//            // then, normalize
+//            float normalX = p->highest.x - p->centroid.x;
+//            float normalY = p->highest.y - p->centroid.y;
+//            gestureGenerator.updateBlob( p->pid, p->centroid, normalX, normalY, p->depth );
+//        }
+//    }
+
+    
     
     gestureGenerator.update();
 }
@@ -122,6 +125,7 @@ void CustomDelegate::draw(){
     
     ofPushMatrix();
     ofTranslate(350, 20);
+    ofScale( 2.0, 2.0 );// bc TSPS always draws @ 640 x 480
     gestureGenerator.draw();
     ofPopMatrix();
 }
@@ -129,55 +133,55 @@ void CustomDelegate::draw(){
 #pragma mark gesture events
 
 //--------------------------------------------------------------
-void CustomDelegate::onOpenNIGesture( ofxOpenNIGestureEvent & e ){
-    // this is a little clunky right now!
-    // you can either make your own string, pass in a vector of strings,
-    // or pass in a map that will get passed into a message. open to suggestions!
-    
-    map<string,string> params;
-    params["timestampMillis"]   = ofToString(e.timestampMillis);
-    params["progress"]          = ofToString(e.progress);
-    params["worldPositionX"]    = ofToString(e.worldPosition.x);
-    params["worldPositionY"]    = ofToString(e.worldPosition.y);
-    params["positionX"]         = ofToString((float) e.position.x / ofGetWidth());
-    params["positionY"]         = ofToString((float) e.position.y / ofGetHeight());
-    
-    // trigger custom event!
-    //peopleTracker.triggerCustomEvent( "openNI"+e.gestureName, params );
-}
-
-//--------------------------------------------------------------
-void CustomDelegate::onOpenNIHand( ofxOpenNIHandEvent & e ){
-    // this is a little clunky right now!
-    // you can either make your own string, or pass in a vector of strings
-    // that will get passed into a message. open to suggestions!
-    
-    // only send it if it has a good status
-    if ( e.handStatus == HAND_TRACKING_STARTED || e.handStatus == HAND_TRACKING_UPDATED){
-        
-        map<string,string> params;
-        params["timestampMillis"]   = ofToString(e.timestampMillis);
-        params["id"]                = ofToString(e.id);
-        params["worldPositionX"]    = ofToString(e.worldPosition.x);
-        params["worldPositionY"]    = ofToString(e.worldPosition.y);
-        params["positionX"]         = ofToString((float) e.position.x / ofGetWidth());
-        params["positionY"]         = ofToString((float) e.position.y / ofGetHeight());
-        
-        // trigger custom event!
-        //peopleTracker.triggerCustomEvent( "openNIHand", params );
-    } else if ( e.handStatus == HAND_TRACKING_STOPPED ){
-        map<string,string> params;
-        params["timestampMillis"]   = ofToString(e.timestampMillis);
-        params["id"]                = ofToString(e.id);
-        params["worldPositionX"]    = ofToString(e.worldPosition.x);
-        params["worldPositionY"]    = ofToString(e.worldPosition.y);
-        params["positionX"]         = ofToString((float) e.position.x / ofGetWidth());
-        params["positionY"]         = ofToString((float) e.position.y / ofGetHeight());
-        
-        // trigger custom event!
-        //peopleTracker.triggerCustomEvent( "openNIHandStopped", params );
-    }
-}
+//void CustomDelegate::onOpenNIGesture( ofxOpenNIGestureEvent & e ){
+//    // this is a little clunky right now!
+//    // you can either make your own string, pass in a vector of strings,
+//    // or pass in a map that will get passed into a message. open to suggestions!
+//    
+//    map<string,string> params;
+//    params["timestampMillis"]   = ofToString(e.timestampMillis);
+//    params["progress"]          = ofToString(e.progress);
+//    params["worldPositionX"]    = ofToString(e.worldPosition.x);
+//    params["worldPositionY"]    = ofToString(e.worldPosition.y);
+//    params["positionX"]         = ofToString((float) e.position.x / ofGetWidth());
+//    params["positionY"]         = ofToString((float) e.position.y / ofGetHeight());
+//    
+//    // trigger custom event!
+//    //peopleTracker.triggerCustomEvent( "openNI"+e.gestureName, params );
+//}
+//
+////--------------------------------------------------------------
+//void CustomDelegate::onOpenNIHand( ofxOpenNIHandEvent & e ){
+//    // this is a little clunky right now!
+//    // you can either make your own string, or pass in a vector of strings
+//    // that will get passed into a message. open to suggestions!
+//    
+//    // only send it if it has a good status
+//    if ( e.handStatus == HAND_TRACKING_STARTED || e.handStatus == HAND_TRACKING_UPDATED){
+//        
+//        map<string,string> params;
+//        params["timestampMillis"]   = ofToString(e.timestampMillis);
+//        params["id"]                = ofToString(e.id);
+//        params["worldPositionX"]    = ofToString(e.worldPosition.x);
+//        params["worldPositionY"]    = ofToString(e.worldPosition.y);
+//        params["positionX"]         = ofToString((float) e.position.x / ofGetWidth());
+//        params["positionY"]         = ofToString((float) e.position.y / ofGetHeight());
+//        
+//        // trigger custom event!
+//        //peopleTracker.triggerCustomEvent( "openNIHand", params );
+//    } else if ( e.handStatus == HAND_TRACKING_STOPPED ){
+//        map<string,string> params;
+//        params["timestampMillis"]   = ofToString(e.timestampMillis);
+//        params["id"]                = ofToString(e.id);
+//        params["worldPositionX"]    = ofToString(e.worldPosition.x);
+//        params["worldPositionY"]    = ofToString(e.worldPosition.y);
+//        params["positionX"]         = ofToString((float) e.position.x / ofGetWidth());
+//        params["positionY"]         = ofToString((float) e.position.y / ofGetHeight());
+//        
+//        // trigger custom event!
+//        //peopleTracker.triggerCustomEvent( "openNIHandStopped", params );
+//    }
+//}
 
 
 //--------------------------------------------------------------
@@ -201,7 +205,7 @@ void CustomDelegate::onSwipeDown( ofxSwipeEvent & e ){
     params["positionY"]      = ofToString(e.position.y);
     params["camera"]        = ofToString(id);
     peopleTracker.triggerCustomEvent( "swipeDown", params );
-    //cout<< id << " down" << endl;
+    cout<< id << " down" << endl;
 }
 
 //--------------------------------------------------------------

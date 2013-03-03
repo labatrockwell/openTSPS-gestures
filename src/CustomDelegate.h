@@ -11,7 +11,7 @@
 #include "TSPSDelegate.h"
 
 // include OpenNI source
-#include "OpenNI.h"
+#include "NiteSource.h"
 
 // include Swipe Gesture
 //#include "SwipeDetectorONI.h"
@@ -28,15 +28,15 @@ public:
     void draw();
     
     // custom openNI source
-    ofxTSPS::OpenNI     source;
+    ofxTSPS::Nite   source;
     
     // gesture detector
     //SwipeDetectorONI   SwipeDetectorONI;
     GestureFactory       gestureGenerator;
     
     // custom event
-    void onOpenNIGesture( ofxOpenNIGestureEvent & e );
-    void onOpenNIHand( ofxOpenNIHandEvent & e );
+//    void onOpenNIGesture( ofxOpenNIGestureEvent & e );
+//    void onOpenNIHand( ofxOpenNIHandEvent & e );
     void onSwipeUp( ofxSwipeEvent & e );
     void onSwipeDown( ofxSwipeEvent & e );
     void onSwipeLeft( ofxSwipeEvent & e );

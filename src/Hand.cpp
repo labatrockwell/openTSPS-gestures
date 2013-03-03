@@ -70,7 +70,7 @@ void Hand::clearHistory(){
 //--------------------------------------------------------------
 void Hand::setup(){
     gestureHappened     = false;
-    bDidStartGesture    = false;
+    bDidStartGesture    = true;
     timeStarted         = ofGetElapsedTimeMillis();
     age                 = 0;
     numFramesToAverage  = 10;

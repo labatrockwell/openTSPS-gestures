@@ -16,6 +16,7 @@ tspsApp::tspsApp( int numCameras, string host, int port, string channel ){
 void tspsApp::setup(){
 	ofSetFrameRate(60);
 	ofBackground(223, 212, 190);
+    
 	
 	for (int i=0; i<delegates.size(); i++){
         delegates[i]->setup();
@@ -62,7 +63,7 @@ void tspsApp::update(){
 
 //--------------------------------------------------------------
 void tspsApp::draw(){
-    delegates[currentDelegate]->draw();
+    if ( delegates.size() > 0 ) delegates[currentDelegate]->draw();
     
     // draw custom buttons
     map<std::string, guiTypeButton*>::iterator it;

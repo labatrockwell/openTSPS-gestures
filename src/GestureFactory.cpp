@@ -25,8 +25,8 @@ GestureFactory::GestureFactory(){
 }
 
 //--------------------------------------------------------------
-void GestureFactory::updateBlob( int id, ofPoint _centroid, int x, int y, float z ){
-    centroid = _centroid;
+void GestureFactory::updateBlob( int id, int x, int y, float z ){
+//    centroid = _centroid;
     
     // loop through current hands
     // do we have this one?
@@ -50,8 +50,8 @@ void GestureFactory::updateBlob( int id, ofPoint _centroid, int x, int y, float 
             break;
         case DISTANCE:
             checkAgainst = &hands[ id ].distanceTraveled;
-            hThresh = horizontalDistance * ofMap(hands[id].z, .95, .5, 1, .25);
-            vThresh = verticalDistance * ofMap(hands[id].z, .95, .75, 1, .25);
+//            hThresh = horizontalDistance * ofMap(hands[id].z, .95, .5, 1, .25);
+//            vThresh = verticalDistance * ofMap(hands[id].z, .95, .75, 1, .25);
             break;
     }
     
@@ -263,7 +263,7 @@ void GestureFactory::update(){
 //--------------------------------------------------------------
 void GestureFactory::draw(){
     ofPushMatrix();{
-        ofTranslate(centroid);
+//        ofTranslate(centroid);
         map<int, Hand>::iterator it = hands.begin();
         for (it; it != hands.end(); ++it){
             if ( it->second.age > 1000 ){

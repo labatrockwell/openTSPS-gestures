@@ -8,7 +8,8 @@ Setup
 ------------
 * clone http://github.com/labatrockwell/openTSPS into openframeworks/
 * clone this repo into openframeworks/openTSPS/standalone
-* download openNI and Primesense modules
-	* navigate to http://www.openni.org/Downloads/OpenNIModules.aspx
-	* select 'openNI binaries' / 'unstable' / 'openNI unstable build for ____'
-	* select 'openNI compilant hardware binaries' / 'unstable' / 'primesense module unstable build for for ____' 
+* download openNI and NITE
+	* http://www.openni.org/openni-sdk/
+	* http://www.openni.org/files/nite/
+* unzip each folder and place them into openFrameworks/libs
+	* rename them to "openni" and "nite" respectively

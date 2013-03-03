@@ -28,7 +28,7 @@ public:
     
     GestureFactory();
     
-    void updateBlob( int id, ofPoint centroid, int x, int y, float z = 0 );
+    void updateBlob( int id, int x, int y, float z = 0 );
     void update();
     void draw();
     
