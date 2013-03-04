@@ -42,14 +42,15 @@ OFX_TUIO_LIBS       = $(TSPS_ADDONS_PATH)/ofxTuioWrapper/src/oscpack/lib/osx/lib
 OFX_TUIO_INC        = $(TSPS_ADDONS_PATH)/ofxTuioWrapper/src/oscpack/include/ip $(TSPS_ADDONS_PATH)/ofxTuioWrapper/src/oscpack/include/osc
 
 //ofxQuickNite
-LIB_OPENNI      = "$(OF_PATH)/libs/openni/Redist/libOpenNI2.dylib"
-LIB_NITE        = "$(OF_PATH)/libs/nite/Redist/libNiTE2.dylib"
-HEADER_OPENNI   = "$(OF_PATH)/libs/openNI/Include"
-HEADER_NITE     = "$(OF_PATH)/libs/nite/Include"
+LIB_OPENNI              = "$(SRCROOT)/addons/ofxQuickNITE/libs/openni/lib/osx/libOpenNI2.dylib"
+LIB_OPENNI_DRIVERS      = "$(SRCROOT)/addons/ofxQuickNITE/libs/openni/drivers/OpenNI2/Drivers/libOniFile.dylib" "$(SRCROOT)/addons/ofxQuickNITE/libs/openni/drivers/OpenNI2/Drivers/libPS1080.dylib"
+LIB_NITE        = "$(SRCROOT)/addons/ofxQuickNITE/libs/nite/lib/osx/libNiTE2.dylib"
+HEADER_OPENNI   = "$(SRCROOT)/addons/ofxQuickNITE/libs/openni/include"
+HEADER_NITE     = "$(SRCROOT)/addons/ofxQuickNITE/libs/nite/include"
 
 // all addons
 OF_ADDON_HEADERS = $(OFX_KINECT_HEADERS) $(OFX_OPENCV_HEADERS) $(OFX_CV_INC) $(OFX_LWS_INCLUDES) $(OFX_OSC_INC) $(OFX_TUIO_INC) $(OFX_TSPS_INC) $(HEADER_OPENNI) $(HEADER_NITE)
-OF_ADDON_LIBS = $(OFX_KINECT_LIBS) $(OFX_LWS_LIBS) $(OFX_TUIO_LIBS) $(LIB_OPENNI) $(LIB_NITE)
+OF_ADDON_LIBS = $(OFX_KINECT_LIBS) $(OFX_LWS_LIBS) $(OFX_TUIO_LIBS) $(LIB_OPENNI) $(LIB_OPENNI_DRIVERS) $(LIB_NITE)
 
 HEADER_SEARCH_PATHS = $(OF_CORE_HEADERS) $(OF_ADDON_HEADERS)
 OTHER_LDFLAGS = $(OF_CORE_LIBS) $(OF_ADDON_LIBS)
