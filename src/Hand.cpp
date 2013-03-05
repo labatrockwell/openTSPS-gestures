@@ -78,23 +78,25 @@ void Hand::setup(){
 }
 
 //--------------------------------------------------------------
-void Hand::draw(){
+void Hand::draw( int width, int height ){
+    static ofPoint dims( width, height);
+    
     ofPushStyle();{
         ofNoFill();
         ofSetColor( 255 );
-        ofCircle( *this, 20);
-        ofLine( *this, *this + velocity );
+        ofCircle( *this * dims, 20);
+        ofLine( *this * dims, *this * dims + velocity * dims );
         ofSetColor(255,0,0);
-        ofLine( *this, *this + averageVelocity );
-        ofDrawBitmapString( ofToString( distanceTraveled ), *this + ofPoint(20,20));
+        ofLine( *this * dims, *this * dims + averageVelocity * dims );
+        ofDrawBitmapString( ofToString( distanceTraveled * dims ), *this * dims + ofPoint(20,20));
         ofSetColor(255);
         ofPoint * last = NULL;
         ofFill();
         for ( int i=0; i<positionHistory.size(); i++){
             if ( last != NULL ){
-                ofLine(*last, positionHistory[i]);
+                ofLine(*last * dims, positionHistory[i] * dims);
             }
-            ofCircle(positionHistory[i], 2);
+            ofCircle(positionHistory[i] * dims, 2);
             last = &positionHistory[i];
         }
     } ofPopStyle();

@@ -29,7 +29,7 @@ public:
     
     void idle();void update( ofPoint pos );
     void update( float x, float y, float z = 0 );
-    void draw();
+    void draw( int width, int height );
     
     void clearHistory();
     

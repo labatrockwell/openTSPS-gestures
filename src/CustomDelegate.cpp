@@ -14,6 +14,7 @@ static int numGenerators = 0;
 CustomDelegate::CustomDelegate( int _id ) :
 ofxTSPS::Delegate(_id)
 {
+    bUseWave = bOldUseWave = true;
 }
 
 //--------------------------------------------------------------
@@ -27,7 +28,6 @@ void CustomDelegate::setup(){
     
     // add your custom source
     peopleTracker.setSource(source);
-    
     
     // ofxOpenNI is :( about > 1 gesture generator...
     if ( numGenerators == 0 ){
@@ -44,27 +44,29 @@ void CustomDelegate::setup(){
     ofAddListener(gestureGenerator.onSwipeRightEvent, this, &CustomDelegate::onSwipeRight);
     ofAddListener(gestureGenerator.onHeldEvent, this, &CustomDelegate::onHeld);
     
+    ofAddListener( source.getTracker().calibrationStarted, this, &CustomDelegate::onCalibrationStarted );
+    ofAddListener( source.getTracker().calibrationComplete, this, &CustomDelegate::onCalibrationEnded );
+    
     autoThreshold   = 255.0f;
     thresholdBuffer = .9f;
     minimumThreshold = 100;
-    minimumDepth    = .1f; // i.e. gesture depth must be > blob depth * .1
     
     // add stuff to gui
+    peopleTracker.addToggle("Use wave gesture", &bUseWave);
     peopleTracker.addSlider("Minimum Threshold", &minimumThreshold, 0, 250);
+    peopleTracker.addSlider("Threshold buffer", &thresholdBuffer, 0.0f, 1.0f);
     peopleTracker.addSlider("Gesture Sensitivity Horz", &gestureGenerator.horizontalThreshold, 0, 100);
     peopleTracker.addSlider("Gesture Sensitivity Vert", &gestureGenerator.verticalThreshold, 0, 100);
-    peopleTracker.addSlider("Gesture Distance Horz", &gestureGenerator.horizontalDistance, 0, 640);
-    peopleTracker.addSlider("Gesture Distance Vert", &gestureGenerator.verticalDistance, 0, 480);
+    peopleTracker.addSlider("Gesture Distance Horz", &gestureGenerator.horizontalDistance, 0.0, 1.0);
+    peopleTracker.addSlider("Gesture Distance Vert", &gestureGenerator.verticalDistance, 0.0, 1.0);
     peopleTracker.addSlider("Number of frames to avg", &gestureGenerator.averageFrames, 0, 100);
-    peopleTracker.addSlider("Threshold buffer", &thresholdBuffer, 0.0f, 1.0f);
     peopleTracker.addSlider("Time to wait btw gestures", &gestureGenerator.gestureWait, 0, 2000);
-    peopleTracker.addSlider("Depth factor", &minimumDepth, 0.01, 1.0f);
-    peopleTracker.addSlider("Tilt", &source.tiltAmount, -1.0f, 1.0f);
+    peopleTracker.addSlider("How long (millis) until valid hand", &gestureGenerator.handWait, 0, 2000);
+    peopleTracker.addSlider("Camera tilt adjust", &source.tiltAmount, -1.0f, 1.0f);
 }
 
 //--------------------------------------------------------------
 void CustomDelegate::update(){
-    //SwipeDetectorONI.update();
     
     // a-mazing auto thresholding
     cv::Point minLoc, maxLoc;
@@ -87,102 +89,30 @@ void CustomDelegate::update(){
     map<int, ofPoint>::iterator it = hands.begin();
     
     for ( it; it != hands.end(); it++){
-        gestureGenerator.updateBlob( it->first, it->second.x, it->second.y, 0);//source.getTracker().getRawHand(it->first).z / 2000.0 );
+        gestureGenerator.updateBlob( it->first, it->second.x / 320.0, it->second.y / 240.0, 0);//source.getTracker().getRawHand(it->first).z / 2000.0 );
     }
     
-    // update gesture tracker from blobs
-    
-//    for ( int i=0; i<peopleTracker.totalPeople(); i++){
-//        ofxTSPS::Person * p = peopleTracker.personAtIndex(i);
-////        ofColor c = peopleTracker.getCameraImage()->getColor( p->centroid.x, p->centroid.y );
-//        
-//        cv::Rect rect;
-//        rect.x      = p->boundingRect.x;
-//        rect.y      = p->boundingRect.y;
-//        rect.width  = p->boundingRect.width;
-//        rect.height = p->boundingRect.height;
-//        cv::Mat roiMat(cameraMat, rect);
-//        
-//        float mean = cv::mean( roiMat ).val[0];
-//        
-//        // only add if it's minimum distance away from centroid
-//        if ( fabs(p->highest.z - mean) >= mean * minimumDepth ){
-//            // then, normalize
-//            float normalX = p->highest.x - p->centroid.x;
-//            float normalY = p->highest.y - p->centroid.y;
-//            gestureGenerator.updateBlob( p->pid, p->centroid, normalX, normalY, p->depth );
-//        }
-//    }
-
-    
-    
+    // check on gesture stuff
+    if ( bUseWave != bOldUseWave ){
+        bOldUseWave = bUseWave;
+        if ( bUseWave ) {
+            source.getTracker().addStartGesture(nite::GESTURE_WAVE);
+            source.getTracker().removeStartGesture(nite::GESTURE_HAND_RAISE);
+        } else {
+            source.getTracker().addStartGesture(nite::GESTURE_HAND_RAISE);
+            source.getTracker().removeStartGesture(nite::GESTURE_WAVE);
+        }
+    }
     gestureGenerator.update();
 }
 
 //--------------------------------------------------------------
 void CustomDelegate::draw(){
     ofxTSPS::Delegate::draw();
-    
-    ofPushMatrix();
-    ofTranslate(350, 20);
-    ofScale( 2.0, 2.0 );// bc TSPS always draws @ 640 x 480
-    gestureGenerator.draw();
-    ofPopMatrix();
+    gestureGenerator.draw( 350, 20, 640, 480 );
 }
 
 #pragma mark gesture events
-
-//--------------------------------------------------------------
-//void CustomDelegate::onOpenNIGesture( ofxOpenNIGestureEvent & e ){
-//    // this is a little clunky right now!
-//    // you can either make your own string, pass in a vector of strings,
-//    // or pass in a map that will get passed into a message. open to suggestions!
-//    
-//    map<string,string> params;
-//    params["timestampMillis"]   = ofToString(e.timestampMillis);
-//    params["progress"]          = ofToString(e.progress);
-//    params["worldPositionX"]    = ofToString(e.worldPosition.x);
-//    params["worldPositionY"]    = ofToString(e.worldPosition.y);
-//    params["positionX"]         = ofToString((float) e.position.x / ofGetWidth());
-//    params["positionY"]         = ofToString((float) e.position.y / ofGetHeight());
-//    
-//    // trigger custom event!
-//    //peopleTracker.triggerCustomEvent( "openNI"+e.gestureName, params );
-//}
-//
-////--------------------------------------------------------------
-//void CustomDelegate::onOpenNIHand( ofxOpenNIHandEvent & e ){
-//    // this is a little clunky right now!
-//    // you can either make your own string, or pass in a vector of strings
-//    // that will get passed into a message. open to suggestions!
-//    
-//    // only send it if it has a good status
-//    if ( e.handStatus == HAND_TRACKING_STARTED || e.handStatus == HAND_TRACKING_UPDATED){
-//        
-//        map<string,string> params;
-//        params["timestampMillis"]   = ofToString(e.timestampMillis);
-//        params["id"]                = ofToString(e.id);
-//        params["worldPositionX"]    = ofToString(e.worldPosition.x);
-//        params["worldPositionY"]    = ofToString(e.worldPosition.y);
-//        params["positionX"]         = ofToString((float) e.position.x / ofGetWidth());
-//        params["positionY"]         = ofToString((float) e.position.y / ofGetHeight());
-//        
-//        // trigger custom event!
-//        //peopleTracker.triggerCustomEvent( "openNIHand", params );
-//    } else if ( e.handStatus == HAND_TRACKING_STOPPED ){
-//        map<string,string> params;
-//        params["timestampMillis"]   = ofToString(e.timestampMillis);
-//        params["id"]                = ofToString(e.id);
-//        params["worldPositionX"]    = ofToString(e.worldPosition.x);
-//        params["worldPositionY"]    = ofToString(e.worldPosition.y);
-//        params["positionX"]         = ofToString((float) e.position.x / ofGetWidth());
-//        params["positionY"]         = ofToString((float) e.position.y / ofGetHeight());
-//        
-//        // trigger custom event!
-//        //peopleTracker.triggerCustomEvent( "openNIHandStopped", params );
-//    }
-//}
-
 
 //--------------------------------------------------------------
 void CustomDelegate::onSwipeUp( ofxSwipeEvent & e ){
@@ -193,7 +123,6 @@ void CustomDelegate::onSwipeUp( ofxSwipeEvent & e ){
     params["positionY"]     = ofToString(e.position.y);
     params["camera"]        = ofToString(id);
     peopleTracker.triggerCustomEvent( "swipeUp", params );
-    //cout<< id << " up" << endl;
 }
 
 //--------------------------------------------------------------
@@ -205,7 +134,6 @@ void CustomDelegate::onSwipeDown( ofxSwipeEvent & e ){
     params["positionY"]      = ofToString(e.position.y);
     params["camera"]        = ofToString(id);
     peopleTracker.triggerCustomEvent( "swipeDown", params );
-    cout<< id << " down" << endl;
 }
 
 //--------------------------------------------------------------
@@ -217,7 +145,6 @@ void CustomDelegate::onSwipeLeft( ofxSwipeEvent & e ){
     params["positionY"]      = ofToString(e.position.y);
     params["camera"]        = ofToString(id);
     peopleTracker.triggerCustomEvent( "swipeLeft", params );
-    //cout<< id << " left" << endl;
 }
 
 //--------------------------------------------------------------
@@ -229,7 +156,6 @@ void CustomDelegate::onSwipeRight( ofxSwipeEvent & e ){
     params["positionY"]      = ofToString(e.position.y);
     params["camera"]        = ofToString(id);
     peopleTracker.triggerCustomEvent( "swipeRight", params );
-    //cout<< id << " right" << endl;
 }
 
 
@@ -241,5 +167,22 @@ void CustomDelegate::onHeld( ofxSwipeEvent & e ){
     params["positionY"]      = ofToString(e.position.y);
     params["camera"]        = ofToString(id);
     peopleTracker.triggerCustomEvent( "held", params );
-    //cout<< id << " held" << endl;
+}
+
+//--------------------------------------------------------------
+void CustomDelegate::onCalibrationStarted( ofxNiteCalibrationEvent & e ){
+    map<string,string> params;
+    params["positionX"]     = ofToString(e.position.x);
+    params["positionY"]     = ofToString(e.position.y);
+    params["camera"]        = ofToString(id);
+    peopleTracker.triggerCustomEvent( "calibrationStarted", params );
+}
+
+//--------------------------------------------------------------
+void CustomDelegate::onCalibrationEnded( ofxNiteCalibrationEvent & e ){
+    map<string,string> params;
+    params["positionX"]     = ofToString(e.position.x);
+    params["positionY"]     = ofToString(e.position.y);
+    params["camera"]        = ofToString(id);
+    peopleTracker.triggerCustomEvent( "calibrationEnded", params );
 }

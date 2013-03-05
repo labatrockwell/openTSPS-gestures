@@ -11,7 +11,7 @@
 GestureFactory::GestureFactory(){
     bSetup = false;
     
-    stationaryThreshold = 10;
+    stationaryThreshold = .05;
     horizontalThreshold = 20;
     verticalThreshold   = 20;
     averageFrames       = 10;
@@ -19,13 +19,14 @@ GestureFactory::GestureFactory(){
     detectMode          = DISTANCE;
     gestureWait         = 2000;
     lastGestureSent     = 0;
-    verticalDistance    = 100;  // this should eventually be normalized
-    horizontalDistance  = 100;  // this should eventually be normalized
+    verticalDistance    = .5;
+    horizontalDistance  = .5;
+    handWait            = 1000; // millis
     startGesture        = SWIPE_RIGHT;
 }
 
 //--------------------------------------------------------------
-void GestureFactory::updateBlob( int id, int x, int y, float z ){
+void GestureFactory::updateBlob( int id, float x, float y, float z ){
 //    centroid = _centroid;
     
     // loop through current hands
@@ -36,7 +37,7 @@ void GestureFactory::updateBlob( int id, int x, int y, float z ){
     
     hands[ id ].update( x, y, z );
 
-    if ( hands[id].age < 1000 ) return;
+    if ( hands[id].age < handWait ) return;
 
     // should be some sort of gesture object to check against
     
@@ -50,8 +51,8 @@ void GestureFactory::updateBlob( int id, int x, int y, float z ){
             break;
         case DISTANCE:
             checkAgainst = &hands[ id ].distanceTraveled;
-//            hThresh = horizontalDistance * ofMap(hands[id].z, .95, .5, 1, .25);
-//            vThresh = verticalDistance * ofMap(hands[id].z, .95, .75, 1, .25);
+            hThresh = horizontalDistance;
+            vThresh = verticalDistance;
             break;
     }
     
@@ -261,13 +262,13 @@ void GestureFactory::update(){
 }
 
 //--------------------------------------------------------------
-void GestureFactory::draw(){
+void GestureFactory::draw( int x, int y, int width, int height  ){
     ofPushMatrix();{
-//        ofTranslate(centroid);
+        ofTranslate(x,y);
         map<int, Hand>::iterator it = hands.begin();
         for (it; it != hands.end(); ++it){
-            if ( it->second.age > 1000 ){
-                it->second.draw();
+            if ( it->second.age > handWait ){
+                it->second.draw( width, height );
             }
         }
     } ofPopMatrix();

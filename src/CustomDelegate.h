@@ -35,19 +35,23 @@ public:
     GestureFactory       gestureGenerator;
     
     // custom event
-//    void onOpenNIGesture( ofxOpenNIGestureEvent & e );
-//    void onOpenNIHand( ofxOpenNIHandEvent & e );
     void onSwipeUp( ofxSwipeEvent & e );
     void onSwipeDown( ofxSwipeEvent & e );
     void onSwipeLeft( ofxSwipeEvent & e );
     void onSwipeRight( ofxSwipeEvent & e );
     void onHeld( ofxSwipeEvent & e );
     
+    // calibration event
+    void onCalibrationStarted( ofxNiteCalibrationEvent & e );
+    void onCalibrationEnded( ofxNiteCalibrationEvent & e );
+//    void onHandUpdated( ofxNiteHandEvent & e );
+    
     // auto threshold
     float autoThreshold, minimumThreshold;
     float thresholdBuffer;
     
-    // depth from centroid
-    float minimumDepth;
+    // which gesture to use
+    bool bUseWave, bOldUseWave;
+    
 };
 

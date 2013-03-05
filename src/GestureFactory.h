@@ -28,9 +28,9 @@ public:
     
     GestureFactory();
     
-    void updateBlob( int id, int x, int y, float z = 0 );
+    void updateBlob( int id, float x, float y, float z = 0 );
     void update();
-    void draw();
+    void draw( int x, int y, int width, int height );
     
     // gesture thresholds
     float   stationaryThreshold;
@@ -44,6 +44,9 @@ public:
     
     // number of frames to average for gestures
     int     averageFrames;
+    
+    // how long before "valid" hand
+    int     handWait;
     
     // what gesture to start with
     void setStartGesture( ofxGestureType startType );
