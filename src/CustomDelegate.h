@@ -44,6 +44,7 @@ public:
     // calibration event
     void onCalibrationStarted( ofxNiteCalibrationEvent & e );
     void onCalibrationEnded( ofxNiteCalibrationEvent & e );
+    void onHandLost( ofxNiteHandEvent & e );
 //    void onHandUpdated( ofxNiteHandEvent & e );
     
     // auto threshold

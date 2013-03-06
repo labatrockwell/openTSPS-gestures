@@ -42,7 +42,7 @@ void GestureFactory::updateBlob( int id, float x, float y, float z ){
     // should be some sort of gesture object to check against
     
     ofPoint * checkAgainst  = NULL;
-    ofPoint velocity        = hands[ id ].averageVelocity;
+    ofPoint velocity        = hands[ id ].velocity;
     float       hThresh     = horizontalThreshold;
     float       vThresh     = verticalThreshold;
     switch ( detectMode ) {

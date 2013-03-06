@@ -75,7 +75,6 @@ namespace ofxTSPS {
         }
         
         bool openSource( int width, int height, string etc="" ){
-            
             // sorry, flexibility
             width = 320;
             height = 240;

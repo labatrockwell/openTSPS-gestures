@@ -46,6 +46,7 @@ void CustomDelegate::setup(){
     
     ofAddListener( source.getTracker().calibrationStarted, this, &CustomDelegate::onCalibrationStarted );
     ofAddListener( source.getTracker().calibrationComplete, this, &CustomDelegate::onCalibrationEnded );
+    ofAddListener( source.getTracker().handLost, this, &CustomDelegate::onHandLost );
     
     autoThreshold   = 255.0f;
     thresholdBuffer = .9f;
@@ -176,6 +177,7 @@ void CustomDelegate::onCalibrationStarted( ofxNiteCalibrationEvent & e ){
     params["positionY"]     = ofToString(e.position.y);
     params["camera"]        = ofToString(id);
     peopleTracker.triggerCustomEvent( "calibrationStarted", params );
+    cout << "started" << endl;
 }
 
 //--------------------------------------------------------------
@@ -185,4 +187,14 @@ void CustomDelegate::onCalibrationEnded( ofxNiteCalibrationEvent & e ){
     params["positionY"]     = ofToString(e.position.y);
     params["camera"]        = ofToString(id);
     peopleTracker.triggerCustomEvent( "calibrationEnded", params );
+}
+
+//--------------------------------------------------------------
+void CustomDelegate::onHandLost( ofxNiteHandEvent & e ){
+    map<string,string> params;
+    params["positionX"]     = ofToString(e.position.x);
+    params["positionY"]     = ofToString(e.position.y);
+    params["camera"]        = ofToString(id);
+    peopleTracker.triggerCustomEvent( "handLost", params );
+    cout << "LOST" << endl;
 }
