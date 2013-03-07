@@ -22,6 +22,7 @@ void CustomDelegate::setup(){
     peopleTracker.setUseKinect(false);
     
     // setup OpenNI source
+    source.setSourceIndex(id);
     source.openSource(320,240);
     
     ofxTSPS::Delegate::setup();

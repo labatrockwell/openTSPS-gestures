@@ -79,7 +79,15 @@ namespace ofxTSPS {
             width = 320;
             height = 240;
             niteSource.setUseTexture( false );
-            openni::Status rc = niteSource.setup( etc );
+            
+            string uri = "";
+            
+            // get device ID
+            if ( niteSource.enumerateDevices().size() > sourceIndex ){
+                uri = niteSource.enumerateDevices()[sourceIndex].getUri();
+            }
+            
+            openni::Status rc = niteSource.setup( uri );
             cout << (rc == openni::STATUS_OK) << endl;
             bIsOpen = true;//rc == openni::STATUS_OK;
             if ( bIsOpen ){
