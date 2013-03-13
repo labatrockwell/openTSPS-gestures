@@ -2,13 +2,14 @@
 
 
 //--------------------------------------------------------------
-tspsApp::tspsApp( int numCameras, string host, int port, string channel ){
+tspsApp::tspsApp( int numCameras, int _startIndex, string host, int port, string channel ){
     wsHost      = host;
     wsPort      = port;
     wsChannel   = channel;
+    startIndex  = _startIndex;
     
     for (int i=0; i<numCameras; i++){
-        delegates.push_back(new CustomDelegate(i));
+        delegates.push_back(new CustomDelegate(i + startIndex));
     }
 }
 

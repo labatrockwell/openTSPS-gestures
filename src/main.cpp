@@ -8,6 +8,7 @@ int main( int argc, char * const argv[] ){
     int     port        = 9987;
     string  channel     = "";
     int     numCameras  = 1;
+    int     startIndex  = 0;
     
     vector<string> args(argv + 1, argv + argc);
     
@@ -24,10 +25,12 @@ int main( int argc, char * const argv[] ){
             numCameras = ofToInt(*++i);
         } else if (*i == "-c"){
             channel = *++i;
+        } else if (*i == "-w"){
+            startIndex = ofToInt(*++i);
         }
     }
     
     ofAppGlutWindow window;
     ofSetupOpenGL(&window, 1024, 768, OF_WINDOW);
-	ofRunApp( new tspsApp(numCameras, host, port, channel) );
+	ofRunApp( new tspsApp(numCameras, startIndex, host, port, channel) );
 }

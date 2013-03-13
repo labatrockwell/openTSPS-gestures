@@ -13,7 +13,7 @@ class tspsApp : public ofBaseApp {
          * @param {std::string} host        (optional) Host of websocket server to send to
          * @param {std::string} port        (optional) Port of websocket server to send to
          */
-        tspsApp( int numCameras=1, string host="", int port=0, string channel="" );
+        tspsApp( int numCameras=1, int startIndex=0, string host="", int port=0, string channel="" );
         
 		void setup();
 		void update();
@@ -24,6 +24,7 @@ class tspsApp : public ofBaseApp {
     
         void mouseReleased(int x, int y, int button);
     
+        int     startIndex;
         string  wsHost, wsChannel;
         int     wsPort;
     
