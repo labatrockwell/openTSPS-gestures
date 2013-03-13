@@ -87,9 +87,7 @@ namespace ofxTSPS {
                 uri = niteSource.enumerateDevices()[sourceIndex].getUri();
             }
             
-            openni::Status rc = niteSource.setup( uri );
-            cout << (rc == openni::STATUS_OK) << endl;
-            bIsOpen = true;//rc == openni::STATUS_OK;
+            bIsOpen = niteSource.open( uri );
             if ( bIsOpen ){
                 if ( tiltedPixels.getWidth() != width || tiltedPixels.getHeight() != height ){
                     tiltedPixels.clear();
