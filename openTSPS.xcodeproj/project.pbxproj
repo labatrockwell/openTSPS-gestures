@@ -29,6 +29,12 @@
 		2EDF65F91639F7A000329C79 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDF65EA1639F7A000329C79 /* CoreVideo.framework */; };
 		2EDF65FA1639F7A000329C79 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EDF65EB1639F7A000329C79 /* QTKit.framework */; };
 		2EF4183D163B20D300E13227 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2EDF65DB1639F78A00329C79 /* GLUT.framework */; };
+		A901214816F025C000CBC00B /* ofxNITE.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A901213E16F025C000CBC00B /* ofxNITE.cpp */; };
+		A901214916F025C000CBC00B /* ofxNiteHandTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A901214016F025C000CBC00B /* ofxNiteHandTracker.cpp */; };
+		A901214A16F025C000CBC00B /* ofxNiteProcess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A901214216F025C000CBC00B /* ofxNiteProcess.cpp */; };
+		A901214B16F025C000CBC00B /* ofxNiteUserTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A901214416F025C000CBC00B /* ofxNiteUserTracker.cpp */; };
+		A901214C16F025C000CBC00B /* ofxOpenNIFeed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A901214616F025C000CBC00B /* ofxOpenNIFeed.cpp */; };
+		A901214E16F0BD6500CBC00B /* ExceptionHandling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A901214D16F0BD6500CBC00B /* ExceptionHandling.framework */; };
 		A928B99D16E14222003E0039 /* ofxKinect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A928B99116E14221003E0039 /* ofxKinect.cpp */; };
 		A928B9F216E14269003E0039 /* cameras.c in Sources */ = {isa = PBXBuildFile; fileRef = A928B9A516E14269003E0039 /* cameras.c */; };
 		A928B9F316E14269003E0039 /* core.c in Sources */ = {isa = PBXBuildFile; fileRef = A928B9A816E14269003E0039 /* core.c */; };
@@ -44,8 +50,6 @@
 		A938F73716E4F0420086B6B4 /* OpenNI2 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A938F73316E4EFF00086B6B4 /* OpenNI2 */; };
 		A938F73C16E4F1B30086B6B4 /* libNiTE2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A938F72E16E4EFDF0086B6B4 /* libNiTE2.dylib */; };
 		A938F73D16E4F1B50086B6B4 /* libOpenNI2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A938F73016E4EFE60086B6B4 /* libOpenNI2.dylib */; };
-		A938F79D16E4F3780086B6B4 /* ofxNiteHandTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A938F79016E4F3780086B6B4 /* ofxNiteHandTracker.cpp */; };
-		A938F79E16E4F3780086B6B4 /* ofxOpenNIFeed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A938F79216E4F3780086B6B4 /* ofxOpenNIFeed.cpp */; };
 		A948586415C470BD00761D1C /* tspsApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A948586215C470BC00761D1C /* tspsApp.cpp */; };
 		A94859A615C470E800761D1C /* opencv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A948591A15C470E700761D1C /* opencv.a */; };
 		A94859D215C470E900761D1C /* ofxCvColorImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A948594B15C470E800761D1C /* ofxCvColorImage.cpp */; };
@@ -196,6 +200,17 @@
 		2EDF65EB1639F7A000329C79 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = ../../../../../../../../System/Library/Frameworks/QTKit.framework; sourceTree = "<group>"; };
 		2EF41836163AE44400E13227 /* ofParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofParameter.h; path = ../../../addons/ofxGui/src/ofParameter.h; sourceTree = "<group>"; };
 		2EF4183E163B257300E13227 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
+		A901213E16F025C000CBC00B /* ofxNITE.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ofxNITE.cpp; sourceTree = "<group>"; };
+		A901213F16F025C000CBC00B /* ofxNITE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxNITE.h; sourceTree = "<group>"; };
+		A901214016F025C000CBC00B /* ofxNiteHandTracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxNiteHandTracker.cpp; sourceTree = "<group>"; };
+		A901214116F025C000CBC00B /* ofxNiteHandTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxNiteHandTracker.h; sourceTree = "<group>"; };
+		A901214216F025C000CBC00B /* ofxNiteProcess.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxNiteProcess.cpp; sourceTree = "<group>"; };
+		A901214316F025C000CBC00B /* ofxNiteProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxNiteProcess.h; sourceTree = "<group>"; };
+		A901214416F025C000CBC00B /* ofxNiteUserTracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxNiteUserTracker.cpp; sourceTree = "<group>"; };
+		A901214516F025C000CBC00B /* ofxNiteUserTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxNiteUserTracker.h; sourceTree = "<group>"; };
+		A901214616F025C000CBC00B /* ofxOpenNIFeed.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOpenNIFeed.cpp; sourceTree = "<group>"; };
+		A901214716F025C000CBC00B /* ofxOpenNIFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOpenNIFeed.h; sourceTree = "<group>"; };
+		A901214D16F0BD6500CBC00B /* ExceptionHandling.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExceptionHandling.framework; path = ../../../../../../../../System/Library/Frameworks/ExceptionHandling.framework; sourceTree = "<group>"; };
 		A928B99016E14221003E0039 /* ofxBase3DVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxBase3DVideo.h; sourceTree = "<group>"; };
 		A928B99116E14221003E0039 /* ofxKinect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxKinect.cpp; sourceTree = "<group>"; };
 		A928B99216E14221003E0039 /* ofxKinect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxKinect.h; sourceTree = "<group>"; };
@@ -287,10 +302,6 @@
 		A938F78C16E4F3780086B6B4 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		A938F78D16E4F3780086B6B4 /* NOTICE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NOTICE; sourceTree = "<group>"; };
 		A938F78E16E4F3780086B6B4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		A938F79016E4F3780086B6B4 /* ofxNiteHandTracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxNiteHandTracker.cpp; sourceTree = "<group>"; };
-		A938F79116E4F3780086B6B4 /* ofxNiteHandTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxNiteHandTracker.h; sourceTree = "<group>"; };
-		A938F79216E4F3780086B6B4 /* ofxOpenNIFeed.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOpenNIFeed.cpp; sourceTree = "<group>"; };
-		A938F79316E4F3780086B6B4 /* ofxOpenNIFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOpenNIFeed.h; sourceTree = "<group>"; };
 		A948586215C470BC00761D1C /* tspsApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tspsApp.cpp; sourceTree = "<group>"; };
 		A948586315C470BC00761D1C /* tspsApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tspsApp.h; sourceTree = "<group>"; };
 		A948586815C470E700761D1C /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
@@ -703,6 +714,7 @@
 				A928B9F816E14269003E0039 /* usb-1.0.a in Frameworks */,
 				A938F73C16E4F1B30086B6B4 /* libNiTE2.dylib in Frameworks */,
 				A938F73D16E4F1B50086B6B4 /* libOpenNI2.dylib in Frameworks */,
+				A901214E16F0BD6500CBC00B /* ExceptionHandling.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1175,10 +1187,16 @@
 		A938F78F16E4F3780086B6B4 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				A938F79016E4F3780086B6B4 /* ofxNiteHandTracker.cpp */,
-				A938F79116E4F3780086B6B4 /* ofxNiteHandTracker.h */,
-				A938F79216E4F3780086B6B4 /* ofxOpenNIFeed.cpp */,
-				A938F79316E4F3780086B6B4 /* ofxOpenNIFeed.h */,
+				A901213E16F025C000CBC00B /* ofxNITE.cpp */,
+				A901213F16F025C000CBC00B /* ofxNITE.h */,
+				A901214016F025C000CBC00B /* ofxNiteHandTracker.cpp */,
+				A901214116F025C000CBC00B /* ofxNiteHandTracker.h */,
+				A901214216F025C000CBC00B /* ofxNiteProcess.cpp */,
+				A901214316F025C000CBC00B /* ofxNiteProcess.h */,
+				A901214416F025C000CBC00B /* ofxNiteUserTracker.cpp */,
+				A901214516F025C000CBC00B /* ofxNiteUserTracker.h */,
+				A901214616F025C000CBC00B /* ofxOpenNIFeed.cpp */,
+				A901214716F025C000CBC00B /* ofxOpenNIFeed.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -2337,6 +2355,7 @@
 		BBAB23C913894ECA00AA2426 /* system frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A901214D16F0BD6500CBC00B /* ExceptionHandling.framework */,
 				2EDF65DD1639F7A000329C79 /* Accelerate.framework */,
 				2EDF65DE1639F7A000329C79 /* AppKit.framework */,
 				2EDF65DF1639F7A000329C79 /* Cocoa.framework */,
@@ -2589,8 +2608,11 @@
 				A928B9F516E14269003E0039 /* registration.c in Sources */,
 				A928B9F616E14269003E0039 /* tilt.c in Sources */,
 				A928B9F716E14269003E0039 /* usb_libusb10.c in Sources */,
-				A938F79D16E4F3780086B6B4 /* ofxNiteHandTracker.cpp in Sources */,
-				A938F79E16E4F3780086B6B4 /* ofxOpenNIFeed.cpp in Sources */,
+				A901214816F025C000CBC00B /* ofxNITE.cpp in Sources */,
+				A901214916F025C000CBC00B /* ofxNiteHandTracker.cpp in Sources */,
+				A901214A16F025C000CBC00B /* ofxNiteProcess.cpp in Sources */,
+				A901214B16F025C000CBC00B /* ofxNiteUserTracker.cpp in Sources */,
+				A901214C16F025C000CBC00B /* ofxOpenNIFeed.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
