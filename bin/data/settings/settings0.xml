@@ -22,7 +22,7 @@
     <val_0>138.889007568</val_0>
 </RELEARN_BACKGROUND>
 <THRESHOLD>
-    <val_0>221.200057983</val_0>
+    <val_0>199.074081421</val_0>
 </THRESHOLD>
 <BLOB_TYPE>
     <val_0>2.000000000</val_0>
@@ -43,7 +43,7 @@
     <val_0>11.000000000</val_0>
 </SMOOTH_AMOUNT>
 <MIN_BLOB>
-    <val_0>0.380296290</val_0>
+    <val_0>15.562445641</val_0>
 </MIN_BLOB>
 <MAX_BLOB>
     <val_0>37.284999847</val_0>
@@ -97,7 +97,7 @@
     <val_0>0</val_0>
 </ADJUSTED_VIEW_COLOR>
 <SEND_WS>
-    <val_0>0.000000000</val_0>
+    <val_0>1.000000000</val_0>
 </SEND_WS>
 <WS_PORT>
     <val_0>9789</val_0>
@@ -135,11 +135,11 @@
 <VIDEO_FILE_RELOAD>
     <val_0>0.000000000</val_0>
 </VIDEO_FILE_RELOAD>
-<QUAD0_X>0.000000000</QUAD0_X>
-<QUAD0_Y>0.000000000</QUAD0_Y>
-<QUAD1_X>1.000000000</QUAD1_X>
-<QUAD1_Y>0.000000000</QUAD1_Y>
-<QUAD2_X>1.000000000</QUAD2_X>
+<QUAD0_X>0.057228915</QUAD0_X>
+<QUAD0_Y>0.094377510</QUAD0_Y>
+<QUAD1_X>0.804216862</QUAD1_X>
+<QUAD1_Y>0.108433738</QUAD1_Y>
+<QUAD2_X>0.903614461</QUAD2_X>
 <QUAD2_Y>1.000000000</QUAD2_Y>
 <QUAD3_X>0.000000000</QUAD3_X>
 <QUAD3_Y>1.000000000</QUAD3_Y>
@@ -162,25 +162,25 @@
     <val_0>0.000000000</val_0>
 </INVERT>
 <CUSTOM0>
-    <val_0>125.925926208</val_0>
+    <val_0>1.000000000</val_0>
 </CUSTOM0>
 <CUSTOM1>
-    <val_0>70.370368958</val_0>
+    <val_0>199.074081421</val_0>
 </CUSTOM1>
 <CUSTOM2>
-    <val_0>68.888893127</val_0>
+    <val_0>0.922222197</val_0>
 </CUSTOM2>
 <CUSTOM3>
-    <val_0>640.000000000</val_0>
+    <val_0>18.148147583</val_0>
 </CUSTOM3>
 <CUSTOM4>
-    <val_0>480.000000000</val_0>
+    <val_0>17.037036896</val_0>
 </CUSTOM4>
 <CUSTOM5>
-    <val_0>23.703702927</val_0>
+    <val_0>0.140740737</val_0>
 </CUSTOM5>
 <CUSTOM6>
-    <val_0>0.933333337</val_0>
+    <val_0>0.118518516</val_0>
 </CUSTOM6>
 <SEND_SB>
     <val_0>0.000000000</val_0>
@@ -189,7 +189,7 @@
     <val_0>localhost</val_0>
 </SB_HOST>
 <CUSTOM7>
-    <val_0>511.111145020</val_0>
+    <val_0>34.074073792</val_0>
 </CUSTOM7>
 <SEND_SCENE_DATA>
     <val_0>0.000000000</val_0>
@@ -201,8 +201,11 @@
     <val_0>0.000000000</val_0>
 </SCENE_GRID_Y>
 <CUSTOM8>
-    <val_0>0.100000001</val_0>
+    <val_0>466.666656494</val_0>
 </CUSTOM8>
 <CUSTOM9>
-    <val_0>0.000000000</val_0>
+    <val_0>1000.000000000</val_0>
 </CUSTOM9>
+<CUSTOM10>
+    <val_0>0.000000000</val_0>
+</CUSTOM10>
