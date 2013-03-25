@@ -127,6 +127,10 @@
 		A974231116A4B71900BC6910 /* TSPSDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A974230F16A4B71900BC6910 /* TSPSDelegate.cpp */; };
 		A974231416A4B7CD00BC6910 /* CustomDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A974231216A4B7CD00BC6910 /* CustomDelegate.cpp */; };
 		A9974A4E16727268004571ED /* Hand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9974A4C16727268004571ED /* Hand.cpp */; };
+		A9A6B7D817007E9D008AF9FD /* libusb-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A6B7D717007E9D008AF9FD /* libusb-1.0.0.dylib */; };
+		A9A6B7D917007EB3008AF9FD /* libusb-1.0.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9A6B7D717007E9D008AF9FD /* libusb-1.0.0.dylib */; };
+		A9A6B7DB17007ED4008AF9FD /* libusb-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A6B7DA17007ED4008AF9FD /* libusb-1.0.a */; };
+		A9A6B7DC17007EDB008AF9FD /* libusb-1.0.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = A9A6B7DA17007ED4008AF9FD /* libusb-1.0.a */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
 /* End PBXBuildFile section */
@@ -158,6 +162,8 @@
 				A938F73716E4F0420086B6B4 /* OpenNI2 in CopyFiles */,
 				A938F73416E4F0380086B6B4 /* libNiTE2.dylib in CopyFiles */,
 				A938F73516E4F0380086B6B4 /* libOpenNI2.dylib in CopyFiles */,
+				A9A6B7D917007EB3008AF9FD /* libusb-1.0.0.dylib in CopyFiles */,
+				A9A6B7DC17007EDB008AF9FD /* libusb-1.0.a in CopyFiles */,
 				A938F73616E4F0380086B6B4 /* OpenNI.ini in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -675,6 +681,8 @@
 		A974231316A4B7CD00BC6910 /* CustomDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDelegate.h; sourceTree = "<group>"; };
 		A9974A4C16727268004571ED /* Hand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hand.cpp; sourceTree = "<group>"; };
 		A9974A4D16727268004571ED /* Hand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hand.h; sourceTree = "<group>"; };
+		A9A6B7D717007E9D008AF9FD /* libusb-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libusb-1.0.0.dylib"; path = "addons/ofxQuickNITE/libs/libusb/lib/osx/libusb-1.0.0.dylib"; sourceTree = "<group>"; };
+		A9A6B7DA17007ED4008AF9FD /* libusb-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libusb-1.0.a"; path = "addons/ofxQuickNITE/libs/libusb/lib/osx/libusb-1.0.a"; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E4B69B5B0A3A1756003C02F2 /* openTSPSDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openTSPSDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B69E1D0A3A1BDC003C02F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
@@ -715,6 +723,8 @@
 				A938F73C16E4F1B30086B6B4 /* libNiTE2.dylib in Frameworks */,
 				A938F73D16E4F1B50086B6B4 /* libOpenNI2.dylib in Frameworks */,
 				A901214E16F0BD6500CBC00B /* ExceptionHandling.framework in Frameworks */,
+				A9A6B7D817007E9D008AF9FD /* libusb-1.0.0.dylib in Frameworks */,
+				A9A6B7DB17007ED4008AF9FD /* libusb-1.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1042,6 +1052,8 @@
 		A938F72D16E4EA8D0086B6B4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A9A6B7D717007E9D008AF9FD /* libusb-1.0.0.dylib */,
+				A9A6B7DA17007ED4008AF9FD /* libusb-1.0.a */,
 				A938F72E16E4EFDF0086B6B4 /* libNiTE2.dylib */,
 				A938F73016E4EFE60086B6B4 /* libOpenNI2.dylib */,
 				A938F73216E4EFF00086B6B4 /* OpenNI.ini */,
@@ -2753,12 +2765,14 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_13)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/bin/data/openni/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10 = "\"$(SRCROOT)/../../addons/ofxKinect/libs/libusb/osx/libs\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11 = "\"$(SRCROOT)/addons/ofxQuickNITE/libs/openni/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12 = "\"$(SRCROOT)/addons/ofxQuickNITE/libs/libusb/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_13 = "\"$(SRCROOT)/addons/ofxQuickNITE/libs/openni/drivers/OpenNI2/Drivers\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14 = "\"$(SRCROOT)/addons/ofxQuickNITE/libs/libusb/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_17 = "\"$(SRCROOT)/addons/ofxQuickNITE/libs/libusb/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_18 = "\"$(SRCROOT)/../../addons/ofxKinect/libs/libusb/osx/libs\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_19 = "\"$(SRCROOT)/../../addons/ofxLibwebsockets/libs/libwebsockets/lib/osx\"";
@@ -2836,12 +2850,14 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_13)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/bin/data/openni/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10 = "\"$(SRCROOT)/../../addons/ofxKinect/libs/libusb/osx/libs\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11 = "\"$(SRCROOT)/addons/ofxQuickNITE/libs/openni/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12 = "\"$(SRCROOT)/addons/ofxQuickNITE/libs/libusb/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_13 = "\"$(SRCROOT)/addons/ofxQuickNITE/libs/openni/drivers/OpenNI2/Drivers\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14 = "\"$(SRCROOT)/addons/ofxQuickNITE/libs/libusb/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_17 = "\"$(SRCROOT)/addons/ofxQuickNITE/libs/libusb/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_18 = "\"$(SRCROOT)/../../addons/ofxKinect/libs/libusb/osx/libs\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_19 = "\"$(SRCROOT)/../../addons/ofxLibwebsockets/libs/libwebsockets/lib/osx\"";
