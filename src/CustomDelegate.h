@@ -30,6 +30,10 @@ public:
     // custom openNI source
     ofxTSPS::Nite   source;
     
+    // set URI of source
+    void setUri( string uri );
+    string getUri();
+    
     // gesture detector
     //SwipeDetectorONI   SwipeDetectorONI;
     GestureFactory       gestureGenerator;
@@ -53,6 +57,10 @@ public:
     
     // which gesture to use
     bool bUseWave, bOldUseWave;
+    
+protected:
+    
+    string deviceUri;
     
 };
 

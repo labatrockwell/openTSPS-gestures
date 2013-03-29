@@ -15,6 +15,7 @@ CustomDelegate::CustomDelegate( int _id ) :
 ofxTSPS::Delegate(_id)
 {
     bUseWave = bOldUseWave = true;
+    deviceUri = "";
 }
 
 //--------------------------------------------------------------
@@ -23,7 +24,7 @@ void CustomDelegate::setup(){
     
     // setup OpenNI source
     source.setSourceIndex(id);
-    source.openSource(320,240);
+    source.openSource(320,240, deviceUri );
     
     ofxTSPS::Delegate::setup();
     
@@ -112,6 +113,16 @@ void CustomDelegate::update(){
 void CustomDelegate::draw(){
     ofxTSPS::Delegate::draw();
     gestureGenerator.draw( 350, 20, 640, 480 );
+}
+
+//--------------------------------------------------------------
+void CustomDelegate::setUri( string uri ){
+    deviceUri = uri;
+}
+
+//--------------------------------------------------------------
+string CustomDelegate::getUri(){
+    return deviceUri;
 }
 
 #pragma mark gesture events

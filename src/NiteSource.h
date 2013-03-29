@@ -80,11 +80,12 @@ namespace ofxTSPS {
             height = 240;
             niteSource.setUseTexture( false );
             
-            string uri = "";
+            string uri = etc;
             
             // get device ID
-            if ( niteSource.enumerateDevices().size() > sourceIndex ){
+            if ( niteSource.enumerateDevices().size() > sourceIndex && uri == "" ){
                 uri = niteSource.enumerateDevices()[sourceIndex].getUri();
+                cout << uri << endl;
             }
             
             bIsOpen = niteSource.open( uri );

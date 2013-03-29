@@ -2,7 +2,7 @@
 
 
 //--------------------------------------------------------------
-tspsApp::tspsApp( int numCameras, int _startIndex, string host, int port, string channel ){
+tspsApp::tspsApp( int numCameras, int _startIndex, string settingsFile, string host, int port, string channel, string deviceUri ){
     wsHost      = host;
     wsPort      = port;
     wsChannel   = channel;
@@ -10,6 +10,11 @@ tspsApp::tspsApp( int numCameras, int _startIndex, string host, int port, string
     
     for (int i=0; i<numCameras; i++){
         delegates.push_back(new CustomDelegate(i + startIndex));
+        delegates.back()->setSettingsFile(settingsFile);
+        
+        if ( deviceUri.length() > 1 ){
+            delegates.back()->setUri(deviceUri);
+        }
     }
 }
 
