@@ -174,12 +174,12 @@ void CustomDelegate::onSwipeRight( ofxSwipeEvent & e ){
 
 //--------------------------------------------------------------
 void CustomDelegate::onHeld( ofxSwipeEvent & e ){
-    map<string,string> params;
+    /*map<string,string> params;
     params["duration"] = ofToString( e.duration );
     params["positionX"]      = ofToString(e.position.x);
     params["positionY"]      = ofToString(e.position.y);
     params["camera"]        = ofToString(id);
-    peopleTracker.triggerCustomEvent( "held", params );
+    peopleTracker.triggerCustomEvent( "held", params );*/
 }
 
 //--------------------------------------------------------------
