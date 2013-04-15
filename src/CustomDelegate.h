@@ -56,7 +56,10 @@ public:
     float thresholdBuffer;
     
     // which gesture to use
-    bool bUseWave, bOldUseWave;
+    bool bUseWave, bOldUseWave, bSendHand;
+    
+    // send hands at set interval
+    int lastHandSent, handSendTime;
     
 protected:
     

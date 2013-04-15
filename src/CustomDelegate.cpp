@@ -53,6 +53,8 @@ void CustomDelegate::setup(){
     autoThreshold   = 255.0f;
     thresholdBuffer = .9f;
     minimumThreshold = 100;
+    handSendTime    = 500;
+    lastHandSent    = 0;
     
     // add stuff to gui
     peopleTracker.addToggle("Use wave gesture", &bUseWave);
@@ -65,6 +67,9 @@ void CustomDelegate::setup(){
     peopleTracker.addSlider("Number of frames to avg", &gestureGenerator.averageFrames, 0, 100);
     peopleTracker.addSlider("Time to wait btw gestures", &gestureGenerator.gestureWait, 0, 2000);
     peopleTracker.addSlider("How long (millis) until valid hand", &gestureGenerator.handWait, 0, 2000);
+    peopleTracker.addToggle("Send hand position?", &bSendHand);
+    peopleTracker.addSlider("Rate at which to send hands", &handSendTime, 0, 500);
+    
     peopleTracker.addSlider("Camera tilt adjust", &source.tiltAmount, -1.0f, 1.0f);
 }
 
@@ -91,8 +96,21 @@ void CustomDelegate::update(){
     map<int, ofPoint> hands = source.getTracker().getHands();
     map<int, ofPoint>::iterator it = hands.begin();
     
+    bool sendHands = bSendHand && ofGetElapsedTimeMillis() - lastHandSent > handSendTime;
+    if ( sendHands ){
+        lastHandSent = ofGetElapsedTimeMillis();
+    }
+    
     for ( it; it != hands.end(); it++){
         gestureGenerator.updateBlob( it->first, it->second.x / 320.0, it->second.y / 240.0, 0);//source.getTracker().getRawHand(it->first).z / 2000.0 );
+        
+        if ( sendHands ){
+            map<string,string> params;
+            params["id"]     = ofToString(it->first);
+            params["x"]      = ofToString(it->second.x / 320.0, 3);
+            params["y"]      = ofToString(it->second.y / 240.0, 3);
+            peopleTracker.triggerCustomEvent( "hand", params );
+        }
     }
     
     // check on gesture stuff
