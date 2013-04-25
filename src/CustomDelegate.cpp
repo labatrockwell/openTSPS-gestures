@@ -55,6 +55,7 @@ void CustomDelegate::setup(){
     minimumThreshold = 100;
     handSendTime    = 500;
     lastHandSent    = 0;
+    bUseDistance    = bOldUseDistance = true;
     
     // add stuff to gui
     peopleTracker.addToggle("Use wave gesture", &bUseWave);
@@ -71,6 +72,7 @@ void CustomDelegate::setup(){
     peopleTracker.addSlider("Rate at which to send hands", &handSendTime, 0, 500);
     
     peopleTracker.addSlider("Camera tilt adjust", &source.tiltAmount, -1.0f, 1.0f);
+    peopleTracker.addToggle("Distance-based gestures (velocity-based if off)", &bUseDistance);
 }
 
 //--------------------------------------------------------------
@@ -123,6 +125,9 @@ void CustomDelegate::update(){
             source.getTracker().addStartGesture(nite::GESTURE_HAND_RAISE);
             source.getTracker().removeStartGesture(nite::GESTURE_WAVE);
         }
+    }
+    if ( bUseDistance != bOldUseDistance ){
+        gestureGenerator.detectMode = bUseDistance ? DISTANCE : VELOCITY;
     }
     gestureGenerator.update();
 }

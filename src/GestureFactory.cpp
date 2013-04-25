@@ -35,6 +35,8 @@ void GestureFactory::updateBlob( int id, float x, float y, float z ){
         hands.insert(make_pair(id, Hand( x, y, z )) );
     }
     
+    ofPoint lastVelocity = hands[id].velocity;
+    
     hands[ id ].update( x, y, z );
 
     if ( hands[id].age < handWait ) return;
@@ -77,6 +79,10 @@ void GestureFactory::updateBlob( int id, float x, float y, float z ){
     } else if ( ofGetElapsedTimeMillis() - lastGestureSent > gestureWait ){
         // left / right
         if ( abs( checkAgainst->x ) > abs( checkAgainst->y ) ){
+            
+            // look and see if we've changed directions
+            if ( ofSign(velocity.x) == ofSign(lastVelocity.x)) return;
+            
             if ( abs( checkAgainst->x ) > hThresh ){
                 lastEvents[id].angle = checkAgainst->angle(ofVec3f());
                 lastEvents[id].velocity.set( velocity.x, 0 );
@@ -114,6 +120,9 @@ void GestureFactory::updateBlob( int id, float x, float y, float z ){
                 lastEvents[id].velocity.set( 0, velocity.y );
                 lastEvents[id].timeStarted  = ofGetElapsedTimeMillis();
                 lastEvents[id].position     = hands[id];
+                
+                // look and see if we've changed directions
+                if ( ofSign(velocity.y) == ofSign(lastVelocity.y)) return;
                 
                 switch (ofSign( checkAgainst->y )) {
                     case -1:

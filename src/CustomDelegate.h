@@ -57,6 +57,7 @@ public:
     
     // which gesture to use
     bool bUseWave, bOldUseWave, bSendHand;
+    bool bUseDistance, bOldUseDistance;
     
     // send hands at set interval
     int lastHandSent, handSendTime;
