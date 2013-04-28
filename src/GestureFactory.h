@@ -48,6 +48,9 @@ public:
     // how long before "valid" hand
     int     handWait;
     
+    // only trigger gestures when started in reverse direction
+    bool    bTriggerOnNegative;
+    
     // what gesture to start with
     void setStartGesture( ofxGestureType startType );
     ofxGestureType getStartGesture();

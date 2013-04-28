@@ -23,6 +23,7 @@ GestureFactory::GestureFactory(){
     horizontalDistance  = .5;
     handWait            = 1000; // millis
     startGesture        = SWIPE_RIGHT;
+    bTriggerOnNegative  = false;
 }
 
 //--------------------------------------------------------------
@@ -81,7 +82,7 @@ void GestureFactory::updateBlob( int id, float x, float y, float z ){
         if ( abs( checkAgainst->x ) > abs( checkAgainst->y ) ){
             
             // look and see if we've changed directions
-            if ( ofSign(velocity.x) == ofSign(lastVelocity.x)) return;
+            if ( ofSign(velocity.x) == ofSign(lastVelocity.x) && bTriggerOnNegative) return;
             
             if ( abs( checkAgainst->x ) > hThresh ){
                 lastEvents[id].angle = checkAgainst->angle(ofVec3f());
@@ -122,7 +123,7 @@ void GestureFactory::updateBlob( int id, float x, float y, float z ){
                 lastEvents[id].position     = hands[id];
                 
                 // look and see if we've changed directions
-                if ( ofSign(velocity.y) == ofSign(lastVelocity.y)) return;
+                if ( ofSign(velocity.y) == ofSign(lastVelocity.y) && bTriggerOnNegative) return;
                 
                 switch (ofSign( checkAgainst->y )) {
                     case -1:

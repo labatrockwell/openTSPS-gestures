@@ -73,6 +73,7 @@ void CustomDelegate::setup(){
     
     peopleTracker.addSlider("Camera tilt adjust", &source.tiltAmount, -1.0f, 1.0f);
     peopleTracker.addToggle("Distance-based gestures (velocity-based if off)", &bUseDistance);
+    peopleTracker.addToggle("Trigger gesture on reverse direction", &gestureGenerator.bTriggerOnNegative);
 }
 
 //--------------------------------------------------------------
