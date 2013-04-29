@@ -52,7 +52,7 @@ public:
 //    void onHandUpdated( ofxNiteHandEvent & e );
     
     // auto threshold
-    float autoThreshold, minimumThreshold;
+    float autoThreshold, minimumThreshold, maximumThreshold;
     float thresholdBuffer;
     
     // which gesture to use

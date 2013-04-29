@@ -53,6 +53,7 @@ void CustomDelegate::setup(){
     autoThreshold   = 255.0f;
     thresholdBuffer = .9f;
     minimumThreshold = 100;
+    maximumThreshold = 255;
     handSendTime    = 500;
     lastHandSent    = 0;
     bUseDistance    = bOldUseDistance = true;
@@ -60,6 +61,7 @@ void CustomDelegate::setup(){
     // add stuff to gui
     peopleTracker.addToggle("Use wave gesture", &bUseWave);
     peopleTracker.addSlider("Minimum Threshold", &minimumThreshold, 0, 250);
+    peopleTracker.addSlider("Maximum Threshold", &maximumThreshold, 0, 250);
     peopleTracker.addSlider("Threshold buffer", &thresholdBuffer, 0.0f, 1.0f);
     peopleTracker.addSlider("Gesture Sensitivity Horz", &gestureGenerator.horizontalThreshold, 0, 100);
     peopleTracker.addSlider("Gesture Sensitivity Vert", &gestureGenerator.verticalThreshold, 0, 100);
@@ -74,6 +76,7 @@ void CustomDelegate::setup(){
     peopleTracker.addSlider("Camera tilt adjust", &source.tiltAmount, -1.0f, 1.0f);
     peopleTracker.addToggle("Distance-based gestures (velocity-based if off)", &bUseDistance);
     peopleTracker.addToggle("Trigger gesture on reverse direction", &gestureGenerator.bTriggerOnNegative);
+    
 }
 
 //--------------------------------------------------------------
@@ -85,8 +88,11 @@ void CustomDelegate::update(){
     
     ofImage tempImage;
     tempImage.setFromPixels( peopleTracker.getWarpedImage()->getPixelsRef() );
+    
     cv::Mat cameraMat = ofxCv::toCv( tempImage );
-    cv::minMaxLoc( cameraMat, &minVal, &maxVal, &minLoc, &maxLoc, cv::Mat());
+    cv::Mat maxedMat = ofxCv::toCv( tempImage );
+    cv::min(cameraMat, maximumThreshold, maxedMat);
+    cv::minMaxLoc( maxedMat, &minVal, &maxVal, &minLoc, &maxLoc, cv::Mat());
     
     ofColor c = tempImage.getColor( maxLoc.x, maxLoc.y );
     autoThreshold = autoThreshold * .9 + c.r * .1;
